@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sharekeg.streetpal.Language.ChooseLanguage">
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/ic_confirm_icon" />
+
+    <com.sharekeg.streetpal.TextViewForEnglish
+        android:id="@+id/tv_select_lang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:gravity="center"
+        android:text="Please select your language"
+        android:textColor="#000"
+        android:textSize="@dimen/text_size" />
+
+    <RelativeLayout
+        android:id="@+id/enLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_select_lang"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="58dp"
+        android:background="@drawable/rounded_corner_or"
+        android:orientation="horizontal">
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:id="@+id/tv_en"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="12dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="20dp"
+            android:paddingTop="12dp"
+            android:text="English ( United States )"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+        <ImageView
+            android:id="@+id/ivdone"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_done_white"
+
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/arLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/enLay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_corner"
+        android:orientation="horizontal">
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:id="@+id/tv_ar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingBottom="12dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="77dp"
+            android:paddingTop="12dp"
+            android:text="Arabic ( Egypt )"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_done_white"
+
+            />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/btnDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/arLay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="89dp"
+        android:background="@drawable/ic_next_btn" />
+</RelativeLayout>

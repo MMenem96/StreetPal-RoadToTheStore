@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#080808</color>
+    <color name="colorPrimaryDark">#0b0b0b</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+
+    <!--Splash Activity-->
+    <color name="splash_bg">#1f1f1f</color>
+    <!---->
+
+    <!--Login Activity-->
+    <color name="login_bg">#fff</color>
+    <color name="login_controls_bg">#f8f8f8</color>
+    <color name="login_button_bg">#fbaf5d</color>
+    <color name="login_controls_hint">#c7c4c4</color>
+
+    <!---->
+
+    <!--SignUp Activity-->
+    <color name="signup_bg">#f8f8f8</color>
+    <color name="signup_controls_bg">#fff</color>
+    <color name="signup_button_bg">#fbaf5d</color>
+    <color name="signup_controls_hint">#c7c4c4</color>
+    <!---->
+
+    <!--Confirmation Activity-->
+    <color name="welcome_user_color">#4eb96a</color>
+    <color name="resend_btn">#363636</color>
+    <color name="submit_btn">#fbaf5d</color>
+    <color name="Green">#4eb96a</color>
+    <color name="nav_base_line">#e1e1e1</color>
+    <color name="confirmation_controls_hint">#c7c4c4</color>
+
+    <!---->
+
+    <!--Select Trusted Contact-->
+    <color name="select_trusted_contact_button_bg">#fbaf5d</color>
+    <color name="select_trusted_contact__activity_bar_color">#fbaf5d</color>
+    <color name="select_trusted_contact2__activity_bar2_color">#f5f5f5</color>
+
+    <!---->
+
+    <!--Congratulation Activity-->
+    <color name="congratulation_bg">#fbaf5d</color>
+    <!---->
+
+    <!--Home Activity-->
+    <color name="gray_rectangles_of_available_helping">#f5f5f5</color>
+    <color name="orange_rectangles_of_available_choices">#fbaf5d</color>
+    <color name="home_activity_bar_color">#fbaf5d</color>
+    <color name="call_help_bg">#fff</color>
+    <color name="border_home_tabs_color">#dad7d7</color>
+    <color name="border_home">#b1b0b0</color>
+    <!---->
+    <!--Safe Place Activity-->
+
+    <color name="navigate_btn">#363636</color>
+    <color name="btn_callvol_marksafe">#fbaf5d</color>
+    <color name="upper_bar_layout">#fbaf5d</color>
+    <color name="Black">#000</color>
+    <color name="text_timer">#b1b0b0</color>
+    <color name="chat_backgroung">#f1f1f1</color>
+    <color name="dark_blue_message_chat">#3d4d55</color>
+    <color name="logout">#3381AE</color>
+    <color name="card_item_color">#f5f5f5</color>
+    <color name="title_color">#38454F</color>
+    <color name="dark_grey">#959595</color>
+
+    <!---->
+
+</resources>

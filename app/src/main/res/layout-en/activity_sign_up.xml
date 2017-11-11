@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_sign_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        tools:context=".Registration.SignUpActivity">
+
+        <LinearLayout
+            android:id="@+id/upperBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:minHeight="40dp"
+            android:padding="10dp">
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/tvback"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_left_arrow"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:gravity="center"
+                android:text="@string/tvsignUP"
+                android:textColor="#000"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/tvbasck"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_left_arrow"
+                android:textSize="@dimen/text_size"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/uploadPPlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/upperBar"
+            android:background="@color/gray_rectangles_of_available_helping">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/IV_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/ic_change_profile_img"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/TV_upload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/IV_profile"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:padding="5dp"
+                android:text="@string/tv_upload_profile_picture"
+                android:textColor="#000"
+                android:textSize="@dimen/text_size" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/Llinfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/uploadPPlayout"
+            android:background="@color/white"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <com.sharekeg.streetpal.EditTextForEnglish
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:background="@color/signup_controls_bg"
+                android:gravity="start"
+                android:hint="@string/name"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:minLines="1"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/signup_controls_hint"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.EditTextForEnglish
+                android:id="@+id/etuserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/signup_controls_bg"
+                android:gravity="start"
+                android:hint="@string/username"
+                android:maxLines="1"
+                android:minLines="1"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/signup_controls_hint"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.EditTextForEnglish
+                android:id="@+id/etemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="start"
+                android:hint="@string/mail_hint"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:minLines="1"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/signup_controls_hint"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.EditTextForEnglish
+                android:id="@+id/etphone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="start"
+                android:hint="@string/phone_number_hint"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:minLines="1"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/signup_controls_hint"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.EditTextForEnglish
+                android:id="@+id/TV_passward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="start"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:minLines="1"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/signup_controls_hint"
+                android:textSize="@dimen/text_size" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/infoBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Llinfo"
+            android:background="@color/gray_rectangles_of_available_helping">
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/tv_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="start"
+                android:padding="3dp"
+                android:text="@string/privateinfo"
+                android:textAllCaps="true"
+                android:textColor="#9f9999"
+                android:textSize="@dimen/text_size" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/rlPrivateInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/infoBar"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/tvBirthDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:drawableEnd="@drawable/ic_calendar"
+                android:drawableRight="@drawable/ic_calendar"
+                android:gravity="start|center"
+                android:hint="@string/birth_date"
+                android:inputType="number"
+                android:maxLines="1"
+                android:minLines="1"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/signup_controls_hint"
+                android:textSize="@dimen/text_size" />
+
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/TV_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:background="@color/white"
+                android:hint="@string/sex_hint"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/signup_controls_hint"
+                android:textSize="@dimen/text_size"
+                android:visibility="gone" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center"
+                android:layout_marginEnd="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:dropDownSelector="@drawable/img"
+                android:gravity="end"
+                android:padding="10dp"
+                android:textColor="@color/black" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llWork"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlPrivateInfo">
+
+            <com.sharekeg.streetpal.EditTextForEnglish
+                android:id="@+id/etWork"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="start"
+                android:hint="@string/work_hint"
+                android:maxLines="1"
+                android:minLines="1"
+                android:padding="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/signup_controls_hint"
+                android:textSize="@dimen/text_size"
+
+                />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/llWork"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+            <com.sharekeg.streetpal.ButtonForEnglish
+                android:id="@+id/btnSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/corner_button"
+                android:gravity="center"
+                android:maxHeight="40dp"
+                android:text="@string/tvsignUP"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

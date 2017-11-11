@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sharekeg.streetpal.Settings.Report_a_problem">
+
+    <RelativeLayout
+        android:id="@+id/TV_reportProblem"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/login_button_bg"
+        android:padding="6dp">
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/Feedback"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/login_button_bg"
+            android:text="@string/send"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TV_reportProblem"
+        android:paddingBottom="20dp">
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="13dp"
+            android:text="@string/generalfeedback"
+            android:textColor="@color/confirmation_controls_hint"
+            android:textSize="12dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="52dp" />
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="36dp"
+            android:text="@string/Briefly"
+            android:textColor="@color/confirmation_controls_hint"
+            android:textSize="11dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="68dp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/relativeLayout"
+            android:background="@color/white">
+
+            <com.sharekeg.streetpal.EditTextForArabic
+                android:id="@+id/edittext"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/relativeLayout"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/relativeLayout1"
+                android:background="@color/white"
+                android:ems="10"
+                android:gravity="top"
+                android:paddingRight="5dp"
+                android:textSize="18sp"
+                android:windowSoftInputMode="stateHidden" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

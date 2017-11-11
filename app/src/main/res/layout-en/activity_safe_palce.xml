@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_safe_palce_"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.sharekeg.streetpal.safeplace.SafePlaceActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/UpperBarlayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/upper_bar_layout">
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/Safe_Places"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlMapView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/UpperBarlayout">
+
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="com.sharekeg.streetpal.safeplace.SafePlaceActivity" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/separator1"
+        android:layout_width="match_parent"
+        android:layout_height="1.3dp"
+        android:layout_below="@+id/rlMapView"
+        android:layout_gravity="center_vertical"
+        android:background="@color/upper_bar_layout" />
+
+    <RelativeLayout
+        android:id="@+id/llrecording"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/rlMapView"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:id="@+id/tvRecord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="14dp"
+            android:text="@string/recording"
+            android:textColor="@color/Black"
+            android:textSize="@dimen/text_size" />
+
+        <Chronometer
+            android:id="@+id/chrono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tvRecord"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/tvRecord"
+            android:layout_toRightOf="@id/tvRecord"
+            android:textColor="@color/Black" />
+
+
+        <ImageView
+            android:id="@+id/imPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/imStop"
+            android:background="@drawable/ic_pause" />
+
+        <ImageView
+            android:id="@+id/imPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@+id/imStop"
+            android:background="@drawable/ic_play" />
+
+
+        <ImageView
+            android:id="@+id/imStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_stop" />
+
+
+    </RelativeLayout>
+    <com.sharekeg.streetpal.ButtonForEnglish
+        android:id="@+id/btn_navigate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvReturnToTheGuide"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/black_corner_button"
+        android:padding="5dp"
+        android:text="@string/navigate_to_your_destination"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size" />
+
+
+    <com.sharekeg.streetpal.TextViewForEnglish
+        android:id="@+id/tvReturnToTheGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rlmarksafe_callvolunter"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="@string/return_to_street_chat"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:id="@+id/rlmarksafe_callvolunter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/submit_btn"
+        android:orientation="horizontal">
+
+        <com.sharekeg.streetpal.ButtonForEnglish
+            android:id="@+id/btnMarkSafe"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="1dp"
+            android:layout_weight="1"
+            android:background="@color/btn_callvol_marksafe"
+            android:text="@string/mark_safe"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="@color/white" />
+
+        <com.sharekeg.streetpal.ButtonForEnglish
+            android:id="@+id/btnCallVolunteer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="1dp"
+            android:layout_weight="1"
+            android:background="@color/btn_callvol_marksafe"
+            android:text="@string/call_trusted_contact"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sharekeg.streetpal.Settings.LanguageActivity">
+
+    <LinearLayout
+        android:id="@+id/TV_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/login_button_bg"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/cancel_actions"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:background="@drawable/ripple_effect"
+            android:padding="5dp"
+            android:visibility="invisible"
+            android:src="@drawable/back_icon"
+            android:textColor="@color/white" />
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/language"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_title_text_size" />
+
+        <ImageButton
+            android:id="@+id/cancel_action"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:background="@drawable/ripple_effect"
+            android:padding="5dp"
+            android:src="@drawable/back_icon"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TV_language"
+        android:layout_marginTop="10dp">
+
+
+        <RelativeLayout
+            android:id="@+id/enLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <com.sharekeg.streetpal.TextViewForArabic
+                android:id="@+id/english"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/image"
+                android:layout_alignTop="@+id/image"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/image"
+                android:background="@color/white"
+                android:gravity="start"
+                android:paddingBottom="5dp"
+                android:text="@string/english"
+                android:textSize="@dimen/text_size"
+
+                />
+
+            <com.sharekeg.streetpal.TextViewForArabic
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/english"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/united_kingdom"
+                android:textColor="@color/login_controls_hint"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:id="@+id/english1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/arLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/enLayout"
+            android:layout_marginTop="5dp"
+            android:background="@color/white">
+
+            <com.sharekeg.streetpal.TextViewForArabic
+                android:id="@+id/arabic"
+                android:layout_width="fill_parent"
+                android:layout_height="20dp"
+                android:layout_alignBottom="@+id/image"
+                android:layout_alignTop="@+id/image"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/image"
+                android:background="@color/white"
+                android:gravity="start"
+                android:text="@string/arabic"
+                android:textSize="@dimen/text_size"
+
+                />
+
+            <com.sharekeg.streetpal.TextViewForArabic
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/arabic"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:gravity="start"
+                android:text="@string/egypt"
+                android:textColor="@color/login_controls_hint"
+                android:textSize="14dp" />
+
+            <ImageView
+                android:id="@+id/arabic1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp" />
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

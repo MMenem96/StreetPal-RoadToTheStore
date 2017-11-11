@@ -1,0 +1,96 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingBottom="15dp"
+    tools:context="com.sharekeg.streetpal.homefragments.StartHomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/IV_hello"
+                android:layout_width="wrap_content"
+                android:layout_height="75dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="138dp"
+                android:layout_marginTop="15dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/ic_hello"
+                android:gravity="center" />
+
+            <com.sharekeg.streetpal.TextViewForArabic
+                android:id="@+id/hello"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/IV_hello"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/Hello"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.TextViewForArabic
+                android:id="@+id/And"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hello"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="3dp"
+                android:gravity="center"
+                android:text="@string/and"
+                android:textSize="@dimen/text_size" />
+
+
+            <com.sharekeg.streetpal.TextViewForArabic
+
+                android:id="@+id/tvEducate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/And"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/login_controls_bg"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text="@string/needed"
+                android:textSize="@dimen/text_size" />
+
+
+
+            <ImageButton
+                android:id="@+id/IV_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvEducate"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/ic_guide_btn"
+
+                />
+
+            <com.sharekeg.streetpal.TextViewForArabic
+                android:id="@+id/guidme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/IV_message"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/guidme"
+                android:textSize="@dimen/text_size" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+</FrameLayout>

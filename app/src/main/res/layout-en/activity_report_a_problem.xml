@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sharekeg.streetpal.Settings.Report_a_problem">
+
+    <LinearLayout
+        android:id="@+id/TV_reportProblem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/login_button_bg"
+        android:minHeight="40dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:gravity="start"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="@string/Feedback"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_title_text_size" />
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/login_button_bg"
+            android:gravity="end"
+            android:text="@string/send"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TV_reportProblem"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="40dp">
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="9dp"
+            android:text="@string/generalfeedback"
+            android:textColor="@color/confirmation_controls_hint"
+            android:textSize="@dimen/text_size"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/Briefly"
+            android:textColor="@color/confirmation_controls_hint"
+            android:textSize="@dimen/text_size"
+            tools:layout_editor_absoluteX="16dp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout"
+        android:background="@color/white">
+
+        <com.sharekeg.streetpal.EditTextForEnglish
+            android:id="@+id/edittext"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/white"
+            android:ems="10"
+            android:gravity="top"
+            android:paddingEnd="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingStart="5dp"
+            android:textSize="18sp"
+            android:windowSoftInputMode="stateHidden" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context="com.sharekeg.streetpal.homefragments.HomeTab"
+    android:id="@+id/guideTab">
+    <com.sharekeg.streetpal.TextViewForEnglish
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/border_home"
+        android:text="@string/static_guide_title"
+        android:textAlignment="center"
+        android:paddingRight="65dp"
+        android:paddingLeft="65dp"
+        android:id="@+id/tvFQA"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:textSize="@dimen/text_size"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFQA"
+        android:layout_marginBottom="45dp"/>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabBackground="@drawable/tab_selector"
+        android:layout_alignParentBottom="true"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"/>
+
+
+
+
+
+</RelativeLayout>

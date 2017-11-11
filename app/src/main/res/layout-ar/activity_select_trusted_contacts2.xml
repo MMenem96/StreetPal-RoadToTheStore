@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_select_trusted_contacts"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.sharekeg.streetpal.Registration.SelectTrustedContactsActivity2">
+
+    <RelativeLayout
+        android:id="@+id/UpperBarlayoutId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/select_trusted_contact__activity_bar_color"
+        android:minHeight="40dp"
+        android:padding="8dp">
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:text="@string/add_trusted_contact"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/activity_title_text_size" />
+
+        <ImageView
+            android:id="@+id/ivback"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ripple_effect"
+            android:src="@drawable/back_icon" />
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:id="@+id/tvSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/ripple_effect"
+            android:padding="5dp"
+            android:text="@string/skip"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/scndbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/UpperBarlayoutId"
+        android:background="@color/select_trusted_contact2__activity_bar2_color">
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/Your_selected_contact"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/scndbar"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/scimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/ic_user_contact_btn" />
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size" />
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:id="@+id/tvNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/tvnumber"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size" />
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="@string/trusted_contact_email_hint"
+            android:textSize="@dimen/text_size"
+            android:gravity="center"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/black"
+            />
+
+        <com.sharekeg.streetpal.TextViewForArabic
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/please_tab_next"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size" />
+
+        <ImageView
+            android:id="@+id/ivNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/ic_next_btn" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

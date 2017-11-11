@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <com.sharekeg.streetpal.TextViewForArabic
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:text="@string/Welcome"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size"
+                android:textStyle="normal" />
+
+            <com.sharekeg.streetpal.TextViewForArabic
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:text="@string/WelcomeText"
+                android:textColor="@color/border_home"
+                android:textSize="@dimen/text_size"
+                android:textStyle="normal" />
+
+            <RelativeLayout
+                android:id="@+id/first_card_from_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/card_item_color"
+                android:onClick="onClick"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_org_icon"
+                    android:padding="10dp" />
+
+                <com.sharekeg.streetpal.TextViewForArabic
+
+                    android:id="@+id/textView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/imageView1"
+                    android:text="@string/string1_card_item"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/second_card_from_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/card_item_color"
+                android:onClick="onClick"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_org_icon"
+                    android:padding="10dp" />
+
+                <com.sharekeg.streetpal.TextViewForArabic
+
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/imageView2"
+                    android:text="@string/string2_card_item"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/third_card_from_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/card_item_color"
+                android:onClick="onClick"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_org_icon"
+                    android:padding="10dp" />
+
+                <com.sharekeg.streetpal.TextViewForArabic
+
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/imageView3"
+                    android:text="@string/string3_card_item"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fourth_card_from_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/card_item_color"
+                android:onClick="onClick"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_org_icon"
+                    android:padding="10dp" />
+
+                <com.sharekeg.streetpal.TextViewForArabic
+
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/imageView4"
+                    android:text="@string/string4_card_item"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fifth_card_from_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/card_item_color"
+                android:onClick="onClick"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/ic_org_icon"
+                    android:padding="10dp" />
+
+                <com.sharekeg.streetpal.TextViewForArabic
+
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/imageView5"
+                    android:text="@string/string5_card_item"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

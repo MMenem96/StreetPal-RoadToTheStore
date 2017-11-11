@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/tvQs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_rectangles_of_available_helping"
+                android:drawablePadding="20dp"
+                android:drawableStart="@drawable/ic_question"
+                android:gravity="center_vertical"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:padding="15dp"
+                android:text="@string/static_guide_case2"
+                android:textSize="@dimen/text_size"
+                android:textColor="@color/black"
+                android:drawableLeft="@drawable/ic_question" />
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/tvinsts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvQs"
+                android:layout_marginTop="20dp"
+                android:background="@color/gray_rectangles_of_available_helping"
+                android:drawablePadding="20dp"
+                android:gravity="center_vertical"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:padding="15dp"
+                android:text="@string/static_guide_case2_instructions"
+                android:textSize="@dimen/text_size"
+                android:textColor="@color/black"
+                />
+        </RelativeLayout>
+    </ScrollView>
+
+</FrameLayout>

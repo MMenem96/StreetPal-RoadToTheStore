@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sharekeg.streetpal">
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="a.b.c.d.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="READ_CELL_BROADCASTS" />
+
+    <permission
+        android:name="a.b.c.d.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Street Pal"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".splashscreeen.SplashScreen"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="cat.ereza.customactivityoncrash.RESTART" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity
+            android:name=".forgotpassword.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Language.ChooseLanguage"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Settings.LanguageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".forgotpassword.ForgotPasswordAcivity2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Registration.SelectTrustedContactsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Registration.SelectTrustedContactsActivity2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Registration.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Registration.ConfirmationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Home.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Home.EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Registration.CongratulationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".safeplace.SafePlaceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Settings.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Settings.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Settings.EditSelectedTrustedContactsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Settings.PrivacyPolicyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Settings.ReportAProblemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Settings.AboutAsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Base.Theme.AppCompat" />
+
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDCMt_NIZiZO-sSCFiKdeaqEqtgqcrTDec" />
+        <!--<meta-data-->
+            <!--android:name="com.google.android.maps.v2.API_KEY"-->
+            <!--android:value="AIzaSyBRPOifusMoj8gHGqygiYSh-GzkdCa7V8M"/>-->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <uses-library android:name="com.google.android.maps" />
+
+
+    </application>
+
+</manifest>

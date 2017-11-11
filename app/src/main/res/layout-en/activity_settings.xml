@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f5f5f5"
+        tools:context="com.sharekeg.streetpal.Settings.SettingsActivity">
+
+
+        <RelativeLayout
+            android:id="@+id/Settingslayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/home_activity_bar_color"
+            android:minHeight="40dp"
+            android:padding="10dp">
+
+            <ImageButton
+                android:id="@+id/IV_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:background="@drawable/ripple_effect"
+                android:padding="6dp"
+                android:src="@drawable/back_icon" />
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/settings_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@color/login_button_bg"
+                android:gravity="center"
+                android:text="@string/setting"
+                android:textColor="@color/white"
+                android:textSize="@dimen/activity_title_text_size" />
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/Settingslayout"
+            android:layout_marginTop="10dp">
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:text="@string/account"
+                android:textColor="@color/login_controls_hint"
+                android:textSize="@dimen/activity_title_text_size" />
+
+            <LinearLayout
+                android:id="@+id/editProfileLinearLaout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_marginTop="8dp"
+
+                android:background="@color/white"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+
+                <com.sharekeg.streetpal.TextViewForEnglish
+                    android:id="@+id/editProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/editProfile"
+                    android:textSize="@dimen/text_size" />
+
+                <ImageView
+                    android:id="@+id/IV_editProfile"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.1"
+                    android:gravity="end"
+                    android:src="@drawable/ic_navigate_en" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/changePasswordLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editProfileLinearLaout"
+                android:background="@color/white"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="5dp"
+
+                >
+
+                <com.sharekeg.streetpal.TextViewForEnglish
+                    android:id="@+id/changepassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.9"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/Change_Password"
+                    android:textSize="@dimen/text_size" />
+
+                <ImageView
+                    android:id="@+id/changepasswordimg"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.1"
+                    android:background="@drawable/ic_navigate_en" />
+            </LinearLayout>
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/changePasswordLinearLayout"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/settings"
+                android:textColor="@color/login_controls_hint"
+                android:textSize="@dimen/activity_title_text_size" />
+
+            <LinearLayout
+                android:id="@+id/changeTrustedContactLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView8"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+
+                <com.sharekeg.streetpal.TextViewForEnglish
+                    android:id="@+id/trusted_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/trusted_contact"
+                    android:textSize="@dimen/text_size" />
+
+                <ImageView
+                    android:id="@+id/IV_trusted_contact"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.1"
+                    android:gravity="end"
+                    android:src="@drawable/ic_navigate_en" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/trustedContactNameLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/changeTrustedContactLinearLayout"
+                android:background="@color/white"
+                android:gravity="start"
+                android:padding="3dp">
+
+                <com.sharekeg.streetpal.TextViewForEnglish
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:text="@string/TrustedContact"
+                    android:textColor="@color/login_controls_hint"
+                    android:textSize="15sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/changeLanguageLinearLaout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/trustedContactNameLinearLayout"
+                android:background="@color/white"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="5dp"
+
+                >
+
+                <com.sharekeg.streetpal.TextViewForEnglish
+                    android:id="@+id/TV_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.9"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/language"
+                    android:textSize="@dimen/text_size" />
+
+                <ImageView
+                    android:id="@+id/IV_language"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.1"
+                    android:background="@drawable/ic_navigate_en" />
+            </LinearLayout>
+
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/tvsupport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/changeLanguageLinearLaout"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/support"
+                android:textColor="@color/login_controls_hint"
+                android:textSize="@dimen/activity_title_text_size" />
+
+            <LinearLayout
+                android:id="@+id/aboutUsLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvsupport"
+                android:layout_marginTop="8dp"
+                android:background="@color/white"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+
+                <com.sharekeg.streetpal.TextViewForEnglish
+                    android:id="@+id/aboutas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/About"
+                    android:textSize="@dimen/text_size" />
+
+                <ImageView
+                    android:id="@+id/IV_aboutas"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.1"
+                    android:gravity="end"
+                    android:src="@drawable/ic_navigate_en" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/privacyLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/aboutUsLinearLayout"
+                android:background="@color/white"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+
+                <com.sharekeg.streetpal.TextViewForEnglish
+                    android:id="@+id/privacy_policy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/privacy_policy"
+                    android:textSize="@dimen/text_size" />
+
+                <ImageView
+                    android:id="@+id/IV_privacy_policy"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.1"
+                    android:gravity="end"
+                    android:src="@drawable/ic_navigate_en" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/reportAProblemLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/privacyLinearLayout"
+                android:background="@color/white"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+
+                <com.sharekeg.streetpal.TextViewForEnglish
+                    android:id="@+id/Report_a_problem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/Report_a_problem"
+                    android:textSize="@dimen/text_size" />
+
+                <ImageView
+                    android:id="@+id/IV_Report_a_problem"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.1"
+                    android:gravity="end"
+                    android:src="@drawable/ic_navigate_en" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reportAProblemLinearLayout"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp">
+
+                <com.sharekeg.streetpal.TextViewForEnglish
+                    android:id="@+id/logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/white"
+                    android:padding="10dp"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/logout"
+                    android:textColor="@color/logout"
+                    android:textSize="@dimen/text_size"
+
+                    />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</ScrollView>

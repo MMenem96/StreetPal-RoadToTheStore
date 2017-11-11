@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.sharekeg.streetpal.Login.LoginActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/shareklogo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="60dp"
+            android:src="@drawable/ic_login_logo" />
+
+
+        <LinearLayout
+
+            android:id="@+id/fillinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/shareklogo"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <com.sharekeg.streetpal.EditTextForEnglish
+                android:id="@+id/etusername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:adjustViewBounds="true"
+                android:background="@color/login_controls_bg"
+                android:drawableLeft="@drawable/ic_username"
+                android:drawablePadding="9dp"
+                android:drawableStart="@drawable/ic_username"
+                android:hint="@string/user_name"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:paddingEnd="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="13dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/login_controls_hint"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.EditTextForEnglish
+                android:id="@+id/etpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:adjustViewBounds="true"
+                android:background="@color/login_controls_bg"
+                android:drawableLeft="@drawable/ic_password"
+                android:drawablePadding="9dp"
+                android:drawableStart="@drawable/ic_password"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingStart="10dp"
+                android:paddingTop="15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/login_controls_hint"
+                android:textSize="@dimen/text_size" />
+            <!-- Login button -->
+            <com.sharekeg.streetpal.ButtonForEnglish
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/corner_button"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size" />
+            <!-- Link to Registration Screen -->
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/link_to_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="@string/register_txt"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/link_to_reset_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="@string/reset_passwor_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

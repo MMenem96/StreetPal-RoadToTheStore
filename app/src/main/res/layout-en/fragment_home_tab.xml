@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/homeTab"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.sharekeg.streetpal.homefragments.HomeTab">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:id="@+id/tv_welcome_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size"
+            android:layout_marginTop="30dp"
+            android:gravity="center_horizontal"
+            android:text="@string/Welcome"
+            android:textColor="@color/black"
+            android:textStyle="normal" />
+
+        <com.sharekeg.streetpal.TextViewForEnglish
+            android:id="@+id/hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="@string/WelcomeText"
+            android:textColor="@color/border_home"
+                android:textSize="@dimen/text_size"
+            android:textStyle="normal" />
+
+
+        <RelativeLayout
+            android:id="@+id/first_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/orange_rectangles_of_available_choices"
+            android:onClick="onClick"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/ic_question_mark_icon_light" />
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/imageView1"
+                android:gravity="start"
+                android:text="@string/string1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/second_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/orange_rectangles_of_available_choices"
+            android:onClick="onClick"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/ic_question_mark_icon_light" />
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/imageView2"
+                android:gravity="start"
+                android:text="@string/string2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/third_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/orange_rectangles_of_available_choices"
+            android:onClick="onClick"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/ic_question_mark_icon_light" />
+
+            <com.sharekeg.streetpal.TextViewForEnglish
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/imageView3"
+                android:gravity="start"
+                android:text="@string/string3"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size" />
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</ScrollView>
+
+</FrameLayout>
