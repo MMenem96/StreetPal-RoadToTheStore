@@ -324,8 +324,14 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
                     } catch (Exception e) {
                         Toast.makeText(SafePlaceActivity.this, getResources().getString(R.string.error_while_navigation), Toast.LENGTH_SHORT).show();
                     }
-                }
+                } else {
+                    if (Type == "hospital") {
+                        Toast.makeText(SafePlaceActivity.this, getResources().getString(R.string.we_cdnt_find_hospital_near_you), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(SafePlaceActivity.this, getResources().getString(R.string.we_cdnt_find_police_station_near_you), Toast.LENGTH_SHORT).show();
 
+                    }
+                }
             }
         });
 
@@ -513,8 +519,6 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
                     startActivity(i);
 
 
-                } else {
-                    Toast.makeText(SafePlaceActivity.this, getApplicationContext().getResources().getString(R.string.server_error), Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -930,7 +934,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
                     }
                 } else {
 
-//                    Toast.makeText(getActivity(), "Error : " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SafePlaceActivity.this, getResources().getString(R.string.we_cdnt_find_hospital_near_you), Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -1015,7 +1019,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
                         e.printStackTrace();
                     }
                 } else {
-//                    Toast.makeText(getActivity(), "Error : " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SafePlaceActivity.this, getResources().getString(R.string.we_cdnt_find_police_station_near_you), Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -1098,8 +1102,6 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
             smsManager.sendMultipartTextMessage(trustedContactNumber, null, messageParts, null, null);
             Toast.makeText(SafePlaceActivity.this, getApplicationContext().getResources().getString(R.string.we_have_sent_mess_to_your_trusted_contact), Toast.LENGTH_LONG).show();
         } catch (Exception ex) {
-            Toast.makeText(SafePlaceActivity.this, R.string.smthing_went_wrong,
-                    Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
     }

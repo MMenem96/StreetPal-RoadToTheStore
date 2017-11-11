@@ -628,4 +628,6 @@ http://harassmap.org/ar/resource-center/what-is-sexual-harassment/
     <string name="error_while_navigation">حدث خطأ في التوجيه!</string>
     <string name="navigate_to_nearest_hospital">التوجه إلي أقرب مستشفي؟</string>
     <string name="navigate_to_nearest_police">التوجه إلي أقرب نقطة شرطة؟</string>
+    <string name="we_cdnt_find_hospital_near_you"> لم نتمكن من العثور علي مستشفي بالقرب منك!</string>
+    <string name="we_cdnt_find_police_station_near_you">لم نتمكن من العثور علي نقطة شرطة بالقرب منك!</string>
 </resources>

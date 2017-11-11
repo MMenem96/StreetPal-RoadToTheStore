@@ -165,8 +165,17 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (nearest_place != null)
+                        if (nearest_place != null){
                             showAlertDialougeToNavigate();
+
+                        }else{
+                            if(Type=="hospital"){
+                                Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_hospital_near_you), Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_police_station_near_you), Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
                     }
                 }, 2000);
             }
