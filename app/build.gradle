@@ -49,4 +49,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'cat.ereza:customactivityoncrash:2.1.0'
     compile 'com.akexorcist:localizationactivity:1.1.2'
+    compile 'com.google.android.gms:play-services-analytics:11.0.4'
 }
