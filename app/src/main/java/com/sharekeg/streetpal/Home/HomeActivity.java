@@ -92,7 +92,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     private String photoUrl = null;
     private String fullName;
     private GoogleAnalyticsHelper mGoogleHelper;
-        private static GoogleAnalytics sAnalytics;
+    private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
     SharedPreferences languagepref;
     String language;
@@ -166,7 +166,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         ivSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SendEventGoogleAnalytics("SettingsActivity","SettingsButton","Button clicked" );
 
                 Intent i = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(i);
@@ -188,19 +187,9 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         });
 
 
-
-
         ivNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                SendEventGoogleAnalytics("MapTab","MapTabButton","Button clicked" );
-//                sTracker.send(new HitBuilders.EventBuilder()
-//                        .setCategory("Action")
-//                        .setAction("Share")
-//                        .build());
-
-
                 openNavigationTab();
 
                 ivNavigation.setImageResource(R.drawable.ic_map_or);
@@ -213,7 +202,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         ivPosts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SendEventGoogleAnalytics("GuideTab","GuideTabButton","Button clicked" );
+                SendEventGoogleAnalytics("GuideTab", "GuideTabButton", "Static guide is opened ");
 
                 openGuideTab();
                 ivNavigation.setImageResource(R.drawable.ic_map);
@@ -227,22 +216,19 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 
     }
 
-    private void InitGoogleAnalytics()
-    {
+    private void InitGoogleAnalytics() {
         mGoogleHelper = new GoogleAnalyticsHelper();
         mGoogleHelper.init(HomeActivity.this);
     }
 
-    private void SendScreenNameGoogleAnalytics()
-    {
+    private void SendScreenNameGoogleAnalytics() {
 
-        mGoogleHelper.SendScreenNameGoogleAnalytics("HomeActivity 1",HomeActivity.this);
+        mGoogleHelper.SendScreenNameGoogleAnalytics("HomeActivity 1", HomeActivity.this);
     }
 
-    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
-    {
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId, String iLabelId) {
 
-        mGoogleHelper.SendEventGoogleAnalytics(HomeActivity.this,iCategoryId,iActionId,iLabelId );
+        mGoogleHelper.SendEventGoogleAnalytics(HomeActivity.this, iCategoryId, iActionId, iLabelId);
     }
 
     private void isUserLoggedin(String token) {
@@ -544,8 +530,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 //        String language = Locale.getDefault().getLanguage();
 //        setLanguage(language);
         checkLanguage(language);
-//        sTracker.setScreenName("Home Activity");
-//        sTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
 
     }
 

@@ -172,12 +172,12 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
                     public void run() {
                         if (nearest_place != null) {
                             showAlertDialougeToNavigate();
-                            SendEventGoogleAnalytics("MapTab","btnPolice","Police station selected from maptab" );
+                            SendEventGoogleAnalytics("Nearest PoliceStation","SelectedFromMapTab","Nearest PoliceStation is shown to  the user" );
 
 
                         } else {
                             Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_police_station_near_you), Toast.LENGTH_SHORT).show();
-                            SendEventGoogleAnalytics("MapTab","btnPolice","Couldn't find Police station from maptab" );
+                            SendEventGoogleAnalytics("Nearest PoliceStation","SelectedFromMapTab","Couldn't find nearest PoliceStation " );
 
                         }
                     }
@@ -194,9 +194,11 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
                     @Override
                     public void run() {
                         if (nearest_place != null) {
+                            SendEventGoogleAnalytics("Nearest Hospital","SelectedFromMapTab","Nearest Hospital is shown to  the user" );
                             showAlertDialougeToNavigate();
 
                         } else {
+                            SendEventGoogleAnalytics("Nearest Hospital","SelectedFromMapTab","Couldn't find nearest Hospital " );
                             Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_hospital_near_you), Toast.LENGTH_SHORT).show();
                         }
                     }

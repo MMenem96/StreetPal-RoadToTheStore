@@ -203,6 +203,8 @@ public class HomeTab extends Fragment implements View.OnClickListener {
             case R.id.first_card:
                 bundle.putInt("userCase", UserGuide.USER_FEELS_FOLLOWED);
                 startStreetPalGuide();
+             //   SendEventGoogleAnalytics("HomeTab","btnUserFeel","Hospital selected from maptab" );
+
 
                 break;
             case R.id.second_card:
