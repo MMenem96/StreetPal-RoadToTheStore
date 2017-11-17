@@ -34,6 +34,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akexorcist.localizationactivity.LocalizationActivity;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
 import com.sharekeg.streetpal.Login.LoginActivity;
 import com.sharekeg.streetpal.R;
@@ -41,6 +44,7 @@ import com.sharekeg.streetpal.Registration.ConfirmationActivity;
 import com.sharekeg.streetpal.Registration.TrustedContact;
 import com.sharekeg.streetpal.Registration.UserPhoto;
 import com.sharekeg.streetpal.Settings.SettingsActivity;
+import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 import com.sharekeg.streetpal.homefragments.GuideTab;
 import com.sharekeg.streetpal.homefragments.HomeTab;
 import com.sharekeg.streetpal.homefragments.MapTab;
@@ -87,7 +91,9 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     private ProgressDialog pDialouge;
     private String photoUrl = null;
     private String fullName;
-
+    private GoogleAnalyticsHelper mGoogleHelper;
+        private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
     SharedPreferences languagepref;
     String language;
 
@@ -102,6 +108,10 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+        InitGoogleAnalytics();
+        SendScreenNameGoogleAnalytics();
+
 
         super.onCreate(savedInstanceState);
         languagepref = getSharedPreferences("language", MODE_PRIVATE);
@@ -156,6 +166,8 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         ivSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SendEventGoogleAnalytics("SettingsActivity","SettingsButton","Button clicked" );
+
                 Intent i = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(i);
 
@@ -174,10 +186,23 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 
             }
         });
+
+
+
+
         ivNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                SendEventGoogleAnalytics("MapTab","MapTabButton","Button clicked" );
+//                sTracker.send(new HitBuilders.EventBuilder()
+//                        .setCategory("Action")
+//                        .setAction("Share")
+//                        .build());
+
+
                 openNavigationTab();
+
                 ivNavigation.setImageResource(R.drawable.ic_map_or);
                 ivHome.setImageResource(R.drawable.ic_home);
                 ivPosts.setImageResource(R.drawable.ic_guide);
@@ -188,6 +213,8 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         ivPosts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SendEventGoogleAnalytics("GuideTab","GuideTabButton","Button clicked" );
+
                 openGuideTab();
                 ivNavigation.setImageResource(R.drawable.ic_map);
                 ivHome.setImageResource(R.drawable.ic_home);
@@ -198,6 +225,24 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 
         isUserLoggedin(token);
 
+    }
+
+    private void InitGoogleAnalytics()
+    {
+        mGoogleHelper = new GoogleAnalyticsHelper();
+        mGoogleHelper.init(HomeActivity.this);
+    }
+
+    private void SendScreenNameGoogleAnalytics()
+    {
+
+        mGoogleHelper.SendScreenNameGoogleAnalytics("HomeActivity 1",HomeActivity.this);
+    }
+
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
+    {
+
+        mGoogleHelper.SendEventGoogleAnalytics(HomeActivity.this,iCategoryId,iActionId,iLabelId );
     }
 
     private void isUserLoggedin(String token) {
@@ -499,8 +544,10 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 //        String language = Locale.getDefault().getLanguage();
 //        setLanguage(language);
         checkLanguage(language);
-    }
+//        sTracker.setScreenName("Home Activity");
+//        sTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
+    }
 
 
     //

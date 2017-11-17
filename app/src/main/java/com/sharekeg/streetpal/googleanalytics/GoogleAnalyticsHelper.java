@@ -7,11 +7,13 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+
 public class GoogleAnalyticsHelper {
+
 
     private Tracker mGaTracker = null;
     private static String TAG = "GoogleAnalyticsHelper";
-    private static final String PROPERTY_ID = "UA-xxxxxxxx-x";
+    private static final String PROPERTY_ID = "UA-109833790-1";
 
     public GoogleAnalyticsHelper() {
 
@@ -21,7 +23,7 @@ public class GoogleAnalyticsHelper {
         try {
 
             if (mGaTracker == null && ctx != null) {
-                mGaTracker = GoogleAnalytics.getInstance(ctx).newTracker(PROPERTY_ID);
+                mGaTracker = GoogleAnalytics.getInstance(ctx).newTracker("UA-109833790-1");
             }
         } catch (Exception e) {
             Log.d(GoogleAnalyticsHelper.TAG, "init, e=" + e);
@@ -32,7 +34,7 @@ public class GoogleAnalyticsHelper {
         init(iCtx);
 
         mGaTracker.setScreenName(screenName);
-        mGaTracker.send(new HitBuilders.AppViewBuilder().build());
+        mGaTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
     }
 

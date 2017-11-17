@@ -32,6 +32,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
@@ -63,6 +65,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
 import com.sharekeg.streetpal.R;
+import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 import com.sharekeg.streetpal.safeplace.GoogleMapsUtilities;
 import com.sharekeg.streetpal.safeplace.SafePlaceActivity;
 import com.sharekeg.streetpal.safeplace.nearbyplaceutil.Example;
@@ -84,6 +87,9 @@ import static android.content.Context.MODE_PRIVATE;
  * A simple {@link Fragment} subclass.
  */
 public class MapTab extends Fragment implements OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public static final int RequestPermissionCode = 1;
     private static final String TAG = MapTab.class.getSimpleName();
@@ -114,10 +120,16 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
     private MapView mMapView;
     private Location mLastLocation;
     private Context context;
+    private GoogleAnalyticsHelper mGoogleHelper;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sAnalytics = GoogleAnalytics.getInstance(getActivity());
+        InitGoogleAnalytics();
+        SendScreenNameGoogleAnalytics();
+
 
         context = getContext();
         mprogressDialog = new ProgressDialog(getActivity());
@@ -136,6 +148,14 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
         }
         Log.d(TAG, "onCreate");
     }
+    synchronized public Tracker getDefaultTracker() {
+        // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+        if (sTracker == null) {
+            sTracker = sAnalytics.newTracker(R.xml.global_tracker);
+        }
+
+        return sTracker;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -150,8 +170,16 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (nearest_place != null)
+                        if (nearest_place != null) {
                             showAlertDialougeToNavigate();
+                            SendEventGoogleAnalytics("MapTab","btnPolice","Police station selected from maptab" );
+
+
+                        } else {
+                            Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_police_station_near_you), Toast.LENGTH_SHORT).show();
+                            SendEventGoogleAnalytics("MapTab","btnPolice","Couldn't find Police station from maptab" );
+
+                        }
                     }
                 }, 2000);
             }
@@ -165,16 +193,11 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (nearest_place != null){
+                        if (nearest_place != null) {
                             showAlertDialougeToNavigate();
 
-                        }else{
-                            if(Type=="hospital"){
-                                Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_hospital_near_you), Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_police_station_near_you), Toast.LENGTH_SHORT).show();
-
-                            }
+                        } else {
+                            Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_hospital_near_you), Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, 2000);
@@ -320,6 +343,23 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
 
     }
 
+    private void InitGoogleAnalytics()
+    {
+        mGoogleHelper = new GoogleAnalyticsHelper();
+        mGoogleHelper.init(getContext());
+    }
+
+    private void SendScreenNameGoogleAnalytics()
+    {
+
+        mGoogleHelper.SendScreenNameGoogleAnalytics("MapTab",getContext());
+    }
+
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
+    {
+
+        mGoogleHelper.SendEventGoogleAnalytics(getContext(),iCategoryId,iActionId,iLabelId );
+    }
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION)
@@ -722,7 +762,6 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
             adb.setTitle(getActivity().getResources().getString(R.string.navigate_to_nearest_police));
 
         }
-
 
 
         adb.setPositiveButton(this.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
