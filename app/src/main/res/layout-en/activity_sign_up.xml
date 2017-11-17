@@ -21,14 +21,14 @@
             android:minHeight="40dp"
             android:padding="10dp">
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/tvback"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/ic_left_arrow"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/textView2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                 android:textColor="#000"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/tvbasck"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -67,7 +67,7 @@
                 android:gravity="center_horizontal"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/TV_upload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             android:gravity="start"
             android:orientation="vertical">
 
-            <com.sharekeg.streetpal.EditTextForEnglish
+            <com.sharekeg.streetpal.langutil.EditTextForEnglish
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                 android:textColorHint="@color/signup_controls_hint"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.EditTextForEnglish
+            <com.sharekeg.streetpal.langutil.EditTextForEnglish
                 android:id="@+id/etuserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                 android:textColorHint="@color/signup_controls_hint"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.EditTextForEnglish
+            <com.sharekeg.streetpal.langutil.EditTextForEnglish
                 android:id="@+id/etemail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
                 android:textColorHint="@color/signup_controls_hint"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.EditTextForEnglish
+            <com.sharekeg.streetpal.langutil.EditTextForEnglish
                 android:id="@+id/etphone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                 android:textColorHint="@color/signup_controls_hint"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.EditTextForEnglish
+            <com.sharekeg.streetpal.langutil.EditTextForEnglish
                 android:id="@+id/TV_passward"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
             android:layout_below="@+id/Llinfo"
             android:background="@color/gray_rectangles_of_available_helping">
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/tv_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -208,7 +208,7 @@
             android:orientation="horizontal">
 
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/tvBirthDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -227,7 +227,7 @@
                 android:textSize="@dimen/text_size" />
 
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/TV_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -266,7 +266,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rlPrivateInfo">
 
-            <com.sharekeg.streetpal.EditTextForEnglish
+            <com.sharekeg.streetpal.langutil.EditTextForEnglish
                 android:id="@+id/etWork"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -290,7 +290,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp">
 
-            <com.sharekeg.streetpal.ButtonForEnglish
+            <com.sharekeg.streetpal.langutil.ButtonForEnglish
                 android:id="@+id/btnSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

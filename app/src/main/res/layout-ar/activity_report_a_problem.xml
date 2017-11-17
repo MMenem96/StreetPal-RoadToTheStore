@@ -13,7 +13,7 @@
         android:background="@color/login_button_bg"
         android:padding="6dp">
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             android:textColor="@color/white"
             android:textSize="12sp" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -37,7 +37,7 @@
             android:textColor="@color/white"
             android:textSize="13sp" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         android:layout_below="@+id/TV_reportProblem"
         android:paddingBottom="20dp">
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
@@ -74,7 +74,7 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="52dp" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
@@ -100,7 +100,7 @@
             android:layout_below="@+id/relativeLayout"
             android:background="@color/white">
 
-            <com.sharekeg.streetpal.EditTextForArabic
+            <com.sharekeg.streetpal.langutil.EditTextForArabic
                 android:id="@+id/edittext"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"

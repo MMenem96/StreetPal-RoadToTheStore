@@ -15,7 +15,7 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/ic_confirm_icon" />
 
-    <com.sharekeg.streetpal.TextViewForEnglish
+    <com.sharekeg.streetpal.langutil.TextViewForEnglish
         android:id="@+id/tv_select_lang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         android:background="@drawable/rounded_corner_or"
         android:orientation="horizontal">
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tv_en"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
         android:background="@drawable/rounded_corner"
         android:orientation="horizontal">
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tv_ar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

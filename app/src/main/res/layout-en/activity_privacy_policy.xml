@@ -35,7 +35,7 @@
                 android:src="@drawable/back_icon"
                 android:textColor="@color/white" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/textViewForEnglish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin">
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Last"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
 
                 />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/by"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Subscriptions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_title_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Some"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Privacy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_title_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Personal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_title_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/contectOfSignUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_title_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/streetPal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Objectives"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -177,7 +177,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_title_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/increase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -187,7 +187,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Effective"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -198,7 +198,7 @@
                 android:textSize="@dimen/privacy_title_text_size" />
 
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/MainFeatures"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -209,7 +209,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_title_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Smart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
 
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Navigation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -229,7 +229,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Guide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -239,7 +239,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/ourService"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -249,7 +249,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Usage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -260,7 +260,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_title_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/StreetPaloffers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -270,7 +270,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/Changes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -281,7 +281,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_title_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/We"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -292,7 +292,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/ContactUs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -303,7 +303,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/privacy_title_text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/If"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

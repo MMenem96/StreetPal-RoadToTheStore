@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/user_send_message_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

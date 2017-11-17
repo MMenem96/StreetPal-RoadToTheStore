@@ -7,7 +7,7 @@
     android:background="@color/gray_rectangles_of_available_helping"
     tools:context="com.sharekeg.streetpal.Dialogs.DialogActivity">
 
-    <com.sharekeg.streetpal.TextViewForEnglish
+    <com.sharekeg.streetpal.langutil.TextViewForEnglish
         android:id="@+id/message"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -19,7 +19,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/activity_horizontal_margin" />
 
-    <com.sharekeg.streetpal.ButtonForEnglish
+    <com.sharekeg.streetpal.langutil.ButtonForEnglish
         android:id="@+id/btncancel"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -32,7 +32,7 @@
 
         android:textSize="@dimen/activity_horizontal_margin" />
 
-    <com.sharekeg.streetpal.TextViewForEnglish
+    <com.sharekeg.streetpal.langutil.TextViewForEnglish
         android:id="@+id/tvhelp"
         android:layout_width="match_parent"
         android:layout_height="40dp"

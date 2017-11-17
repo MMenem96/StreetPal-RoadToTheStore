@@ -19,7 +19,7 @@
         android:layout_alignParentTop="true"
         android:background="@color/upper_bar_layout">
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
         android:orientation="horizontal">
 
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tvRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
 
 
     </RelativeLayout>
-    <com.sharekeg.streetpal.ButtonForEnglish
+    <com.sharekeg.streetpal.langutil.ButtonForEnglish
         android:id="@+id/btn_navigate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -139,7 +139,7 @@
         android:textSize="@dimen/text_size" />
 
 
-    <com.sharekeg.streetpal.TextViewForEnglish
+    <com.sharekeg.streetpal.langutil.TextViewForEnglish
         android:id="@+id/tvReturnToTheGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -159,7 +159,7 @@
         android:background="@color/submit_btn"
         android:orientation="horizontal">
 
-        <com.sharekeg.streetpal.ButtonForEnglish
+        <com.sharekeg.streetpal.langutil.ButtonForEnglish
             android:id="@+id/btnMarkSafe"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
             android:layout_gravity="center_vertical"
             android:background="@color/white" />
 
-        <com.sharekeg.streetpal.ButtonForEnglish
+        <com.sharekeg.streetpal.langutil.ButtonForEnglish
             android:id="@+id/btnCallVolunteer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

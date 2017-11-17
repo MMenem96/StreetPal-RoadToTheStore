@@ -28,7 +28,7 @@
                 android:background="@drawable/ic_hello"
                 android:gravity="center" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/hello"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
                 android:text="@string/Hello"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/And"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                 android:textSize="@dimen/text_size" />
 
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
 
                 android:id="@+id/tvEducate"
                 android:layout_width="match_parent"
@@ -79,7 +79,7 @@
 
                 />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/guidme"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package com.sharekeg.streetpal;
+package com.sharekeg.streetpal.langutil;
 
 import android.content.Context;
 import android.graphics.Typeface;

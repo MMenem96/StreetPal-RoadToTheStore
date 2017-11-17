@@ -36,7 +36,7 @@
             android:padding="10dp">
 
 
-            <com.sharekeg.streetpal.EditTextForEnglish
+            <com.sharekeg.streetpal.langutil.EditTextForEnglish
                 android:id="@+id/etusername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                 android:textColorHint="@color/login_controls_hint"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.EditTextForEnglish
+            <com.sharekeg.streetpal.langutil.EditTextForEnglish
                 android:id="@+id/etpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 android:textColorHint="@color/login_controls_hint"
                 android:textSize="@dimen/text_size" />
             <!-- Login button -->
-            <com.sharekeg.streetpal.ButtonForEnglish
+            <com.sharekeg.streetpal.langutil.ButtonForEnglish
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size" />
             <!-- Link to Registration Screen -->
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/link_to_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_size" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/link_to_reset_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

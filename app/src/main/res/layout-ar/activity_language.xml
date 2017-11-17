@@ -24,7 +24,7 @@
             android:visibility="invisible"
             android:src="@drawable/back_icon"
             android:textColor="@color/white" />
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white">
 
-            <com.sharekeg.streetpal.TextViewForArabic
+            <com.sharekeg.streetpal.langutil.TextViewForArabic
                 android:id="@+id/english"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
 
                 />
 
-            <com.sharekeg.streetpal.TextViewForArabic
+            <com.sharekeg.streetpal.langutil.TextViewForArabic
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/english"
@@ -107,7 +107,7 @@
             android:layout_marginTop="5dp"
             android:background="@color/white">
 
-            <com.sharekeg.streetpal.TextViewForArabic
+            <com.sharekeg.streetpal.langutil.TextViewForArabic
                 android:id="@+id/arabic"
                 android:layout_width="fill_parent"
                 android:layout_height="20dp"
@@ -123,7 +123,7 @@
 
                 />
 
-            <com.sharekeg.streetpal.TextViewForArabic
+            <com.sharekeg.streetpal.langutil.TextViewForArabic
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/arabic"

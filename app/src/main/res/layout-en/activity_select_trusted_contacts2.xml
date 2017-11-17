@@ -17,7 +17,7 @@
         android:minHeight="40dp"
         android:padding="8dp">
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -37,7 +37,7 @@
             android:background="@drawable/ripple_effect"
             android:src="@drawable/back_icon" />
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tvSkip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
         android:layout_below="@+id/UpperBarlayoutId"
         android:background="@color/select_trusted_contact2__activity_bar2_color">
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -88,7 +88,7 @@
             android:layout_marginTop="25dp"
             android:src="@drawable/ic_user_contact_btn" />
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tvNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

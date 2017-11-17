@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/StreetPal-RoadToTheStore-master.iml" filepath="$PROJECT_DIR$/StreetPal-RoadToTheStore-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StreetPal-RoadToTheStore.iml" filepath="$PROJECT_DIR$/StreetPal-RoadToTheStore.iml" />
+      <module fileurl="file://C:\Users\MMenem\AndroidStudioProjects\StreetPal-RoadToTheStore\StreetPal-RoadToTheStore-master.iml" filepath="C:\Users\MMenem\AndroidStudioProjects\StreetPal-RoadToTheStore\StreetPal-RoadToTheStore-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\MMenem\AndroidStudioProjects\StreetPal-RoadToTheStore\app\app.iml" filepath="C:\Users\MMenem\AndroidStudioProjects\StreetPal-RoadToTheStore\app\app.iml" />
     </modules>
   </component>
 </project>

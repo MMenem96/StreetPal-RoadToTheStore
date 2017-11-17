@@ -32,7 +32,7 @@
                 android:layout_marginTop="10dp"
                 android:src="@drawable/ic_message_street_pal" />
 
-            <com.sharekeg.streetpal.TextViewForArabic
+            <com.sharekeg.streetpal.langutil.TextViewForArabic
                 android:id="@+id/tvmessage_send"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
             android:paddingBottom="1dp">
 
 
-            <com.sharekeg.streetpal.TextViewForArabic
+            <com.sharekeg.streetpal.langutil.TextViewForArabic
                 android:id="@+id/tvmessage_user_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package com.sharekeg.streetpal;
+package com.sharekeg.streetpal.langutil;
 
 import android.app.Application;
 import android.content.SharedPreferences;

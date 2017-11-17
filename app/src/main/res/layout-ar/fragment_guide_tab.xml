@@ -7,7 +7,7 @@
     android:background="@color/white"
     tools:context="com.sharekeg.streetpal.homefragments.HomeTab"
     android:id="@+id/guideTab">
-    <com.sharekeg.streetpal.TextViewForArabic
+    <com.sharekeg.streetpal.langutil.TextViewForArabic
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/border_home"

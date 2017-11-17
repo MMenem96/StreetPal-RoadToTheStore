@@ -14,7 +14,7 @@
     android:layout_height="wrap_content"
     android:background="@color/white">
 
-    <com.sharekeg.streetpal.TextViewForEnglish
+    <com.sharekeg.streetpal.langutil.TextViewForEnglish
         android:id="@+id/tvguide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

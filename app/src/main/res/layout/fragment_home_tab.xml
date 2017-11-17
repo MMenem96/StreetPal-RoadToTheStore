@@ -18,7 +18,7 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tv_welcome_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
             android:textColor="@color/black"
             android:textStyle="normal" />
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/ic_question_mark_icon_light" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
 
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/ic_question_mark_icon_light" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/ic_question_mark_icon_light" />
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

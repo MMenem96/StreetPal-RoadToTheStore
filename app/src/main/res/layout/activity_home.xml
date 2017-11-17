@@ -26,7 +26,7 @@
             android:src="@drawable/ic_settings_img"
             android:visibility="invisible" />
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tvHomeTitle_typing"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:textSize="@dimen/text_title_typing"
             android:visibility="gone" />
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tvHomeTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
              />
 
 
-        <com.sharekeg.streetpal.TextViewForEnglish
+        <com.sharekeg.streetpal.langutil.TextViewForEnglish
             android:id="@+id/tvusername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

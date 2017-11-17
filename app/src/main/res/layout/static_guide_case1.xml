@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/tvQs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
                 android:textSize="@dimen/text_size"
                 android:textColor="@color/black"
                 android:drawableLeft="@drawable/ic_question" />
-            <com.sharekeg.streetpal.TextViewForEnglish
+            <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/tvinsts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -19,7 +19,7 @@
             android:background="@color/white"
             android:orientation="vertical">
 
-            <com.sharekeg.streetpal.TextViewForArabic
+            <com.sharekeg.streetpal.langutil.TextViewForArabic
                 android:id="@+id/tv_welcome_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
                 android:textSize="@dimen/text_size"
                 android:textStyle="normal" />
 
-            <com.sharekeg.streetpal.TextViewForArabic
+            <com.sharekeg.streetpal.langutil.TextViewForArabic
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -60,7 +60,7 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/ic_question_mark_icon_light" />
 
-                <com.sharekeg.streetpal.TextViewForArabic
+                <com.sharekeg.streetpal.langutil.TextViewForArabic
 
                     android:id="@+id/textView1"
                     android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/ic_question_mark_icon_light" />
 
-                <com.sharekeg.streetpal.TextViewForArabic
+                <com.sharekeg.streetpal.langutil.TextViewForArabic
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/ic_question_mark_icon_light" />
 
-                <com.sharekeg.streetpal.TextViewForArabic
+                <com.sharekeg.streetpal.langutil.TextViewForArabic
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

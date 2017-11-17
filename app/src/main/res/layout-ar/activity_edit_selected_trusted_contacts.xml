@@ -16,7 +16,7 @@
         android:background="@color/select_trusted_contact__activity_bar_color"
         android:padding="7dp">
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/tvDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.8"
@@ -38,7 +38,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/activity_title_text_size" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
         android:background="@color/select_trusted_contact2__activity_bar2_color"
         android:padding="3dp">
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -91,7 +91,7 @@
             android:layout_marginTop="25dp"
             android:src="@drawable/ic_user_contact_btn" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/tvNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

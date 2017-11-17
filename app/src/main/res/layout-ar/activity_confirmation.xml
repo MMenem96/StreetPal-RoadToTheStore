@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/tvconfirmation"
             android:layout_width="match_parent"
             android:layout_height="28dp"
@@ -47,7 +47,7 @@
         android:paddingRight="30dp">
 
 
-        <com.sharekeg.streetpal.EditTextForArabic
+        <com.sharekeg.streetpal.langutil.EditTextForArabic
             android:id="@+id/ET_Code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
             android:textColorHint="@color/confirmation_controls_hint"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/TimerView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
             android:layout_marginTop="80dp"
             android:background="@drawable/ic_confirm_icon" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/tv_welcome_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
             android:textColor="@color/Green"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.ButtonForArabic
+        <com.sharekeg.streetpal.langutil.ButtonForArabic
             android:id="@+id/btn_Submit"
             android:layout_width="match_parent"
             android:layout_height="35dp"
@@ -121,7 +121,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.ButtonForArabic
+        <com.sharekeg.streetpal.langutil.ButtonForArabic
             android:id="@+id/btn_ResendCode"
             android:layout_width="match_parent"
             android:layout_height="35dp"
@@ -138,7 +138,7 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_size" />
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/TV_Confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
             android:textSize="@dimen/text_size" />
 
 
-        <com.sharekeg.streetpal.TextViewForArabic
+        <com.sharekeg.streetpal.langutil.TextViewForArabic
             android:id="@+id/tvEditYourEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
