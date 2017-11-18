@@ -26,6 +26,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -33,6 +35,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.sharekeg.streetpal.R;
+import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 
 /**
  * Created by MMenem on 8/21/2017.
@@ -42,7 +45,21 @@ public class StartHomeFragment extends Fragment {
 
     private ImageButton IV_message;
     private TextView hello, And, tvEducate;
+    private Context context;
+    private GoogleAnalyticsHelper mGoogleHelper;
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
     public StartHomeFragment() {
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sAnalytics = GoogleAnalytics.getInstance(getActivity());
+        InitGoogleAnalytics();
+        SendScreenNameGoogleAnalytics();
+
+
+        context = getContext();
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,6 +72,7 @@ public class StartHomeFragment extends Fragment {
         IV_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SendEventGoogleAnalytics("StartHomeFragment","CallForHelp","Button clicked" );
                 startHomeTabFragment();
             }
         });
@@ -73,7 +91,23 @@ public class StartHomeFragment extends Fragment {
     }
 
 
+    private void InitGoogleAnalytics()
+    {
+        mGoogleHelper = new GoogleAnalyticsHelper();
+        mGoogleHelper.init(getContext());
+    }
 
+    private void SendScreenNameGoogleAnalytics()
+    {
+
+        mGoogleHelper.SendScreenNameGoogleAnalytics("StartHomeFragment",getContext());
+    }
+
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
+    {
+
+        mGoogleHelper.SendEventGoogleAnalytics(getContext(),iCategoryId,iActionId,iLabelId );
+    }
 
 
 

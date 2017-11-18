@@ -14,6 +14,8 @@ import android.database.Cursor;
 import android.location.Location;
 
 import com.akexorcist.localizationactivity.LocalizationActivity;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
@@ -69,6 +71,7 @@ import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
 import com.sharekeg.streetpal.Home.HomeActivity;
 import com.sharekeg.streetpal.R;
 import com.sharekeg.streetpal.Registration.TrustedContact;
+import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 import com.sharekeg.streetpal.locationservice.LocationProvider;
 import com.sharekeg.streetpal.safeplace.nearbyplaceutil.Example;
 
@@ -96,6 +99,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static java.security.AccessController.getContext;
 
 public class SafePlaceActivity extends AppCompatActivity implements LocationProvider.LocationCallback, OnMapReadyCallback, LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
@@ -147,6 +151,10 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
     private Location currentUserLocation;
     private LocationProvider mLocationProvider;
 
+    private GoogleAnalyticsHelper mGoogleHelper;
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -154,6 +162,10 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
         language = languagepref.getString("languageToLoad", "");
         checkLanguage(language);
         setContentView(R.layout.activity_safe_palce);
+
+        InitGoogleAnalytics();
+        SendScreenNameGoogleAnalytics();
+
         mChronometer = (Chronometer) findViewById(R.id.chrono);
 
         mLocationProvider = new LocationProvider(this, this);
@@ -510,11 +522,9 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-
-
                     Toast.makeText(SafePlaceActivity.this, getApplicationContext().getResources().getString(R.string.marked_safe), Toast.LENGTH_LONG).show();
                     //    sendMessageToTrustedContact();
-
+                    SendEventGoogleAnalytics("sendLocation","E-mail","E-mail sent" );
                     Intent i = new Intent(SafePlaceActivity.this, HomeActivity.class);
                     startActivity(i);
 
@@ -1101,6 +1111,8 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
             ArrayList<String> messageParts = smsManager.divideMessage(message);
             smsManager.sendMultipartTextMessage(trustedContactNumber, null, messageParts, null, null);
             Toast.makeText(SafePlaceActivity.this, getApplicationContext().getResources().getString(R.string.we_have_sent_mess_to_your_trusted_contact), Toast.LENGTH_LONG).show();
+            SendEventGoogleAnalytics("sendLocation","SMS","SMS sent" );
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -1214,6 +1226,23 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
         } else {
             build_retrofit_for_police_and_get_response(Type, lati, lngi);
         }
+    }
+    private void InitGoogleAnalytics()
+    {
+        mGoogleHelper = new GoogleAnalyticsHelper();
+        mGoogleHelper.init(this);
+    }
+
+    private void SendScreenNameGoogleAnalytics()
+    {
+
+        mGoogleHelper.SendScreenNameGoogleAnalytics("StreetPalGuide",this);
+    }
+
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
+    {
+
+        mGoogleHelper.SendEventGoogleAnalytics(this,iCategoryId,iActionId,iLabelId );
     }
 }
 

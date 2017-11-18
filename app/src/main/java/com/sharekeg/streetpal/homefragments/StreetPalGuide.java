@@ -42,6 +42,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
 import com.sharekeg.streetpal.R;
 import com.sharekeg.streetpal.chatcomponents.ChatAdapter;
@@ -50,6 +52,7 @@ import com.sharekeg.streetpal.chatcomponents.ChatMessage;
 import com.sharekeg.streetpal.chatcomponents.OnUserStatusChangeListener;
 import com.sharekeg.streetpal.chatcomponents.UserGuide;
 import com.sharekeg.streetpal.chatcomponents.UserOptions;
+import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 import com.sharekeg.streetpal.locationservice.LocationProvider;
 import com.sharekeg.streetpal.safeplace.SafePlaceActivity;
 import com.sharekeg.streetpal.safeplace.UserSituation;
@@ -100,6 +103,9 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
     private LocationProvider mLocationProvider;
     private Context context;
 
+    private GoogleAnalyticsHelper mGoogleHelper;
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
     public StreetPalGuide() {
     }
 
@@ -340,6 +346,7 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
         // here you should listen for changes made by user guide class, to handle sending messages to server
         //Toasts are used as illustrators ONLY , REMOVE them once you started implementation
         if (statusId == UserGuide.USER_IS_SAFE) {
+            SendEventGoogleAnalytics("Guide chat","MarkSafe","User is safe" );
             sendUserSituationToTheServer(lat, lng, "safe");
             if (trustedContactNumber != null && checkPermission(Manifest.permission.SEND_SMS)) {
                 sendLocationViaSMS(trustedContactNumber, userCurrentFullName + " " + getString(R.string.user_informed_us_that_she_is_safe_now)
@@ -424,6 +431,7 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
+                    SendEventGoogleAnalytics("sendLocation","E-mail","E-mail sent" );
                 } else {
 //                    Toast.makeText(context, response.code(), Toast.LENGTH_SHORT).show();
                 }
@@ -504,7 +512,14 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sAnalytics = GoogleAnalytics.getInstance(getActivity());
+
+
+        InitGoogleAnalytics();
+        SendScreenNameGoogleAnalytics();
         context = getContext();
+
+
         if (checkPermission(Manifest.permission.SEND_SMS)) {
 
 
@@ -635,6 +650,7 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
             ArrayList<String> messageParts = smsManager.divideMessage(message);
             smsManager.sendMultipartTextMessage(trustedContactNumber, null, messageParts, null, null);
             Toast.makeText(this.getActivity(), getActivity().getResources().getString(R.string.we_have_sent_mess_to_your_trusted_contact), Toast.LENGTH_LONG).show();
+            SendEventGoogleAnalytics("sendLocation","SMS","SMS sent" );
         } catch (Exception ex) {
 //            Toast.makeText(this.getActivity(), R.string.smthing_went_wrong,
 //                    Toast.LENGTH_LONG).show();
@@ -702,5 +718,21 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
         mLocationProvider.disconnect();
     }
 
+    private void InitGoogleAnalytics()
+    {
+        mGoogleHelper = new GoogleAnalyticsHelper();
+        mGoogleHelper.init(getContext());
+    }
 
+    private void SendScreenNameGoogleAnalytics()
+    {
+
+        mGoogleHelper.SendScreenNameGoogleAnalytics("StreetPalGuide",getContext());
+    }
+
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
+    {
+
+        mGoogleHelper.SendEventGoogleAnalytics(getContext(),iCategoryId,iActionId,iLabelId );
+    }
 }

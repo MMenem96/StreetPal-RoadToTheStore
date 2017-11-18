@@ -26,8 +26,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
 import com.sharekeg.streetpal.R;
 import com.sharekeg.streetpal.chatcomponents.UserGuide;
+import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 
 import retrofit2.Retrofit;
 
@@ -45,6 +48,10 @@ public class HomeTab extends Fragment implements View.OnClickListener {
     private RelativeLayout firstCardLayout, secondCardLayout, thirdCardLayout;
     private String userName;
 
+    private GoogleAnalyticsHelper mGoogleHelper;
+    private static GoogleAnalytics sAnalytics;
+    private static Tracker sTracker;
+
     public HomeTab() {
         // Required empty public constructor
     }
@@ -53,6 +60,12 @@ public class HomeTab extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sAnalytics = GoogleAnalytics.getInstance(getActivity());
+        InitGoogleAnalytics();
+        SendScreenNameGoogleAnalytics();
+
+
+        context = getContext();
     }
 
 
@@ -201,6 +214,7 @@ public class HomeTab extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.first_card:
+                SendEventGoogleAnalytics("User Case","UserFeelsFollowed","card clicked" );
                 bundle.putInt("userCase", UserGuide.USER_FEELS_FOLLOWED);
                 startStreetPalGuide();
              //   SendEventGoogleAnalytics("HomeTab","btnUserFeel","Hospital selected from maptab" );
@@ -208,11 +222,13 @@ public class HomeTab extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.second_card:
+                SendEventGoogleAnalytics("User Case","UserIsBeingHarassed","card clicked" );
                 bundle.putInt("userCase", UserGuide.USER_FEELS_IN_DANGER);
                 startStreetPalGuide();
 
                 break;
             case R.id.third_card:
+                SendEventGoogleAnalytics("User Case","UserHasBeenHarassed","card clicked" );
                 startListOfChoicesFragment();
                 break;
 
@@ -282,5 +298,22 @@ public class HomeTab extends Fragment implements View.OnClickListener {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.SEND_SMS}, SEND_SMS_PERMISSIONS_REQUEST);
         }
 
+    }
+    private void InitGoogleAnalytics()
+    {
+        mGoogleHelper = new GoogleAnalyticsHelper();
+        mGoogleHelper.init(getContext());
+    }
+
+    private void SendScreenNameGoogleAnalytics()
+    {
+
+        mGoogleHelper.SendScreenNameGoogleAnalytics("HomeTab",getContext());
+    }
+
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
+    {
+
+        mGoogleHelper.SendEventGoogleAnalytics(getContext(),iCategoryId,iActionId,iLabelId );
     }
 }

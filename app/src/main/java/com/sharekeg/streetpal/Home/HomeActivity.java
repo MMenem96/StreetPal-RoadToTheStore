@@ -166,6 +166,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         ivSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                SendEventGoogleAnalytics("SettingsActivity","SettingsButton","Button clicked" );
 
                 Intent i = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(i);
@@ -187,9 +188,19 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         });
 
 
+
+
         ivNavigation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+//                SendEventGoogleAnalytics("MapTab","MapTabButton","Button clicked" );
+//                sTracker.send(new HitBuilders.EventBuilder()
+//                        .setCategory("Action")
+//                        .setAction("Share")
+//                        .build());
+
+
                 openNavigationTab();
 
                 ivNavigation.setImageResource(R.drawable.ic_map_or);
