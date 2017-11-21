@@ -152,8 +152,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
     private LocationProvider mLocationProvider;
 
     private GoogleAnalyticsHelper mGoogleHelper;
-    private static GoogleAnalytics sAnalytics;
-    private static Tracker sTracker;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -338,15 +337,30 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
                     }
                 } else {
                     if (Type == "hospital") {
+                        SendEventGoogleAnalytics("Nearest Hospital", "SelectedFromSafePlaceActivity", "Couldn't find nearest Hospital ");
+
                         Toast.makeText(SafePlaceActivity.this, getResources().getString(R.string.we_cdnt_find_hospital_near_you), Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(SafePlaceActivity.this, getResources().getString(R.string.we_cdnt_find_police_station_near_you), Toast.LENGTH_SHORT).show();
+                        SendEventGoogleAnalytics("Nearest PoliceStation", "SelectedFromSafePlaceActivity", "Couldn't find nearest PoliceStation ");
 
+                        Toast.makeText(SafePlaceActivity.this, getResources().getString(R.string.we_cdnt_find_police_station_near_you), Toast.LENGTH_SHORT).show();
+                        btnNavigate.setEnabled(false);
                     }
                 }
             }
         });
 
+
+    }
+
+    private void sendUserDestinationToGoogleAnalytics() {
+        if (Type == "hospital") {
+            SendEventGoogleAnalytics("Nearest Hospital", "SelectedFromSafePlaceActivity", "Nearest Hospital is shown to  the user");
+
+        } else {
+            SendEventGoogleAnalytics("Nearest PoliceStation", "SelectedFromSafePlaceActivity", "Nearest PoliceStation is shown to  the user");
+
+        }
 
     }
 
@@ -524,7 +538,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
                 if (response.isSuccessful()) {
                     Toast.makeText(SafePlaceActivity.this, getApplicationContext().getResources().getString(R.string.marked_safe), Toast.LENGTH_LONG).show();
                     //    sendMessageToTrustedContact();
-                    SendEventGoogleAnalytics("sendLocation","E-mail","E-mail sent" );
+                    SendEventGoogleAnalytics("sendLocation", "E-mail", "E-mail sent");
                     Intent i = new Intent(SafePlaceActivity.this, HomeActivity.class);
                     startActivity(i);
 
@@ -739,7 +753,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
         if (placeMarker == null) {
             if (Type == "hospital") {
 
-
+                sendUserDestinationToGoogleAnalytics();
                 if (currentUserLocation != null) {
                     placeMarker = mMap.addMarker(new MarkerOptions().position(latLng).
                             icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_hospital_pin)));
@@ -749,7 +763,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
 
             } else if (Type == "police") {
 
-
+                sendUserDestinationToGoogleAnalytics();
                 if (currentUserLocation != null) {
                     placeMarker = mMap.addMarker(new MarkerOptions().position(latLng).
                             icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_police_pin)));
@@ -1111,7 +1125,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
             ArrayList<String> messageParts = smsManager.divideMessage(message);
             smsManager.sendMultipartTextMessage(trustedContactNumber, null, messageParts, null, null);
             Toast.makeText(SafePlaceActivity.this, getApplicationContext().getResources().getString(R.string.we_have_sent_mess_to_your_trusted_contact), Toast.LENGTH_LONG).show();
-            SendEventGoogleAnalytics("sendLocation","SMS","SMS sent" );
+            SendEventGoogleAnalytics("sendLocation", "SMS", "SMS sent");
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -1227,22 +1241,20 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
             build_retrofit_for_police_and_get_response(Type, lati, lngi);
         }
     }
-    private void InitGoogleAnalytics()
-    {
+
+    private void InitGoogleAnalytics() {
         mGoogleHelper = new GoogleAnalyticsHelper();
         mGoogleHelper.init(this);
     }
 
-    private void SendScreenNameGoogleAnalytics()
-    {
+    private void SendScreenNameGoogleAnalytics() {
 
-        mGoogleHelper.SendScreenNameGoogleAnalytics("StreetPalGuide",this);
+        mGoogleHelper.SendScreenNameGoogleAnalytics("SafePlaceActivity", this);
     }
 
-    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
-    {
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId, String iLabelId) {
 
-        mGoogleHelper.SendEventGoogleAnalytics(this,iCategoryId,iActionId,iLabelId );
+        mGoogleHelper.SendEventGoogleAnalytics(this, iCategoryId, iActionId, iLabelId);
     }
 }
 

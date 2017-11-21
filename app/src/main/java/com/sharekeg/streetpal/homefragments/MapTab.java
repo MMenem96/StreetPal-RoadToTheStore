@@ -354,7 +354,7 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
     private void SendScreenNameGoogleAnalytics()
     {
 
-        mGoogleHelper.SendScreenNameGoogleAnalytics("MapTab",getContext());
+        mGoogleHelper.SendScreenNameGoogleAnalytics("MapTabFragment",getContext());
     }
 
     private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)

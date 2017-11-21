@@ -308,7 +308,7 @@ public class HomeTab extends Fragment implements View.OnClickListener {
     private void SendScreenNameGoogleAnalytics()
     {
 
-        mGoogleHelper.SendScreenNameGoogleAnalytics("HomeTab",getContext());
+        mGoogleHelper.SendScreenNameGoogleAnalytics("HomeTabFragment",getContext());
     }
 
     private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)

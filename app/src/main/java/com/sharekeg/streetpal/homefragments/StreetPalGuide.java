@@ -106,6 +106,7 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
     private GoogleAnalyticsHelper mGoogleHelper;
     private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
+
     public StreetPalGuide() {
     }
 
@@ -346,7 +347,7 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
         // here you should listen for changes made by user guide class, to handle sending messages to server
         //Toasts are used as illustrators ONLY , REMOVE them once you started implementation
         if (statusId == UserGuide.USER_IS_SAFE) {
-            SendEventGoogleAnalytics("Guide chat","MarkSafe","User is safe" );
+            SendEventGoogleAnalytics("Guide chat", "MarkSafe", "User is safe");
             sendUserSituationToTheServer(lat, lng, "safe");
             if (trustedContactNumber != null && checkPermission(Manifest.permission.SEND_SMS)) {
                 sendLocationViaSMS(trustedContactNumber, userCurrentFullName + " " + getString(R.string.user_informed_us_that_she_is_safe_now)
@@ -431,7 +432,7 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 if (response.isSuccessful()) {
-                    SendEventGoogleAnalytics("sendLocation","E-mail","E-mail sent" );
+                    SendEventGoogleAnalytics("sendLocation", "E-mail", "E-mail sent");
                 } else {
 //                    Toast.makeText(context, response.code(), Toast.LENGTH_SHORT).show();
                 }
@@ -644,16 +645,16 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
     }
 
     public void sendLocationViaSMS(String trustedContactNumber, String status) {
+
         try {
             SmsManager smsManager = SmsManager.getDefault();
             String message = status + " \n http://maps.google.com/maps?q=" + lat + "," + lng + "&ll=" + lat + "," + lng + "&z=17";
             ArrayList<String> messageParts = smsManager.divideMessage(message);
             smsManager.sendMultipartTextMessage(trustedContactNumber, null, messageParts, null, null);
             Toast.makeText(this.getActivity(), getActivity().getResources().getString(R.string.we_have_sent_mess_to_your_trusted_contact), Toast.LENGTH_LONG).show();
-            SendEventGoogleAnalytics("sendLocation","SMS","SMS sent" );
+            SendEventGoogleAnalytics("sendLocation", "SMS", "SMS sent");
         } catch (Exception ex) {
-//            Toast.makeText(this.getActivity(), R.string.smthing_went_wrong,
-//                    Toast.LENGTH_LONG).show();
+
             ex.printStackTrace();
         }
     }
@@ -718,21 +719,18 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
         mLocationProvider.disconnect();
     }
 
-    private void InitGoogleAnalytics()
-    {
+    private void InitGoogleAnalytics() {
         mGoogleHelper = new GoogleAnalyticsHelper();
         mGoogleHelper.init(getContext());
     }
 
-    private void SendScreenNameGoogleAnalytics()
-    {
+    private void SendScreenNameGoogleAnalytics() {
 
-        mGoogleHelper.SendScreenNameGoogleAnalytics("StreetPalGuide",getContext());
+        mGoogleHelper.SendScreenNameGoogleAnalytics("StreetPalGuideFragment", getContext());
     }
 
-    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
-    {
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId, String iLabelId) {
 
-        mGoogleHelper.SendEventGoogleAnalytics(getContext(),iCategoryId,iActionId,iLabelId );
+        mGoogleHelper.SendEventGoogleAnalytics(getContext(), iCategoryId, iActionId, iLabelId);
     }
 }

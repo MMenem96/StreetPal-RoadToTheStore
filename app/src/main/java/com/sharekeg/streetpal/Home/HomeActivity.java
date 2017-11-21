@@ -234,7 +234,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 
     private void SendScreenNameGoogleAnalytics() {
 
-        mGoogleHelper.SendScreenNameGoogleAnalytics("HomeActivity 1", HomeActivity.this);
+        mGoogleHelper.SendScreenNameGoogleAnalytics("HomeActivity", HomeActivity.this);
     }
 
     private void SendEventGoogleAnalytics(String iCategoryId, String iActionId, String iLabelId) {

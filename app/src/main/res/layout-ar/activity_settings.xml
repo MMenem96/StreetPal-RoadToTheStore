@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:background="#f5f5f5"
         tools:context="com.sharekeg.streetpal.Settings.SettingsActivity">
+
         <LinearLayout
             android:id="@+id/Settingslayout"
             android:layout_width="match_parent"
@@ -27,9 +28,10 @@
                 android:layout_gravity="end"
                 android:background="@drawable/ripple_effect"
                 android:padding="5dp"
-                android:visibility="invisible"
                 android:src="@drawable/back_icon"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="invisible" />
+
             <com.sharekeg.streetpal.langutil.TextViewForArabic
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -54,43 +56,43 @@
         </LinearLayout>
 
         <!--<LinearLayout-->
-            <!--android:id="@+id/Settingslayout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:background="@color/home_activity_bar_color"-->
-            <!--android:minHeight="40dp"-->
-            <!--android:padding="10dp">-->
+        <!--android:id="@+id/Settingslayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:background="@color/home_activity_bar_color"-->
+        <!--android:minHeight="40dp"-->
+        <!--android:padding="10dp">-->
 
 
-            <!--<ImageButton-->
-                <!--android:id="@+id/IV_backj"-->
-                <!--android:layout_width="30dp"-->
-                <!--android:visibility="invisible"-->
-                <!--android:layout_height="30dp"-->
-                <!--android:background="@drawable/ripple_effect"-->
-                <!--android:padding="6dp"-->
-                <!--android:src="@drawable/back_icon" />-->
-            <!--<com.sharekeg.streetpal.langutil.TextViewForArabicabic&ndash;&gt;-->
-                <!--android:id="@+id/settings_textView"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_weight="1"-->
-                <!--android:background="@color/login_button_bg"-->
-                <!--android:gravity="center"-->
-                <!--android:text="@string/setting"-->
-                <!--android:textColor="@color/white"-->
-                <!--android:textSize="@dimen/activity_title_text_size" />-->
+        <!--<ImageButton-->
+        <!--android:id="@+id/IV_backj"-->
+        <!--android:layout_width="30dp"-->
+        <!--android:visibility="invisible"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:background="@drawable/ripple_effect"-->
+        <!--android:padding="6dp"-->
+        <!--android:src="@drawable/back_icon" />-->
+        <!--<com.sharekeg.streetpal.langutil.TextViewForArabicabic&ndash;&gt;-->
+        <!--android:id="@+id/settings_textView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:layout_weight="1"-->
+        <!--android:background="@color/login_button_bg"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/setting"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="@dimen/activity_title_text_size" />-->
 
 
-            <!--<ImageButton-->
-                <!--android:id="@+id/IV_back"-->
-                <!--android:layout_width="30dp"-->
-                <!--android:layout_height="30dp"-->
-                <!--android:background="@drawable/ripple_effect"-->
-                <!--android:padding="6dp"-->
-                <!--android:src="@drawable/back_icon" />-->
+        <!--<ImageButton-->
+        <!--android:id="@+id/IV_back"-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:background="@drawable/ripple_effect"-->
+        <!--android:padding="6dp"-->
+        <!--android:src="@drawable/back_icon" />-->
         <!--</LinearLayout>-->
 
 
@@ -262,6 +264,7 @@
                     android:textColor="@color/login_controls_hint"
                     android:textSize="15sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/changeLanguageLinearLaout"
                 android:layout_width="match_parent"
@@ -274,7 +277,7 @@
 
                 >
 
-                <com.sharekeg.streetpal.langutil.TextViewForEnglish
+                <com.sharekeg.streetpal.langutil.TextViewForArabic
                     android:id="@+id/TV_language"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -299,7 +302,6 @@
                     android:layout_weight="0.1"
                     android:background="@drawable/ic_navigate_ar" />
             </LinearLayout>
-
 
 
             <com.sharekeg.streetpal.langutil.TextViewForArabic
