@@ -14,7 +14,7 @@ public class GoogleAnalyticsHelper {
 
     private Tracker mGaTracker = null;
     private static String TAG = "GoogleAnalyticsHelper";
-    private static final String PROPERTY_ID = "UA-109833790-1";
+    private static final String PROPERTY_ID = "UA-110182467-1";
 
     public GoogleAnalyticsHelper() {
 
@@ -24,7 +24,7 @@ public class GoogleAnalyticsHelper {
         try {
 
             if (mGaTracker == null && ctx != null) {
-                mGaTracker = GoogleAnalytics.getInstance(ctx).newTracker("UA-109833790-1");
+                mGaTracker = GoogleAnalytics.getInstance(ctx).newTracker("UA-110182467-1");
             }
         } catch (Exception e) {
             Log.d(GoogleAnalyticsHelper.TAG, "init, e=" + e);

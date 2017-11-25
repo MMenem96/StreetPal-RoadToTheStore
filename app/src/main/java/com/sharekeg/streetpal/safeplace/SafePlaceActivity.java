@@ -292,6 +292,8 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
                     String message = fullName + " " + getApplicationContext().getResources().getString(R.string.user_informed_us_that_she_is_safe_now);
                     sendLocationViaSMS(message, contactNumber);
                     sendUserSituationToTheServer(lati, lngi, "safe");
+                    SendEventGoogleAnalytics("Guide chat", "MarkSafe", "User is safe");
+
                 } catch (RuntimeException stopException) {
                 }
 
