@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "813300264517",
+    "firebase_url": "https://streetpal-cb4ec.firebaseio.com",
+    "project_id": "streetpal-cb4ec",
+    "storage_bucket": "streetpal-cb4ec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813300264517:android:bf5bb92a74d3135b",
+        "android_client_info": {
+          "package_name": "com.sharekeg.streetpal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "813300264517-tenr6p9r1l87dbu6blghd8j0609sr268.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sharekeg.streetpal",
+            "certificate_hash": "1cf21e2a3b1285d66b14c6f96bcce8d9722f68cb"
+          }
+        },
+        {
+          "client_id": "813300264517-opbdh904fdfib5tmq9hkgh87c320fghr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV9YzCc4t89wjRHfv6iGyFMvnPlHSEU5k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "813300264517-opbdh904fdfib5tmq9hkgh87c320fghr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
