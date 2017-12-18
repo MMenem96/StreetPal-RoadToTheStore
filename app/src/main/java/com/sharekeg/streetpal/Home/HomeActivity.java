@@ -95,7 +95,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
     SharedPreferences languagepref;
-    String language;
+    String language,notificationToken;
 
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -125,6 +125,11 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
             token = mypreference.getString("token", null);
             userName = mypreference.getString("myUserName", "User Name");
             fullName = mypreference.getString("myFullName", "Full Name");
+            notificationToken=mypreference.getString("NotificationToken",null);
+            if(notificationToken==null){
+                //login again to get a token
+                logout();
+            }
 
         }
 
@@ -224,7 +229,30 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         });
 
         isUserLoggedin(token);
+//        Toast.makeText(this,notificationToken,Toast.LENGTH_LONG).show();
 
+    }
+
+    private void logout() {
+        SharedPreferences mySPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = mySPrefs.edit();
+        editor.remove("token");
+        editor.remove("myUserName");
+        editor.remove("contactName");
+        editor.remove("contactNumber");
+        editor.remove("contactEmail");
+        editor.remove("myFullName");
+        editor.remove("myPhone");
+        editor.remove("myEmail");
+        editor.remove("myWork");
+        editor.remove("myBirthYear");
+        editor.remove("myBirthMonth");
+        editor.remove("myBirthDay");
+        editor.remove("myGender");
+        editor.apply();
+        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void InitGoogleAnalytics() {

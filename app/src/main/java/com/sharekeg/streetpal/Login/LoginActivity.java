@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akexorcist.localizationactivity.LocalizationActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
 import com.sharekeg.streetpal.Home.HomeActivity;
 import com.sharekeg.streetpal.R;
@@ -221,11 +222,13 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         boolean isUserActive = response.body().getEmailVerified();
                         if (isUserActive) {
+                            String notificationToken = FirebaseInstanceId.getInstance().getToken();
                             SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
                             mypreference.edit().putBoolean("loggedIn", true).apply();
                             mypreference.edit().putString("token", token).apply();
                             mypreference.edit().putString("myUserName", response.body().getUser()).apply();
                             mypreference.edit().putString("myFullName", response.body().getName()).apply();
+                            mypreference.edit().putString("NotificationToken", notificationToken).apply();
                             Intent openHomeActivity = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(openHomeActivity);
                             pDialog.dismiss();

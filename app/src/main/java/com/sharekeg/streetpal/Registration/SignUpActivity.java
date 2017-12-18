@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akexorcist.localizationactivity.LocalizationActivity;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
 import com.sharekeg.streetpal.Home.EditProfileActivity;
 import com.sharekeg.streetpal.Login.LoginActivity;
@@ -360,12 +361,14 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
 
                         token = response.body().getToken();
+                        String notificationToken = FirebaseInstanceId.getInstance().getToken();
 
                         SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(SignUpActivity.this);
                         mypreference.edit().putBoolean("loggedIn", true).apply();
                         mypreference.edit().putString("token", token).apply();
                         mypreference.edit().putString("myUserName", userName).apply();
                         mypreference.edit().putString("myFullName", name).apply();
+                        mypreference.edit().putString("NotificationToken", notificationToken).apply();
                         if (mImageUri != null) {
                             uploadProfileimage();
 
