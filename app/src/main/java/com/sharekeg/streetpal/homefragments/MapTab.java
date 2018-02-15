@@ -148,6 +148,7 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
         }
         Log.d(TAG, "onCreate");
     }
+
     synchronized public Tracker getDefaultTracker() {
         // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
         if (sTracker == null) {
@@ -172,13 +173,14 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
                     public void run() {
                         if (nearest_place != null) {
                             showAlertDialougeToNavigate();
-                            SendEventGoogleAnalytics("Nearest PoliceStation","SelectedFromMapTab","Nearest PoliceStation is shown to  the user" );
+                            SendEventGoogleAnalytics("Nearest PoliceStation", "SelectedFromMapTab", "Nearest PoliceStation is shown to  the user");
+                            mprogressDialog.dismiss();
 
 
                         } else {
                             Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_police_station_near_you), Toast.LENGTH_SHORT).show();
-                            SendEventGoogleAnalytics("Nearest PoliceStation","SelectedFromMapTab","Couldn't find nearest PoliceStation " );
-
+                            SendEventGoogleAnalytics("Nearest PoliceStation", "SelectedFromMapTab", "Couldn't find nearest PoliceStation ");
+                            mprogressDialog.dismiss();
                         }
                     }
                 }, 2000);
@@ -194,11 +196,11 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
                     @Override
                     public void run() {
                         if (nearest_place != null) {
-                            SendEventGoogleAnalytics("Nearest Hospital","SelectedFromMapTab","Nearest Hospital is shown to  the user" );
+                            SendEventGoogleAnalytics("Nearest Hospital", "SelectedFromMapTab", "Nearest Hospital is shown to  the user");
                             showAlertDialougeToNavigate();
 
                         } else {
-                            SendEventGoogleAnalytics("Nearest Hospital","SelectedFromMapTab","Couldn't find nearest Hospital " );
+                            SendEventGoogleAnalytics("Nearest Hospital", "SelectedFromMapTab", "Couldn't find nearest Hospital ");
                             Toast.makeText(context, getResources().getString(R.string.we_cdnt_find_hospital_near_you), Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -345,23 +347,21 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
 
     }
 
-    private void InitGoogleAnalytics()
-    {
+    private void InitGoogleAnalytics() {
         mGoogleHelper = new GoogleAnalyticsHelper();
         mGoogleHelper.init(getContext());
     }
 
-    private void SendScreenNameGoogleAnalytics()
-    {
+    private void SendScreenNameGoogleAnalytics() {
 
-        mGoogleHelper.SendScreenNameGoogleAnalytics("MapTabFragment",getContext());
+        mGoogleHelper.SendScreenNameGoogleAnalytics("MapTabFragment", getContext());
     }
 
-    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
-    {
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId, String iLabelId) {
 
-        mGoogleHelper.SendEventGoogleAnalytics(getContext(),iCategoryId,iActionId,iLabelId );
+        mGoogleHelper.SendEventGoogleAnalytics(getContext(), iCategoryId, iActionId, iLabelId);
     }
+
     public boolean checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION)

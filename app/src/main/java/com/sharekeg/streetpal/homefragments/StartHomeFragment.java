@@ -36,6 +36,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.sharekeg.streetpal.R;
 import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by MMenem on 8/21/2017.
@@ -44,11 +45,15 @@ import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 public class StartHomeFragment extends Fragment {
 
     private ImageButton IV_message;
-    private TextView hello, And, tvEducate;
+    private TextView hello, And;
     private Context context;
     private GoogleAnalyticsHelper mGoogleHelper;
     private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
+    private ImageView ivAddUserPhoto;
+    private TextView tvusername;
+    private String token,userName,fullName;
+
     public StartHomeFragment() {
     }
     @Override
@@ -60,6 +65,16 @@ public class StartHomeFragment extends Fragment {
 
 
         context = getContext();
+
+        SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(context);
+        if (mypreference.getBoolean("loggedIn", false)) {
+            token = mypreference.getString("token", null);
+            userName = mypreference.getString("myUserName", "User Name");
+            fullName = mypreference.getString("myFullName", "Full Name");
+
+
+
+        }
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,6 +83,10 @@ public class StartHomeFragment extends Fragment {
 
 
         IV_message = (ImageButton) startHomeFragmentView.findViewById(R.id.IV_message);
+        ivAddUserPhoto = (ImageView)startHomeFragmentView.findViewById(R.id.ivAddUserPhoto);
+        getUserImage();
+        tvusername = (TextView) startHomeFragmentView.findViewById(R.id.tvusername);
+        tvusername.setText(fullName);
 
         IV_message.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,7 +97,6 @@ public class StartHomeFragment extends Fragment {
         });
         hello = (TextView) startHomeFragmentView.findViewById(R.id.hello);
         And = (TextView) startHomeFragmentView.findViewById(R.id.And);
-        tvEducate = (TextView) startHomeFragmentView.findViewById(R.id.tvEducate);
         return startHomeFragmentView;
     }
 
@@ -109,7 +127,12 @@ public class StartHomeFragment extends Fragment {
         mGoogleHelper.SendEventGoogleAnalytics(getContext(),iCategoryId,iActionId,iLabelId );
     }
 
+    private void getUserImage() {
 
+        Picasso.with(getActivity().getApplication().getApplicationContext()).load("https://streetpal.org/api/user/" + userName + "/photo")
+                .placeholder(R.drawable.ic_default_user).error(R.drawable.ic_default_user)
+                .into(ivAddUserPhoto);
+    }
 
 
 }

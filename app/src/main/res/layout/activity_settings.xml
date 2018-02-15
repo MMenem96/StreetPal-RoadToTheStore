@@ -344,12 +344,47 @@
                     android:src="@drawable/ic_navigate_en" />
 
             </LinearLayout>
+            <LinearLayout
+                android:id="@+id/feedbackLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/privacyLinearLayout"
+                android:background="@color/white"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="5dp">
 
+
+                <com.sharekeg.streetpal.langutil.TextViewForEnglish
+                    android:id="@+id/tvFeedback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.9"
+                    android:background="@color/white"
+                    android:gravity="start"
+                    android:padding="5dp"
+                    android:paddingEnd="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="5dp"
+                    android:text="@string/Feedback"
+                    android:textSize="@dimen/text_size" />
+
+                <ImageView
+                    android:id="@+id/IV_feedback"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="0.1"
+                    android:gravity="end"
+                    android:src="@drawable/ic_navigate_en" />
+
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/reportAProblemLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/privacyLinearLayout"
+                android:layout_below="@+id/feedbackLinearLayout"
                 android:background="@color/white"
                 android:gravity="start"
                 android:orientation="horizontal"

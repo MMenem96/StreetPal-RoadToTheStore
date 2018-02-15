@@ -82,8 +82,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     private String token;
     private ImageView ivHome, ivNavigation, ivPosts;
     private ImageButton ivSettings;
-    private ImageView ivAddUserPhoto;
-    private TextView tvusername, tvHomeTitle;
+    private TextView tvHomeTitle;
     private String userName = null;
     private Retrofit retrofitforauthentication;
     private Uri mImageUri;
@@ -95,7 +94,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     private static GoogleAnalytics sAnalytics;
     private static Tracker sTracker;
     SharedPreferences languagepref;
-    String language,notificationToken;
+    String language, notificationToken;
 
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -118,15 +117,14 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         language = languagepref.getString("languageToLoad", "");
         checkLanguage(language);
         setContentView(R.layout.activity_home);
-        ivAddUserPhoto = (ImageView) findViewById(R.id.ivAddUserPhoto);
 
         SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
         if (mypreference.getBoolean("loggedIn", false)) {
             token = mypreference.getString("token", null);
             userName = mypreference.getString("myUserName", "User Name");
             fullName = mypreference.getString("myFullName", "Full Name");
-            notificationToken=mypreference.getString("NotificationToken",null);
-            if(notificationToken==null){
+            notificationToken = mypreference.getString("NotificationToken", null);
+            if (notificationToken == null) {
                 //login again to get a token
                 logout();
             }
@@ -149,8 +147,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        tvusername = (TextView) findViewById(R.id.tvusername);
-        tvusername.setText(fullName);
+
 //        userName.substring(0, 1).toUpperCase().substring(1);
         ivHome = (ImageView) findViewById(R.id.ivhome);
         ivNavigation = (ImageView) findViewById(R.id.ivmap);
@@ -191,8 +188,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 
             }
         });
-
-
 
 
         ivNavigation.setOnClickListener(new View.OnClickListener() {
@@ -278,7 +273,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
             startActivity(openLoginActivity);
         } else {
             getUserData();
-            getUserImage();
             getTrustedContactDetails();
 
         }
@@ -286,10 +280,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 
     }
 
-//    private boolean checkPermission(String permission) {
-//        int checkPermission = ContextCompat.checkSelfPermission(this, permission);
-//        return checkPermission == PackageManager.PERMISSION_GRANTED;
-//    }
 
     private void getUserData() {
         ApiInterface mApi = retrofitforauthentication.create(ApiInterface.class);
@@ -316,7 +306,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
                             mypreference.edit().putString("myBirthMonth", response.body().getBirth().getM().toString()).apply();
                             mypreference.edit().putString("myBirthDay", response.body().getBirth().getD().toString()).apply();
                             mypreference.edit().putString("myGender", response.body().getGender()).apply();
-                            tvusername.setText(response.body().getName());
                             userName = response.body().getUser();
                         } else {
                             resendActivationCode();
@@ -397,47 +386,8 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     }
 
 
-    private void uploadProfileimage() {
-        pDialouge = new ProgressDialog(this);
-        pDialouge.setMessage(getApplicationContext().getString(R.string.uploading));
-        pDialouge.setCancelable(false);
-        pDialouge.show();
-        String image = imageToString();
-        Log.d("base64Code", image);
-        ApiInterface mApi = retrofitforauthentication.create(ApiInterface.class);
-        Call<ResponseBody> service = mApi.uploadPhoto(new UserPhoto(image));
-        service.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
-                    pDialouge.dismiss();
-                    Toast.makeText(HomeActivity.this, R.string.uploaded_successfully, Toast.LENGTH_LONG).show();
-                } else {
-                    pDialouge.dismiss();
-//                    Toast.makeText(HomeActivity.this, "Error : " + response.code(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                pDialouge.dismiss();
-                Toast.makeText(HomeActivity.this, R.string.smthing_went_wrong, Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
-
-
     @Override
     public void onBackPressed() {
-    }
-
-
-    private void getUserImage() {
-
-        Picasso.with(getApplicationContext()).load("https://streetpal.org/api/user/" + userName + "/photo")
-                .placeholder(R.drawable.ic_default_user).error(R.drawable.ic_default_user)
-                .into(ivAddUserPhoto);
     }
 
 
@@ -448,49 +398,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         galleryIntent.setType("image/*");
         startActivityForResult(galleryIntent, GALLERY_REQUEST);
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
-
-            Uri imageUri = data.getData();
-            CropImage.activity(imageUri)
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setAspectRatio(1, 1)
-                    .setCropShape(CropImageView.CropShape.OVAL)
-                    .setAutoZoomEnabled(true)
-                    .start(this);
-
-        }
-
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                mImageUri = result.getUri();
-                ivAddUserPhoto.setImageURI(mImageUri);
-                try {
-                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mImageUri);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                uploadProfileimage();
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-                Toast.makeText(this, R.string.failed_photo, Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-
-    private String imageToString() {
-        //Convert Image to String
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        byte[] imgByte = byteArrayOutputStream.toByteArray();
-        return Base64.encodeToString(imgByte, Base64.DEFAULT);
     }
 
 
