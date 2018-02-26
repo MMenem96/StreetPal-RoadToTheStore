@@ -229,6 +229,7 @@ public class LoginActivity extends AppCompatActivity {
                             mypreference.edit().putString("myUserName", response.body().getUser()).apply();
                             mypreference.edit().putString("myFullName", response.body().getName()).apply();
                             mypreference.edit().putString("NotificationToken", notificationToken).apply();
+                            mypreference.edit().putLong("dialogDisplayisplayedTime", System.currentTimeMillis()).apply();
                             Intent openHomeActivity = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(openHomeActivity);
                             pDialog.dismiss();
@@ -242,6 +243,7 @@ public class LoginActivity extends AppCompatActivity {
                                 mypreference.edit().putString("token", token).apply();
                                 mypreference.edit().putString("myUserName", response.body().getUser()).apply();
                                 mypreference.edit().putString("myFullName", response.body().getName()).apply();
+                                mypreference.edit().putLong("dialogDisplayisplayedTime", System.currentTimeMillis()).apply();
                                 resendActivationCode();
                             } catch (Exception e) {
 
@@ -370,7 +372,6 @@ public class LoginActivity extends AppCompatActivity {
 //        setLanguage(language);
         checkLanguage(language);
     }
-
 
 
     //

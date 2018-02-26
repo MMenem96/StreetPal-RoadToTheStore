@@ -1,29 +1,35 @@
 package com.sharekeg.streetpal.Settings;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sharekeg.streetpal.R;
 
-public class Report_a_problem extends AppCompatActivity  {
+/**
+ * Created by MMenem on 2/26/2018.
+ */
+
+public class FeedBackActivity extends AppCompatActivity {
     private TextView cancel;
     private TextView send;
     private String feedback;
-    EditText edittext;
-    String      contactNumber  ,contactName;
+    private EditText edittext;
     int lang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_report_a_problem);
+
+        setContentView(R.layout.activity_feedback);
+
+
         cancel = (TextView) findViewById(R.id.cancel);
         edittext = (EditText) findViewById(R.id.edittext);
         send = (TextView) findViewById(R.id.send);
@@ -38,10 +44,9 @@ public class Report_a_problem extends AppCompatActivity  {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (edittext.getText().toString().equals("")){
+                if (edittext.getText().toString().equals("")) {
                     send.setVisibility(View.GONE);
-                }
-                else{
+                } else {
                     send.setVisibility(View.VISIBLE);
                 }
             }
@@ -57,8 +62,6 @@ public class Report_a_problem extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
-                contactNumber=getIntent().getExtras().getString("contactNumber");
-                contactName = getIntent().getExtras().getString("contactName");
 
                 feedback = edittext.getText().toString();
 
@@ -68,23 +71,22 @@ public class Report_a_problem extends AppCompatActivity  {
                     email.setType("plain/text");
                     email.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"info@streetpal.com"});
                     email.putExtra(android.content.Intent.EXTRA_SUBJECT, "Lads to Leaders/Leaderettes Questions and/or Comments");
-                    email.putExtra(android.content.Intent.EXTRA_TEXT,"Feedback :" + edittext.getText().toString() );
+                    email.putExtra(android.content.Intent.EXTRA_TEXT, "Feedback :" + edittext.getText().toString());
                     startActivity(Intent.createChooser(email, getApplicationContext().getResources()
                             .getString(R.string.sendmail_feedbackActivity)));
                     isMessageEmpty();
-                    lang=1;
+                    lang = 1;
                     return;
 
 
                 } else {
                     isMessageEmpty();
                     send.setVisibility(View.GONE);
-                    Toast.makeText(Report_a_problem.this, R.string.feedback_err, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FeedBackActivity.this, R.string.feedback_err, Toast.LENGTH_SHORT).show();
 
-                    lang=2;
+                    lang = 2;
 
                 }
-
 
 
             }
@@ -96,33 +98,31 @@ public class Report_a_problem extends AppCompatActivity  {
             public void onClick(View v) {
 
 
-                Intent i = new Intent(Report_a_problem.this, SettingsActivity.class);
-                i.putExtra("contactName", contactName);
-                i.putExtra("contactNumber", contactNumber);
+                Intent i = new Intent(FeedBackActivity.this, SettingsActivity.class);
+
                 startActivity(i);
             }
         });
 
-
     }
+
 
     private void isMessageEmpty() {
 
-                if (lang==1) {
-                    Toast.makeText(getApplicationContext(),
-                            "Done!", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(Report_a_problem.this, SettingsActivity.class);
-                    i.putExtra("contactName", contactName);
-                    i.putExtra("contactNumber", contactNumber);
-                    startActivity(i);
+        if (lang == 1) {
+            Toast.makeText(getApplicationContext(),
+                    "Done!", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(FeedBackActivity.this, SettingsActivity.class);
+            startActivity(i);
 
 
-                }
-                if (lang==2) {
-                    Toast.makeText(Report_a_problem.this, R.string.feedback_err, Toast.LENGTH_SHORT).show();
+        }
+        if (lang == 2) {
+            Toast.makeText(FeedBackActivity.this, R.string.feedback_err, Toast.LENGTH_SHORT).show();
 
-                }
+        }
 
     }
+
 
 }

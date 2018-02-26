@@ -606,4 +606,5 @@ All rights reserved to HarassMap 2015\n
     <string name="navigate_to_nearest_police">Navigate to nearest police station?</string>
     <string name="we_cdnt_find_hospital_near_you">We couldn\'t find hospital near you!</string>
     <string name="we_cdnt_find_police_station_near_you">We couldn\'t find police station near you!</string>
+    <string name="popfeedback_dialog_empty">Empty input!</string>
 </resources>

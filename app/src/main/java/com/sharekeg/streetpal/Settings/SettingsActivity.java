@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.akexorcist.localizationactivity.LocalizationActivity;
 import com.sharekeg.streetpal.Home.EditProfileActivity;
 import com.sharekeg.streetpal.Home.HomeActivity;
 import com.sharekeg.streetpal.Login.LoginActivity;
@@ -147,7 +146,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
-        IV_Report_a_problem = (ImageView) findViewById(R.id.IV_Report_a_problem);
+        IV_Report_a_problem = (ImageView) findViewById(R.id.IV_feedback);
         IV_Report_a_problem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -158,7 +157,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
-        Report_a_problem = (TextView) findViewById(R.id.Report_a_problem);
+        Report_a_problem = (TextView) findViewById(R.id.tvFeedback);
         Report_a_problem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

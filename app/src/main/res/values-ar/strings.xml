@@ -459,8 +459,8 @@ Your access to and use of the Service is conditioned on your acceptance of and c
 
 
     <string name="user_info_updated">تم تحديث بياناتك الشخصية بنجاح</string>
-    <string name="edit_gender_invalid">Empty gender</string>
-    <string name="dialog_updating_info">Updating your information</string>
+    <string name="edit_gender_invalid">إدخل النوع</string>
+    <string name="dialog_updating_info">يتم الان تحديث بياناتك</string>
 
 
     <string name="static_guide_case1_instructions">غالبًا ما يتمّ فهم التحرّش الجنسي بشكل خاطئ. ولوقت طويل كان يُعتبر أحد المحرّمات التي لا يجب التحدث عنها بل ولم يكن الناس حتى يستخدمون كلمة “تحرش”. لكننا نؤمن أن هذا لا يُعد مبررًا لتجاهل التحرّش أو للتظاهر بعدم وجوده، والأهم من هذا أن التحرّش الجنسي ليس أمرًا غير مألوف أو أنه يحصل بعيدًا عنا، فنحن جميعًا نراه يحدث يوميًا في شوارعنا. هذا الى جانب كونه جريمة يعاقب عليها القانون المصرى.\n\n
@@ -630,4 +630,5 @@ http://harassmap.org/ar/resource-center/what-is-sexual-harassment/
     <string name="navigate_to_nearest_police">التوجه إلي أقرب نقطة شرطة؟</string>
     <string name="we_cdnt_find_hospital_near_you"> لم نتمكن من العثور علي مستشفي بالقرب منك!</string>
     <string name="we_cdnt_find_police_station_near_you">لم نتمكن من العثور علي نقطة شرطة بالقرب منك!</string>
+    <string name="popfeedback_dialog_empty"> إدخل التقيم</string>
 </resources>

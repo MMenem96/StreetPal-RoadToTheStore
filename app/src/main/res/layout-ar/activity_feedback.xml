@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sharekeg.streetpal.Settings.Report_a_problem">
+    tools:context="com.sharekeg.streetpal.Settings.FeedBackActivity">
 
     <RelativeLayout
         android:id="@+id/TV_reportProblem"

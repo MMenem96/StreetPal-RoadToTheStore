@@ -1,48 +1,36 @@
 package com.sharekeg.streetpal.Home;
 
 
-import android.Manifest;
-import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.util.Base64;
-import android.util.Log;
 
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.akexorcist.localizationactivity.LocalizationActivity;
 import com.google.android.gms.analytics.GoogleAnalytics;
-import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
 import com.sharekeg.streetpal.Login.LoginActivity;
 import com.sharekeg.streetpal.R;
 import com.sharekeg.streetpal.Registration.ConfirmationActivity;
 import com.sharekeg.streetpal.Registration.TrustedContact;
-import com.sharekeg.streetpal.Registration.UserPhoto;
 import com.sharekeg.streetpal.Settings.SettingsActivity;
 import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 import com.sharekeg.streetpal.homefragments.GuideTab;
@@ -50,13 +38,7 @@ import com.sharekeg.streetpal.homefragments.HomeTab;
 import com.sharekeg.streetpal.homefragments.MapTab;
 import com.sharekeg.streetpal.homefragments.StartHomeFragment;
 import com.sharekeg.streetpal.userinfoforlogin.UserInfoForLogin;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.Bidi;
 import java.util.Locale;
@@ -95,6 +77,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     private static Tracker sTracker;
     SharedPreferences languagepref;
     String language, notificationToken;
+    private String feedback;
 
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -111,7 +94,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         InitGoogleAnalytics();
         SendScreenNameGoogleAnalytics();
 
-
         super.onCreate(savedInstanceState);
         languagepref = getSharedPreferences("language", MODE_PRIVATE);
         language = languagepref.getString("languageToLoad", "");
@@ -124,11 +106,17 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
             userName = mypreference.getString("myUserName", "User Name");
             fullName = mypreference.getString("myFullName", "Full Name");
             notificationToken = mypreference.getString("NotificationToken", null);
+
             if (notificationToken == null) {
                 //login again to get a token
                 logout();
             }
 
+        }
+        long time = mypreference.getLong("dialogDisplayisplayedTime", 0);
+        if (time < System.currentTimeMillis() - 259200000) {
+            displayDialog();
+            mypreference.edit().putLong("dialogDisplayisplayedTime", System.currentTimeMillis()).apply();
         }
 
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
@@ -227,6 +215,51 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 //        Toast.makeText(this,notificationToken,Toast.LENGTH_LONG).show();
 
     }
+
+    private void displayDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this);
+        alertDialog.setTitle(getResources().getString(R.string.generalfeedback));
+        alertDialog.setMessage(getResources().getString(R.string.Briefly));
+        alertDialog.setCancelable(false);
+
+        final EditText input = new EditText(HomeActivity.this);
+
+        alertDialog.setView(input);
+
+        alertDialog.setPositiveButton(R.string.ok,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        feedback = input.getText().toString();
+                        if (!feedback.isEmpty()) {
+                            sendFeedback();
+                        } else {
+                            Toast.makeText(HomeActivity.this, R.string.popfeedback_dialog_empty, Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    }
+                });
+
+        alertDialog.setNegativeButton(R.string.cancel,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        alertDialog.show();
+    }
+
+    private void sendFeedback() {
+        Intent email = new Intent(android.content.Intent.ACTION_SEND);
+        email.setType("plain/text");
+        email.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"info@streetpal.com"});
+        email.putExtra(android.content.Intent.EXTRA_SUBJECT, "Lads to Leaders/Leaderettes Questions and/or Comments");
+        email.putExtra(android.content.Intent.EXTRA_TEXT, "Feedback :" + feedback);
+        startActivity(Intent.createChooser(email, getApplicationContext().getResources()
+                .getString(R.string.sendmail_feedbackActivity)));
+    }
+
 
     private void logout() {
         SharedPreferences mySPrefs = PreferenceManager.getDefaultSharedPreferences(this);

@@ -369,6 +369,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
                         mypreference.edit().putString("myUserName", userName).apply();
                         mypreference.edit().putString("myFullName", name).apply();
                         mypreference.edit().putString("NotificationToken", notificationToken).apply();
+                        mypreference.edit().putLong("dialogDisplayisplayedTime", System.currentTimeMillis()).apply();
                         if (mImageUri != null) {
                             uploadProfileimage();
 
@@ -583,7 +584,6 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 //        setLanguage(language);
         checkLanguage(language);
     }
-
 
 
     //

@@ -112,9 +112,6 @@
             android:name=".Settings.PrivacyPolicyActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Settings.ReportAProblemActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Settings.AboutAsActivity"
             android:screenOrientation="portrait" />
         <activity
