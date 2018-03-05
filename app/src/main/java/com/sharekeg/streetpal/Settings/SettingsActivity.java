@@ -109,6 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.remove("myBirthMonth");
                 editor.remove("myBirthDay");
                 editor.remove("myGender");
+                editor.remove("dialogDisplayisplayedTime");
                 editor.apply();
                 Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
                 startActivity(intent);
@@ -150,10 +151,9 @@ public class SettingsActivity extends AppCompatActivity {
         IV_Report_a_problem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SettingsActivity.this, R.string.still_developing, Toast.LENGTH_LONG).show();
 
-//                Intent i = new Intent(SettingsActivity.this, ReportAProblemActivity.class);
-//                startActivity(i);
+                Intent i = new Intent(SettingsActivity.this, FeedBackActivity.class);
+                startActivity(i);
 
             }
         });
@@ -161,10 +161,10 @@ public class SettingsActivity extends AppCompatActivity {
         Report_a_problem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SettingsActivity.this, R.string.still_developing, Toast.LENGTH_LONG).show();
 
-//                Intent i = new Intent(SettingsActivity.this, ReportAProblemActivity.class);
-//                startActivity(i);
+
+                Intent i = new Intent(SettingsActivity.this, FeedBackActivity.class);
+                startActivity(i);
 
             }
         });
@@ -268,6 +268,7 @@ public class SettingsActivity extends AppCompatActivity {
         Intent intent = new Intent(SettingsActivity.this, HomeActivity.class);
         startActivity(intent);
     }
+
     @Override
     public void onStart() {
         super.onStart();
@@ -302,7 +303,6 @@ public class SettingsActivity extends AppCompatActivity {
 //        setLanguage(language);
         checkLanguage(Language);
     }
-
 
 
     //

@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.view.Gravity;
+import android.text.InputType;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -101,7 +102,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 
         InitGoogleAnalytics();
         SendScreenNameGoogleAnalytics();
-
         super.onCreate(savedInstanceState);
         languagepref = getSharedPreferences("language", MODE_PRIVATE);
         language = languagepref.getString("languageToLoad", "");
@@ -128,8 +128,10 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
             }
 
         }
+
+
         long time = mypreference.getLong("dialogDisplayisplayedTime", 0);
-        if (time < System.currentTimeMillis() - 259200000) {
+        if (time < System.currentTimeMillis() - 1.728e+9) {
             displayDialog();
             mypreference.edit().putLong("dialogDisplayisplayedTime", System.currentTimeMillis()).apply();
         }
@@ -241,42 +243,47 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     }
 
     private void displayDialog() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(HomeActivity.this);
-        alertDialog.setTitle(getResources().getString(R.string.generalfeedback));
-        alertDialog.setMessage(getResources().getString(R.string.Briefly));
-        alertDialog.setCancelable(false);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getResources().getString(R.string.generalfeedback));
 
-        final EditText input = new EditText(HomeActivity.this);
+        final EditText feedBackMessageEditText = new EditText(this);
 
-        alertDialog.setView(input);
+        feedBackMessageEditText.setInputType(InputType.TYPE_CLASS_TEXT);
 
-        alertDialog.setPositiveButton(R.string.ok,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        feedback = input.getText().toString();
-                        if (!feedback.isEmpty()) {
-                            sendFeedback();
-                        } else {
-                            Toast.makeText(HomeActivity.this, R.string.popfeedback_dialog_empty, Toast.LENGTH_SHORT).show();
+        builder.setView(feedBackMessageEditText);
+        builder.setIcon(getResources().getDrawable(R.drawable.ic_feedback));
+        builder.setMessage(getResources().getString(R.string.Briefly));
+        builder.setCancelable(false);
 
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-                        }
-                    }
-                });
+                feedback = feedBackMessageEditText.getText().toString();
 
-        alertDialog.setNegativeButton(R.string.cancel,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
+                if (feedback.isEmpty()) {
+                    Toast.makeText(HomeActivity.this, getResources().getText(R.string.popfeedback_dialog_empty), Toast.LENGTH_SHORT).show();
+                    displayDialog();
+                } else {
+                    sendFeedback();
+                }
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
 
-        alertDialog.show();
+        builder.show();
+
     }
 
     private void sendFeedback() {
         Intent email = new Intent(android.content.Intent.ACTION_SEND);
         email.setType("plain/text");
+        email.putExtra(Intent.EXTRA_USER, new String[]{"lablabla@lablablan.com"});
         email.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{"info@streetpal.com"});
         email.putExtra(android.content.Intent.EXTRA_SUBJECT, "Lads to Leaders/Leaderettes Questions and/or Comments");
         email.putExtra(android.content.Intent.EXTRA_TEXT, "Feedback :" + feedback);
