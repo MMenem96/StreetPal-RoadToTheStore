@@ -52,6 +52,10 @@ dependencies {
     compile 'cat.ereza:customactivityoncrash:2.1.0'
     compile 'com.akexorcist:localizationactivity:1.1.2'
     compile 'com.google.android.gms:play-services-analytics:11.0.4'
-    compile 'com.google.firebase:firebase-messaging:11.0.4'}
+    compile 'com.google.firebase:firebase-messaging:11.0.4'
+    compile ('com.github.worker8:tourguide:1.0.18-SNAPSHOT@aar') {
+        transitive=true
+    }
+}
 
 apply plugin: 'com.google.gms.google-services'

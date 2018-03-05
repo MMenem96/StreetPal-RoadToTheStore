@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -24,10 +25,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -64,11 +68,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
+import com.sharekeg.streetpal.Home.HomeActivity;
+import com.sharekeg.streetpal.Language.ChooseLanguage;
 import com.sharekeg.streetpal.R;
 import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 import com.sharekeg.streetpal.safeplace.GoogleMapsUtilities;
 import com.sharekeg.streetpal.safeplace.SafePlaceActivity;
 import com.sharekeg.streetpal.safeplace.nearbyplaceutil.Example;
+import com.sharekeg.streetpal.splashscreeen.SplashScreen;
 
 
 import java.text.DecimalFormat;
@@ -79,6 +86,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import tourguide.tourguide.ChainTourGuide;
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.Sequence;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
@@ -121,6 +134,8 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
     private Location mLastLocation;
     private Context context;
     private GoogleAnalyticsHelper mGoogleHelper;
+    private Animation mEnterAnimation, mExitAnimation;
+
 
 
     @Override
@@ -130,7 +145,14 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
         InitGoogleAnalytics();
         SendScreenNameGoogleAnalytics();
 
+        /* setup enter and exit animation */
+        mEnterAnimation = new AlphaAnimation(0f, 1f);
+        mEnterAnimation.setDuration(600);
+        mEnterAnimation.setFillAfter(true);
 
+        mExitAnimation = new AlphaAnimation(1f, 0f);
+        mExitAnimation.setDuration(600);
+        mExitAnimation.setFillAfter(true);
         context = getContext();
         mprogressDialog = new ProgressDialog(getActivity());
 
@@ -149,6 +171,7 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
         Log.d(TAG, "onCreate");
     }
 
+
     synchronized public Tracker getDefaultTracker() {
         // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
         if (sTracker == null) {
@@ -166,7 +189,6 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
             @Override
             public void onClick(View v) {
                 showNearstPoliceStation();
-
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -211,6 +233,16 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
         mMapView.onCreate(savedInstanceState);
         mMapView.onResume();
         mMapView.getMapAsync(this);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        boolean previouslyStarted = prefs.getBoolean("map_tab_previously_started", false);
+        if (!previouslyStarted)
+        {
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putBoolean("map_tab_previously_started", Boolean.TRUE);
+            edit.commit();
+            runOverlay_ContinueMethod();
+        } else {
+        }
         Log.d(TAG, "onCreateView");
         return rootView;
     }
@@ -236,6 +268,44 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
         build_retrofit_for_police_and_get_response(Type, lati, lngi);
     }
 
+    private void runOverlay_ContinueMethod(){
+        // the return handler is used to manipulate the cleanup of all the tutorial elements
+        ChainTourGuide tourGuide1 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                        .setTitle("Nearest Police Station")
+                        .setDescription("Tap here to find the nearest police station to you.")
+                        .setGravity(Gravity.BOTTOM)
+                )
+                // note that there is no Overlay here, so the default one will be used
+                .playLater(iBtnPolice);
+
+        ChainTourGuide tourGuide2 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                        .setTitle("Nearest Hospital")
+                        .setDescription("Tap here to find the nearest hospital to you.")
+                        .setGravity(Gravity.BOTTOM | Gravity.LEFT)
+//                        .setBackgroundColor(Color.parseColor("#c0392b"))
+                )
+                .setOverlay(new Overlay()
+//                        .setBackgroundColor(Color.parseColor("#EE2c3e50"))
+                        .setEnterAnimation(mEnterAnimation)
+                        .setExitAnimation(mExitAnimation)
+                )
+                .playLater(iBtnHospital);
+
+        Sequence sequence = new Sequence.SequenceBuilder()
+                .add(tourGuide1, tourGuide2)
+                .setDefaultOverlay(new Overlay()
+                        .setEnterAnimation(mEnterAnimation)
+                        .setExitAnimation(mExitAnimation)
+                )
+                .setDefaultPointer(null)
+                .setContinueMethod(Sequence.ContinueMethod.OVERLAY)
+                .build();
+
+
+        ChainTourGuide.init(getActivity()).playInSequence(sequence);
+    }
     @Override
     public void onResume() {
         super.onResume();

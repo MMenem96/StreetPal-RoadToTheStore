@@ -18,9 +18,12 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +41,13 @@ import com.sharekeg.streetpal.R;
 import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 import com.squareup.picasso.Picasso;
 
+import tourguide.tourguide.ChainTourGuide;
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.Sequence;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
+
 /**
  * Created by MMenem on 8/21/2017.
  */
@@ -53,6 +63,9 @@ public class StartHomeFragment extends Fragment {
     private ImageView ivAddUserPhoto;
     private TextView tvusername;
     private String token,userName,fullName;
+    private Animation mEnterAnimation, mExitAnimation;
+    TourGuide mTourGuide;
+
 
     public StartHomeFragment() {
     }
@@ -62,8 +75,14 @@ public class StartHomeFragment extends Fragment {
         sAnalytics = GoogleAnalytics.getInstance(getActivity());
         InitGoogleAnalytics();
         SendScreenNameGoogleAnalytics();
+        /* setup enter and exit animation */
+        mEnterAnimation = new AlphaAnimation(0f, 1f);
+        mEnterAnimation.setDuration(600);
+        mEnterAnimation.setFillAfter(true);
 
-
+        mExitAnimation = new AlphaAnimation(1f, 0f);
+        mExitAnimation.setDuration(600);
+        mExitAnimation.setFillAfter(true);
         context = getContext();
 
         SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(context);
@@ -91,12 +110,34 @@ public class StartHomeFragment extends Fragment {
         IV_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mTourGuide.cleanUp();
                 SendEventGoogleAnalytics("StartHomeFragment","CallForHelp","Button clicked" );
                 startHomeTabFragment();
             }
         });
         hello = (TextView) startHomeFragmentView.findViewById(R.id.hello);
         And = (TextView) startHomeFragmentView.findViewById(R.id.And);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        boolean previouslyStarted = prefs.getBoolean("home_tab_previously_started", false);
+        if (!previouslyStarted)
+        {
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putBoolean("home_tab_previously_started", Boolean.TRUE);
+            edit.commit();
+            mTourGuide = TourGuide.init(getActivity()).with(TourGuide.Technique.CLICK)
+                    .setPointer(new Pointer())
+                    .setToolTip(new ToolTip()
+                            .setTitle("Hey!")
+                            .setDescription("I'm the top fellow")
+                            .setGravity(Gravity.RIGHT)
+                    )
+                    .setOverlay(new Overlay()
+                            .setEnterAnimation(mEnterAnimation)
+                            .setExitAnimation(mExitAnimation)
+                    );
+//            runOverlay_ContinueMethod();
+        } else {
+        }
         return startHomeFragmentView;
     }
 
@@ -133,6 +174,5 @@ public class StartHomeFragment extends Fragment {
                 .placeholder(R.drawable.ic_default_user).error(R.drawable.ic_default_user)
                 .into(ivAddUserPhoto);
     }
-
 
 }
