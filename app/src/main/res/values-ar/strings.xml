@@ -631,4 +631,22 @@ http://harassmap.org/ar/resource-center/what-is-sexual-harassment/
     <string name="we_cdnt_find_hospital_near_you"> لم نتمكن من العثور علي مستشفي بالقرب منك!</string>
     <string name="we_cdnt_find_police_station_near_you">لم نتمكن من العثور علي نقطة شرطة بالقرب منك!</string>
     <string name="popfeedback_dialog_empty"> إدخل التقيم</string>
+
+    <!--Tour guide strings -->
+    <string name="tourguide_tip_home_activity_chat_title">أرشدني</string>
+    <string name="tourguide_tip_home_activity_navigation_tab_title">الخريطة</string>
+    <string name="tourguide_tip_home_activity_posts_tab_title">الدليل</string>
+    <string name="tourguide_tip_navigation_tab_hospital_title">أقرب مستشفى</string>
+    <string name="tourguide_tip_navigation_tab_police_title">أقرب مركز شرطة</string>
+    <string name="tourguide_tip_safe_place_activity_recording_title">تسجيل صوتي</string>
+    <string name="tourguide_tip_safe_place_activity_mark_safe_title">بأمان الآن؟</string>
+
+    <string name="tourguide_tip_home_activity_chat">ابدأ محادثة لطلب المساعدة.</string>
+    <string name="tourguide_tip_home_activity_navigation_tab">افتح الخريطة لإيجاد الأماكن الآمنة القريبة لك.</string>
+    <string name="tourguide_tip_home_activity_posts_tab">افتح الدليل لإيجاد معلومات أكثر عن التحرش الجنسي.</string>
+    <string name="tourguide_tip_navigation_tab_hospital">ابحث عن اقرب مستشفى لك.</string>
+    <string name="tourguide_tip_navigation_tab_police">ابحث عن أقرب مركز شرطة لك.</string>
+    <string name="tourguide_tip_safe_place_activity_recording">نحن نقوم بتسجيل الموقف صوتيا من أجلك.</string>
+    <string name="tourguide_tip_safe_place_activity_mark_safe">لإبلاغ جهات الإتصال الموثوقة انك بخير الآن.</string>
+
 </resources>

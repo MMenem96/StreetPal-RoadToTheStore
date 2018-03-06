@@ -86,8 +86,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     SharedPreferences languagepref;
     String language, notificationToken;
     private String feedback;
-    private Animation mEnterAnimation, mExitAnimation;
-
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
@@ -107,14 +105,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         language = languagepref.getString("languageToLoad", "");
         checkLanguage(language);
         setContentView(R.layout.activity_home);
-/* setup enter and exit animation */
-        mEnterAnimation = new AlphaAnimation(0f, 1f);
-        mEnterAnimation.setDuration(600);
-        mEnterAnimation.setFillAfter(true);
 
-        mExitAnimation = new AlphaAnimation(1f, 0f);
-        mExitAnimation.setDuration(600);
-        mExitAnimation.setFillAfter(true);
         SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
         if (mypreference.getBoolean("loggedIn", false)) {
             token = mypreference.getString("token", null);
@@ -229,17 +220,6 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         });
 
         isUserLoggedin(token);
-//        Toast.makeText(this,notificationToken,Toast.LENGTH_LONG).show();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean previouslyStarted = prefs.getBoolean("home_activity_previously_started", false);
-        if (!previouslyStarted)
-        {
-            SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean("home_activity_previously_started", Boolean.TRUE);
-            edit.commit();
-            runOverlay_ContinueMethod();
-        } else {
-        }
     }
 
     private void displayDialog() {
@@ -388,44 +368,7 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
             }
         });
     }
-    private void runOverlay_ContinueMethod(){
-        // the return handler is used to manipulate the cleanup of all the tutorial elements
-        ChainTourGuide tourGuide1 = ChainTourGuide.init(this)
-                .setToolTip(new ToolTip()
-                        .setTitle("Navigation Tab")
-                        .setDescription("Tap here to open the map and search for nearby safe places.")
-                        .setGravity(Gravity.TOP)
-                )
-                // note that there is no Overlay here, so the default one will be used
-                .playLater(ivNavigation);
 
-        ChainTourGuide tourGuide2 = ChainTourGuide.init(this)
-                .setToolTip(new ToolTip()
-                                .setTitle("Guide Bab")
-                                .setDescription("Tap here to find the nearest hospital to you.")
-                                .setGravity(Gravity.TOP | Gravity.LEFT)
-//                        .setBackgroundColor(Color.parseColor("#c0392b"))
-                )
-                .setOverlay(new Overlay()
-//                        .setBackgroundColor(Color.parseColor("#EE2c3e50"))
-                                .setEnterAnimation(mEnterAnimation)
-                                .setExitAnimation(mExitAnimation)
-                )
-                .playLater(ivPosts);
-
-        Sequence sequence = new Sequence.SequenceBuilder()
-                .add(tourGuide1, tourGuide2)
-                .setDefaultOverlay(new Overlay()
-                        .setEnterAnimation(mEnterAnimation)
-                        .setExitAnimation(mExitAnimation)
-                )
-                .setDefaultPointer(null)
-                .setContinueMethod(Sequence.ContinueMethod.OVERLAY)
-                .build();
-
-
-        ChainTourGuide.init(this).playInSequence(sequence);
-    }
 
     private void resendActivationCode() {
         ApiInterface mApi = retrofitforauthentication.create(ApiInterface.class);

@@ -95,6 +95,7 @@ import tourguide.tourguide.TourGuide;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
+import static android.view.Gravity.BOTTOM;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -135,7 +136,8 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
     private Context context;
     private GoogleAnalyticsHelper mGoogleHelper;
     private Animation mEnterAnimation, mExitAnimation;
-
+    SharedPreferences languagepref;
+    String language;
 
 
     @Override
@@ -145,6 +147,8 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
         InitGoogleAnalytics();
         SendScreenNameGoogleAnalytics();
 
+        languagepref = getActivity().getSharedPreferences("language", MODE_PRIVATE);
+        language = languagepref.getString("languageToLoad", "");
         /* setup enter and exit animation */
         mEnterAnimation = new AlphaAnimation(0f, 1f);
         mEnterAnimation.setDuration(600);
@@ -240,9 +244,13 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
             SharedPreferences.Editor edit = prefs.edit();
             edit.putBoolean("map_tab_previously_started", Boolean.TRUE);
             edit.commit();
-            runOverlay_ContinueMethod();
-        } else {
+            if(language.equals("ar")) {
+                runOverlay_ContinueMethod_ar();
+            }else{runOverlay_ContinueMethod_en();}
         }
+        else {
+        }                runOverlay_ContinueMethod_ar();
+
         Log.d(TAG, "onCreateView");
         return rootView;
     }
@@ -268,28 +276,66 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
         build_retrofit_for_police_and_get_response(Type, lati, lngi);
     }
 
-    private void runOverlay_ContinueMethod(){
+    private void runOverlay_ContinueMethod_ar(){
         // the return handler is used to manipulate the cleanup of all the tutorial elements
         ChainTourGuide tourGuide1 = ChainTourGuide.init(getActivity())
                 .setToolTip(new ToolTip()
-                        .setTitle("Nearest Police Station")
-                        .setDescription("Tap here to find the nearest police station to you.")
-                        .setGravity(Gravity.BOTTOM)
+                        .setTitle(getString(R.string.tourguide_tip_navigation_tab_police_title))
+                        .setDescription(getString(R.string.tourguide_tip_navigation_tab_police))
+                        .setGravity(BOTTOM |Gravity.LEFT)
                 )
                 // note that there is no Overlay here, so the default one will be used
                 .playLater(iBtnPolice);
 
         ChainTourGuide tourGuide2 = ChainTourGuide.init(getActivity())
                 .setToolTip(new ToolTip()
-                        .setTitle("Nearest Hospital")
-                        .setDescription("Tap here to find the nearest hospital to you.")
-                        .setGravity(Gravity.BOTTOM | Gravity.LEFT)
+                        .setTitle((getString(R.string.tourguide_tip_navigation_tab_hospital_title)))
+                        .setDescription(getString(R.string.tourguide_tip_navigation_tab_hospital))
+                        .setGravity(Gravity.RIGHT|BOTTOM)
 //                        .setBackgroundColor(Color.parseColor("#c0392b"))
                 )
                 .setOverlay(new Overlay()
 //                        .setBackgroundColor(Color.parseColor("#EE2c3e50"))
                         .setEnterAnimation(mEnterAnimation)
                         .setExitAnimation(mExitAnimation)
+                )
+                .playLater(iBtnHospital);
+
+        Sequence sequence = new Sequence.SequenceBuilder()
+                .add(tourGuide1, tourGuide2)
+                .setDefaultOverlay(new Overlay()
+                        .setEnterAnimation(mEnterAnimation)
+                        .setExitAnimation(mExitAnimation)
+                )
+                .setDefaultPointer(null)
+                .setContinueMethod(Sequence.ContinueMethod.OVERLAY)
+                .build();
+
+
+        ChainTourGuide.init(getActivity()).playInSequence(sequence);
+    }
+    private void runOverlay_ContinueMethod_en(){
+        // the return handler is used to manipulate the cleanup of all the tutorial elements
+        ChainTourGuide tourGuide1 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                        .setTitle(getString(R.string.tourguide_tip_navigation_tab_police_title))
+                        .setDescription(getString(R.string.tourguide_tip_navigation_tab_police))
+                        .setGravity(BOTTOM |Gravity.RIGHT)
+                )
+                // note that there is no Overlay here, so the default one will be used
+                .playLater(iBtnPolice);
+
+        ChainTourGuide tourGuide2 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                                .setTitle((getString(R.string.tourguide_tip_navigation_tab_hospital_title)))
+                                .setDescription(getString(R.string.tourguide_tip_navigation_tab_hospital))
+                                .setGravity(BOTTOM |Gravity.LEFT)
+//                        .setBackgroundColor(Color.parseColor("#c0392b"))
+                )
+                .setOverlay(new Overlay()
+//                        .setBackgroundColor(Color.parseColor("#EE2c3e50"))
+                                .setEnterAnimation(mEnterAnimation)
+                                .setExitAnimation(mExitAnimation)
                 )
                 .playLater(iBtnHospital);
 

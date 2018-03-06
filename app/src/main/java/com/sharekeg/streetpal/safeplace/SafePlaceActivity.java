@@ -41,8 +41,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
@@ -96,6 +99,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import tourguide.tourguide.ChainTourGuide;
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Sequence;
+import tourguide.tourguide.ToolTip;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -126,7 +133,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
     private Chronometer mChronometer;
     private boolean isRecording = false;
     private long timeDifference;
-    private TextView tvReturnToTheGuide;
+    private TextView tvReturnToTheGuide , tv_recording;
     private int PROXIMITY_RADIUS = 5000;
     private String Type;
     private LatLng nearest_place, latLng;
@@ -150,7 +157,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
     private Button btnNavigate;
     private Location currentUserLocation;
     private LocationProvider mLocationProvider;
-
+    private Animation mEnterAnimation, mExitAnimation;
     private GoogleAnalyticsHelper mGoogleHelper;
 
 
@@ -161,7 +168,13 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
         language = languagepref.getString("languageToLoad", "");
         checkLanguage(language);
         setContentView(R.layout.activity_safe_palce);
+        mEnterAnimation = new AlphaAnimation(0f, 1f);
+        mEnterAnimation.setDuration(600);
+        mEnterAnimation.setFillAfter(true);
 
+        mExitAnimation = new AlphaAnimation(1f, 0f);
+        mExitAnimation.setDuration(600);
+        mExitAnimation.setFillAfter(true);
         InitGoogleAnalytics();
         SendScreenNameGoogleAnalytics();
 
@@ -223,8 +236,7 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
 
 
         //recordButton = (Button) findViewById(R.id.recordButton);
-
-
+        tv_recording=(TextView)findViewById(R.id.tvRecord);
         tvReturnToTheGuide = (TextView) findViewById(R.id.tvReturnToTheGuide);
         tvReturnToTheGuide.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -352,9 +364,98 @@ public class SafePlaceActivity extends AppCompatActivity implements LocationProv
             }
         });
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean previouslyStarted = prefs.getBoolean("safePlaces_activity_previously_started", false);
+        if (!previouslyStarted)
+        {
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putBoolean("safePlaces_activity_previously_started", Boolean.TRUE);
+            edit.commit();
+            if(language.equals("ar")) {
+                runOverlay_ContinueMethod_ar();
+            }else{runOverlay_ContinueMethod_en();}
+        }
+        else {
+        }
+    }
+    private void runOverlay_ContinueMethod_en(){
+        // the return handler is used to manipulate the cleanup of all the tutorial elements
+        ChainTourGuide tourGuide2 = ChainTourGuide.init(this)
+                .setToolTip(new ToolTip()
+                        .setTitle(getString(R.string.tourguide_tip_safe_place_activity_mark_safe_title))
+                        .setDescription(getString(R.string.tourguide_tip_safe_place_activity_mark_safe))
+                        .setGravity(Gravity.TOP |Gravity.RIGHT)
+                )
+                // note that there is no Overlay here, so the default one will be used
+                .playLater(btnMarkSafe);
 
+        ChainTourGuide tourGuide1 = ChainTourGuide.init(this)
+                .setToolTip(new ToolTip()
+                                .setTitle(getString(R.string.tourguide_tip_safe_place_activity_recording_title))
+                                .setDescription(getString(R.string.tourguide_tip_safe_place_activity_recording))
+                                .setGravity(Gravity.TOP |Gravity.RIGHT)
+//                        .setBackgroundColor(Color.parseColor("#c0392b"))
+                )
+                .setOverlay(new Overlay()
+//                        .setBackgroundColor(Color.parseColor("#EE2c3e50"))
+                                .setEnterAnimation(mEnterAnimation)
+                                .setExitAnimation(mExitAnimation)
+                )
+                .playLater(mChronometer);
+
+        Sequence sequence = new Sequence.SequenceBuilder()
+                .add(tourGuide1, tourGuide2)
+                .setDefaultOverlay(new Overlay()
+                        .setEnterAnimation(mEnterAnimation)
+                        .setExitAnimation(mExitAnimation)
+                )
+                .setDefaultPointer(null)
+                .setContinueMethod(Sequence.ContinueMethod.OVERLAY)
+                .build();
+
+
+        ChainTourGuide.init(this).playInSequence(sequence);
     }
 
+    private void runOverlay_ContinueMethod_ar(){
+        // the return handler is used to manipulate the cleanup of all the tutorial elements
+        ChainTourGuide tourGuide2 = ChainTourGuide.init(this)
+                .setToolTip(new ToolTip()
+                        .setTitle(getString(R.string.tourguide_tip_safe_place_activity_mark_safe_title))
+                        .setDescription(getString(R.string.tourguide_tip_safe_place_activity_mark_safe))
+                        .setGravity(Gravity.TOP |Gravity.LEFT)
+                )
+                // note that there is no Overlay here, so the default one will be used
+                .playLater(btnMarkSafe);
+
+        ChainTourGuide tourGuide1 = ChainTourGuide.init(this)
+                .setToolTip(new ToolTip()
+                                .setTitle(getString(R.string.tourguide_tip_safe_place_activity_recording_title))
+                                .setDescription(getString(R.string.tourguide_tip_safe_place_activity_recording))
+                                .setGravity(Gravity.BOTTOM |Gravity.LEFT)
+//                        .setBackgroundColor(Color.parseColor("#c0392b"))
+                )
+                .setOverlay(new Overlay()
+//                        .setBackgroundColor(Color.parseColor("#EE2c3e50"))
+                                .setEnterAnimation(mEnterAnimation)
+                                .setExitAnimation(mExitAnimation)
+                )
+                .playLater(mChronometer
+                );
+
+        Sequence sequence = new Sequence.SequenceBuilder()
+                .add(tourGuide1, tourGuide2)
+                .setDefaultOverlay(new Overlay()
+                        .setEnterAnimation(mEnterAnimation)
+                        .setExitAnimation(mExitAnimation)
+                )
+                .setDefaultPointer(null)
+                .setContinueMethod(Sequence.ContinueMethod.OVERLAY)
+                .build();
+
+
+        ChainTourGuide.init(this).playInSequence(sequence);
+    }
     private void sendUserDestinationToGoogleAnalytics() {
         if (Type == "hospital") {
             SendEventGoogleAnalytics("Nearest Hospital", "SelectedFromSafePlaceActivity", "Nearest Hospital is shown to  the user");

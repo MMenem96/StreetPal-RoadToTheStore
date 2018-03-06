@@ -48,6 +48,8 @@ import tourguide.tourguide.Sequence;
 import tourguide.tourguide.ToolTip;
 import tourguide.tourguide.TourGuide;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by MMenem on 8/21/2017.
  */
@@ -64,8 +66,9 @@ public class StartHomeFragment extends Fragment {
     private TextView tvusername;
     private String token,userName,fullName;
     private Animation mEnterAnimation, mExitAnimation;
-    TourGuide mTourGuide;
-
+    private ImageView ivNavigation, ivPosts;
+    SharedPreferences languagepref;
+    String language;
 
     public StartHomeFragment() {
     }
@@ -75,6 +78,10 @@ public class StartHomeFragment extends Fragment {
         sAnalytics = GoogleAnalytics.getInstance(getActivity());
         InitGoogleAnalytics();
         SendScreenNameGoogleAnalytics();
+
+        languagepref = getActivity().getSharedPreferences("language", MODE_PRIVATE);
+        language = languagepref.getString("languageToLoad", "");
+
         /* setup enter and exit animation */
         mEnterAnimation = new AlphaAnimation(0f, 1f);
         mEnterAnimation.setDuration(600);
@@ -100,7 +107,8 @@ public class StartHomeFragment extends Fragment {
 
         View startHomeFragmentView = inflater.inflate(R.layout.fragment_start_home, container, false);
 
-
+        ivNavigation =this.getActivity().findViewById(R.id.ivmap);
+        ivPosts = this.getActivity().findViewById(R.id.ivguide);
         IV_message = (ImageButton) startHomeFragmentView.findViewById(R.id.IV_message);
         ivAddUserPhoto = (ImageView)startHomeFragmentView.findViewById(R.id.ivAddUserPhoto);
         getUserImage();
@@ -110,37 +118,121 @@ public class StartHomeFragment extends Fragment {
         IV_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mTourGuide.cleanUp();
                 SendEventGoogleAnalytics("StartHomeFragment","CallForHelp","Button clicked" );
                 startHomeTabFragment();
             }
         });
         hello = (TextView) startHomeFragmentView.findViewById(R.id.hello);
         And = (TextView) startHomeFragmentView.findViewById(R.id.And);
+
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        boolean previouslyStarted = prefs.getBoolean("home_tab_previously_started", false);
+        boolean previouslyStarted = prefs.getBoolean("home_activity_previously_started", false);
         if (!previouslyStarted)
         {
             SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean("home_tab_previously_started", Boolean.TRUE);
+            edit.putBoolean("home_activity_previously_started", Boolean.TRUE);
             edit.commit();
-            mTourGuide = TourGuide.init(getActivity()).with(TourGuide.Technique.CLICK)
-                    .setPointer(new Pointer())
-                    .setToolTip(new ToolTip()
-                            .setTitle("Hey!")
-                            .setDescription("I'm the top fellow")
-                            .setGravity(Gravity.RIGHT)
-                    )
-                    .setOverlay(new Overlay()
-                            .setEnterAnimation(mEnterAnimation)
-                            .setExitAnimation(mExitAnimation)
-                    );
-//            runOverlay_ContinueMethod();
-        } else {
+            if(language.equals("ar")) {
+                runOverlay_ContinueMethod_ar();
+            }else{runOverlay_ContinueMethod_en();}
+        }
+        else {                runOverlay_ContinueMethod_ar();
+
         }
         return startHomeFragmentView;
     }
+    private void runOverlay_ContinueMethod_en(){
+        // the return handler is used to manipulate the cleanup of all the tutorial elements
+        ChainTourGuide tourGuide1 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                        .setTitle(getString(R.string.tourguide_tip_home_activity_chat_title))
+                        .setDescription(getString(R.string.tourguide_tip_home_activity_chat))
+                        .setGravity(Gravity.BOTTOM)
+                )
+                // note that there is no Overlay here, so the default one will be used
+                .playLater(IV_message);
 
+        ChainTourGuide tourGuide2 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                        .setTitle(getString(R.string.tourguide_tip_home_activity_navigation_tab_title))
+                        .setDescription(getString(R.string.tourguide_tip_home_activity_navigation_tab))
+                        .setGravity(Gravity.TOP | Gravity.LEFT)
+                )
+                // note that there is no Overlay here, so the default one will be used
+                .playLater(ivNavigation);
+
+        ChainTourGuide tourGuide3 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                                .setTitle(getString(R.string.tourguide_tip_home_activity_posts_tab_title))
+                                .setDescription(getString(R.string.tourguide_tip_home_activity_posts_tab))
+                                .setGravity(Gravity.TOP |Gravity.LEFT)
+//                        .setBackgroundColor(Color.parseColor("#c0392b"))
+                )
+                .setOverlay(new Overlay()
+//                        .setBackgroundColor(Color.parseColor("#EE2c3e50"))
+                                .setEnterAnimation(mEnterAnimation)
+                                .setExitAnimation(mExitAnimation)
+                )
+                .playLater(ivPosts);
+        Sequence sequence = new Sequence.SequenceBuilder()
+                .add(tourGuide1, tourGuide2,tourGuide3)
+                .setDefaultOverlay(new Overlay()
+                        .setEnterAnimation(mEnterAnimation)
+                        .setExitAnimation(mExitAnimation)
+                )
+                .setDefaultPointer(null)
+                .setContinueMethod(Sequence.ContinueMethod.OVERLAY)
+                .build();
+
+
+        ChainTourGuide.init(getActivity()).playInSequence(sequence);
+    }
+    private void runOverlay_ContinueMethod_ar(){
+        // the return handler is used to manipulate the cleanup of all the tutorial elements
+        ChainTourGuide tourGuide1 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                        .setTitle(getString(R.string.tourguide_tip_home_activity_chat_title))
+                        .setDescription(getString(R.string.tourguide_tip_home_activity_chat))
+                        .setGravity(Gravity.TOP |Gravity.AXIS_PULL_AFTER)
+                )
+                // note that there is no Overlay here, so the default one will be used
+                .playLater(IV_message);
+
+        ChainTourGuide tourGuide2 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                        .setTitle(getString(R.string.tourguide_tip_home_activity_navigation_tab_title))
+                        .setDescription(getString(R.string.tourguide_tip_home_activity_navigation_tab))
+                        .setGravity(Gravity.TOP | Gravity.RIGHT)
+                )
+                // note that there is no Overlay here, so the default one will be used
+                .playLater(ivNavigation);
+
+        ChainTourGuide tourGuide3 = ChainTourGuide.init(getActivity())
+                .setToolTip(new ToolTip()
+                                .setTitle(getString(R.string.tourguide_tip_home_activity_posts_tab_title))
+                                .setDescription(getString(R.string.tourguide_tip_home_activity_posts_tab))
+                                .setGravity(Gravity.TOP |Gravity.AXIS_PULL_BEFORE)
+//                        .setBackgroundColor(Color.parseColor("#c0392b"))
+                )
+                .setOverlay(new Overlay()
+//                        .setBackgroundColor(Color.parseColor("#EE2c3e50"))
+                                .setEnterAnimation(mEnterAnimation)
+                                .setExitAnimation(mExitAnimation)
+                )
+                .playLater(ivPosts);
+        Sequence sequence = new Sequence.SequenceBuilder()
+                .add(tourGuide1, tourGuide2,tourGuide3)
+                .setDefaultOverlay(new Overlay()
+                        .setEnterAnimation(mEnterAnimation)
+                        .setExitAnimation(mExitAnimation)
+                )
+                .setDefaultPointer(null)
+                .setContinueMethod(Sequence.ContinueMethod.OVERLAY)
+                .build();
+
+
+        ChainTourGuide.init(getActivity()).playInSequence(sequence);
+    }
     private void startHomeTabFragment() {
         HomeTab homeTabFragment = new HomeTab();
         this.getFragmentManager().beginTransaction()

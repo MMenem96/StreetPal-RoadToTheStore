@@ -607,4 +607,22 @@ All rights reserved to HarassMap 2015\n
     <string name="we_cdnt_find_hospital_near_you">We couldn\'t find hospital near you!</string>
     <string name="we_cdnt_find_police_station_near_you">We couldn\'t find police station near you!</string>
     <string name="popfeedback_dialog_empty">Empty input!</string>
+
+    <!--Tour guide strings -->
+    <string name="tourguide_tip_home_activity_chat_title">Guide Me</string>
+    <string name="tourguide_tip_home_activity_navigation_tab_title">Navigation Tab</string>
+    <string name="tourguide_tip_home_activity_posts_tab_title">Posts</string>
+    <string name="tourguide_tip_navigation_tab_hospital_title">Nearest Hospital</string>
+    <string name="tourguide_tip_navigation_tab_police_title">Nearest Police Station</string>
+    <string name="tourguide_tip_safe_place_activity_recording_title">Record</string>
+    <string name="tourguide_tip_safe_place_activity_mark_safe_title">Mark Safe</string>
+
+    <string name="tourguide_tip_home_activity_chat">Tap here to open streetPal guide chat.</string>
+    <string name="tourguide_tip_home_activity_navigation_tab">Tap here to open the map and search for nearby safe places.</string>
+    <string name="tourguide_tip_home_activity_posts_tab">Tap here to find more information about sexual harassment.</string>
+    <string name="tourguide_tip_navigation_tab_hospital">Tap here to find the nearest hospital to you.</string>
+    <string name="tourguide_tip_navigation_tab_police">Tap here to find the nearest police station to you.</string>
+    <string name="tourguide_tip_safe_place_activity_recording">We are recording the situation for you.</string>
+    <string name="tourguide_tip_safe_place_activity_mark_safe">If you feel safe now tap here to inform your trusted contact that you are safe.</string>
+
 </resources>
