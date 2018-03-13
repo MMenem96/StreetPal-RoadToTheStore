@@ -136,8 +136,7 @@ public class StartHomeFragment extends Fragment {
                 runOverlay_ContinueMethod_ar();
             }else{runOverlay_ContinueMethod_en();}
         }
-        else {                runOverlay_ContinueMethod_ar();
-
+        else {
         }
         return startHomeFragmentView;
     }

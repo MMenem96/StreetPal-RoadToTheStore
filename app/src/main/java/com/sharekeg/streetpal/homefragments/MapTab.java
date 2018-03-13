@@ -249,7 +249,7 @@ public class MapTab extends Fragment implements OnMapReadyCallback, LocationList
             }else{runOverlay_ContinueMethod_en();}
         }
         else {
-        }                runOverlay_ContinueMethod_ar();
+        }
 
         Log.d(TAG, "onCreateView");
         return rootView;
