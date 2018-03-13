@@ -42,19 +42,21 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.android.support:support-v4:26.1.0'
     //noinspection GradleCompatible
-    compile 'com.google.android.gms:play-services-maps:11.0.4'
-    compile 'com.google.android.gms:play-services-places:11.0.4'
-    compile 'com.google.android.gms:play-services-location:11.0.4'
+    compile 'com.google.android.gms:play-services-maps:11.8.0'
+    compile 'com.google.android.gms:play-services-places:11.8.0'
+    compile 'com.google.android.gms:play-services-location:11.8.0'
     compile 'com.chabbal:slidingdotsplash:1.0.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.theartofdev.edmodo:android-image-cropper:2.4.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'cat.ereza:customactivityoncrash:2.1.0'
     compile 'com.akexorcist:localizationactivity:1.1.2'
-    compile 'com.google.android.gms:play-services-analytics:11.0.4'
-    compile 'com.google.firebase:firebase-messaging:11.0.4'
-    compile ('com.github.worker8:tourguide:1.0.18-SNAPSHOT@aar') {
-        transitive=true
+    compile 'com.google.android.gms:play-services-analytics:11.8.0'
+    compile 'com.facebook.android:facebook-login:[4,5)'
+    compile 'com.google.android.gms:play-services-auth:11.8.0'
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    compile('com.github.worker8:tourguide:1.0.18-SNAPSHOT@aar') {
+        transitive = true
     }
 }
 

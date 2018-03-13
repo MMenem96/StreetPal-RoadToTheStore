@@ -607,6 +607,12 @@ All rights reserved to HarassMap 2015\n
     <string name="we_cdnt_find_police_station_near_you">We couldn\'t find police station near you!</string>
     <string name="popfeedback_dialog_empty">Empty input!</string>
 
+
+    <string name="facebook_app_id">1794707520825274</string>
+    <string name="fb_login_protocol_scheme">fb1794707520825274</string>
+
+
+
     <!--Tour guide strings -->
     <string name="tourguide_tip_home_activity_chat_title">Guide Me</string>
     <string name="tourguide_tip_home_activity_navigation_tab_title">Navigation Tab</string>

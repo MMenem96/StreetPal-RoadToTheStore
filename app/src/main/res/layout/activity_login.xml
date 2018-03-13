@@ -100,6 +100,17 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size" />
             <!-- Link to Registration Screen -->
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="10dp"
+                android:visibility="gone" />
+
+
             <com.sharekeg.streetpal.langutil.TextViewForEnglish
                 android:id="@+id/link_to_register"
                 android:layout_width="match_parent"

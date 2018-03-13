@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.akexorcist.localizationactivity.LocalizationActivity;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.appevents.AppEventsLogger;
+
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
 import com.sharekeg.streetpal.Home.HomeActivity;
@@ -34,10 +46,12 @@ import com.sharekeg.streetpal.forgotpassword.ForgetPasswordActivity;
 import com.sharekeg.streetpal.forgotpassword.ForgotPassword;
 import com.sharekeg.streetpal.userinfoforlogin.UserInfoForLogin;
 
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.text.Bidi;
+import java.util.Arrays;
 import java.util.Locale;
 
 import okhttp3.Interceptor;
@@ -60,9 +74,13 @@ public class LoginActivity extends AppCompatActivity {
     private String token;
     private ProgressDialog pDialog;
     private Retrofit retrofitforauthentication;
+    private static final String EMAIL = "email";
 
     SharedPreferences languagepref;
     String language;
+    private LoginButton loginButton;
+    private CallbackManager callbackManager = null;
+
 
     @Override
     public void onBackPressed() {
@@ -84,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         language = languagepref.getString("languageToLoad", "");
         checkLanguage(language);
         setContentView(R.layout.activity_login);
+        callbackManager = CallbackManager.Factory.create();
         tvForgotPassword = (TextView) findViewById(R.id.link_to_reset_password);
         tvForgotPassword.setVisibility(View.GONE);
         tvForgotPassword.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +113,27 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+        //fb login button
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions(Arrays.asList(EMAIL));
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                getUserDetails(loginResult);
+              // loginResult.getAccessToken();
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+            }
+        });
 
         etUsername = (EditText) findViewById(R.id.etusername);
         etPassword = (EditText) findViewById(R.id.etpassword);
@@ -132,6 +172,30 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
     }
 
+
+    protected void getUserDetails(LoginResult loginResult) {
+        GraphRequest data_request = GraphRequest.newMeRequest(
+                loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(
+                            JSONObject json_object,
+                            GraphResponse response) {
+                        Intent intent = new Intent(LoginActivity.this, UserProfile.class);
+                        intent.putExtra("userProfile", json_object.toString());
+                        startActivity(intent);
+                    }
+
+                });
+        Bundle permission_param = new Bundle();
+        permission_param.putString("fields", "id,name,email,picture.width(120).height(120)");
+        data_request.setParameters(permission_param);
+        data_request.executeAsync();
+
+    }
+
+
+
+
     private void attemptLogin() {
 
         boolean mCancel = this.loginValidation();
@@ -149,6 +213,13 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    // callback for fb login
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private boolean loginValidation() {
@@ -410,6 +481,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
     }
+
+
 }
 
 
