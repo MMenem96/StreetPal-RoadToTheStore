@@ -29,6 +29,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
@@ -40,6 +44,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.sharekeg.streetpal.R;
 import com.sharekeg.streetpal.googleanalytics.GoogleAnalyticsHelper;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import tourguide.tourguide.ChainTourGuide;
 import tourguide.tourguide.Overlay;
@@ -64,21 +71,24 @@ public class StartHomeFragment extends Fragment {
     private static Tracker sTracker;
     private ImageView ivAddUserPhoto;
     private TextView tvusername;
-    private String token,userName,fullName;
+    private String token, userName, fullName;
     private Animation mEnterAnimation, mExitAnimation;
     private ImageView ivNavigation, ivPosts;
     SharedPreferences languagepref;
     String language;
+    private AccessToken accessToken;
+    private String userType;
 
     public StartHomeFragment() {
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sAnalytics = GoogleAnalytics.getInstance(getActivity());
         InitGoogleAnalytics();
         SendScreenNameGoogleAnalytics();
-
+        accessToken = AccessToken.getCurrentAccessToken();
         languagepref = getActivity().getSharedPreferences("language", MODE_PRIVATE);
         language = languagepref.getString("languageToLoad", "");
 
@@ -97,28 +107,36 @@ public class StartHomeFragment extends Fragment {
             token = mypreference.getString("token", null);
             userName = mypreference.getString("myUserName", "User Name");
             fullName = mypreference.getString("myFullName", "Full Name");
-
+            userType = mypreference.getString("userType", null);
 
 
         }
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View startHomeFragmentView = inflater.inflate(R.layout.fragment_start_home, container, false);
 
-        ivNavigation =this.getActivity().findViewById(R.id.ivmap);
+        ivNavigation = this.getActivity().findViewById(R.id.ivmap);
         ivPosts = this.getActivity().findViewById(R.id.ivguide);
         IV_message = (ImageButton) startHomeFragmentView.findViewById(R.id.IV_message);
-        ivAddUserPhoto = (ImageView)startHomeFragmentView.findViewById(R.id.ivAddUserPhoto);
-        getUserImage();
+        ivAddUserPhoto = (ImageView) startHomeFragmentView.findViewById(R.id.ivAddUserPhoto);
+
+        if (userType != "FB") {
+            getUserImage();
+
+        } else {
+            getUserDetails();
+
+        }
         tvusername = (TextView) startHomeFragmentView.findViewById(R.id.tvusername);
         tvusername.setText(fullName);
 
         IV_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SendEventGoogleAnalytics("StartHomeFragment","CallForHelp","Button clicked" );
+                SendEventGoogleAnalytics("StartHomeFragment", "CallForHelp", "Button clicked");
                 startHomeTabFragment();
             }
         });
@@ -127,20 +145,21 @@ public class StartHomeFragment extends Fragment {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         boolean previouslyStarted = prefs.getBoolean("home_activity_previously_started", false);
-        if (!previouslyStarted)
-        {
+        if (!previouslyStarted) {
             SharedPreferences.Editor edit = prefs.edit();
             edit.putBoolean("home_activity_previously_started", Boolean.TRUE);
             edit.commit();
-            if(language.equals("ar")) {
+            if (language.equals("ar")) {
                 runOverlay_ContinueMethod_ar();
-            }else{runOverlay_ContinueMethod_en();}
-        }
-        else {
+            } else {
+                runOverlay_ContinueMethod_en();
+            }
+        } else {
         }
         return startHomeFragmentView;
     }
-    private void runOverlay_ContinueMethod_en(){
+
+    private void runOverlay_ContinueMethod_en() {
         // the return handler is used to manipulate the cleanup of all the tutorial elements
         ChainTourGuide tourGuide1 = ChainTourGuide.init(getActivity())
                 .setToolTip(new ToolTip()
@@ -164,7 +183,7 @@ public class StartHomeFragment extends Fragment {
                 .setToolTip(new ToolTip()
                                 .setTitle(getString(R.string.tourguide_tip_home_activity_posts_tab_title))
                                 .setDescription(getString(R.string.tourguide_tip_home_activity_posts_tab))
-                                .setGravity(Gravity.TOP |Gravity.LEFT)
+                                .setGravity(Gravity.TOP | Gravity.LEFT)
 //                        .setBackgroundColor(Color.parseColor("#c0392b"))
                 )
                 .setOverlay(new Overlay()
@@ -174,7 +193,7 @@ public class StartHomeFragment extends Fragment {
                 )
                 .playLater(ivPosts);
         Sequence sequence = new Sequence.SequenceBuilder()
-                .add(tourGuide1, tourGuide2,tourGuide3)
+                .add(tourGuide1, tourGuide2, tourGuide3)
                 .setDefaultOverlay(new Overlay()
                         .setEnterAnimation(mEnterAnimation)
                         .setExitAnimation(mExitAnimation)
@@ -186,13 +205,14 @@ public class StartHomeFragment extends Fragment {
 
         ChainTourGuide.init(getActivity()).playInSequence(sequence);
     }
-    private void runOverlay_ContinueMethod_ar(){
+
+    private void runOverlay_ContinueMethod_ar() {
         // the return handler is used to manipulate the cleanup of all the tutorial elements
         ChainTourGuide tourGuide1 = ChainTourGuide.init(getActivity())
                 .setToolTip(new ToolTip()
                         .setTitle(getString(R.string.tourguide_tip_home_activity_chat_title))
                         .setDescription(getString(R.string.tourguide_tip_home_activity_chat))
-                        .setGravity(Gravity.TOP |Gravity.AXIS_PULL_AFTER)
+                        .setGravity(Gravity.TOP | Gravity.AXIS_PULL_AFTER)
                 )
                 // note that there is no Overlay here, so the default one will be used
                 .playLater(IV_message);
@@ -210,7 +230,7 @@ public class StartHomeFragment extends Fragment {
                 .setToolTip(new ToolTip()
                                 .setTitle(getString(R.string.tourguide_tip_home_activity_posts_tab_title))
                                 .setDescription(getString(R.string.tourguide_tip_home_activity_posts_tab))
-                                .setGravity(Gravity.TOP |Gravity.AXIS_PULL_BEFORE)
+                                .setGravity(Gravity.TOP | Gravity.AXIS_PULL_BEFORE)
 //                        .setBackgroundColor(Color.parseColor("#c0392b"))
                 )
                 .setOverlay(new Overlay()
@@ -220,7 +240,7 @@ public class StartHomeFragment extends Fragment {
                 )
                 .playLater(ivPosts);
         Sequence sequence = new Sequence.SequenceBuilder()
-                .add(tourGuide1, tourGuide2,tourGuide3)
+                .add(tourGuide1, tourGuide2, tourGuide3)
                 .setDefaultOverlay(new Overlay()
                         .setEnterAnimation(mEnterAnimation)
                         .setExitAnimation(mExitAnimation)
@@ -232,6 +252,7 @@ public class StartHomeFragment extends Fragment {
 
         ChainTourGuide.init(getActivity()).playInSequence(sequence);
     }
+
     private void startHomeTabFragment() {
         HomeTab homeTabFragment = new HomeTab();
         this.getFragmentManager().beginTransaction()
@@ -241,22 +262,19 @@ public class StartHomeFragment extends Fragment {
     }
 
 
-    private void InitGoogleAnalytics()
-    {
+    private void InitGoogleAnalytics() {
         mGoogleHelper = new GoogleAnalyticsHelper();
         mGoogleHelper.init(getContext());
     }
 
-    private void SendScreenNameGoogleAnalytics()
-    {
+    private void SendScreenNameGoogleAnalytics() {
 
-        mGoogleHelper.SendScreenNameGoogleAnalytics("StartHomeFragment",getContext());
+        mGoogleHelper.SendScreenNameGoogleAnalytics("StartHomeFragment", getContext());
     }
 
-    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId,    String iLabelId)
-    {
+    private void SendEventGoogleAnalytics(String iCategoryId, String iActionId, String iLabelId) {
 
-        mGoogleHelper.SendEventGoogleAnalytics(getContext(),iCategoryId,iActionId,iLabelId );
+        mGoogleHelper.SendEventGoogleAnalytics(getContext(), iCategoryId, iActionId, iLabelId);
     }
 
     private void getUserImage() {
@@ -266,4 +284,36 @@ public class StartHomeFragment extends Fragment {
                 .into(ivAddUserPhoto);
     }
 
+    protected void getUserDetails() {
+
+
+        GraphRequest request = GraphRequest.newMeRequest(
+                accessToken,
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(
+                            JSONObject object,
+                            GraphResponse response) {
+
+                        try {
+                            JSONObject profile_pic_data = new JSONObject(object.get("picture").toString());
+                            JSONObject profile_pic_url = new JSONObject(profile_pic_data.getString("data"));
+                            Picasso.with(getContext()).load(profile_pic_url.getString("url"))
+                                    .into(ivAddUserPhoto);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+        Bundle parameters = new Bundle();
+        parameters.putString("fields", "id,name,email,picture.width(120).height(120)");
+        request.setParameters(parameters);
+        request.executeAsync();
+
+
+        //////////
+
+    }
 }

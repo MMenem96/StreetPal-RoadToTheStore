@@ -141,7 +141,7 @@
             android:name=".Settings.FeedBackActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Login.UserProfile"
+            android:name=".Login.UserProfileActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"

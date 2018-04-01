@@ -15,6 +15,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -28,6 +29,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
@@ -42,6 +47,10 @@ import com.sharekeg.streetpal.homefragments.HomeTab;
 import com.sharekeg.streetpal.homefragments.MapTab;
 import com.sharekeg.streetpal.homefragments.StartHomeFragment;
 import com.sharekeg.streetpal.userinfoforlogin.UserInfoForLogin;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.text.Bidi;
@@ -86,6 +95,8 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
     SharedPreferences languagepref;
     String language, notificationToken;
     private String feedback;
+    private String userType;
+    private SharedPreferences mypreference;
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
@@ -112,6 +123,8 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
             userName = mypreference.getString("myUserName", "User Name");
             fullName = mypreference.getString("myFullName", "Full Name");
             notificationToken = mypreference.getString("NotificationToken", null);
+            userType=mypreference.getString("userType",null);
+
 
             if (notificationToken == null) {
                 //login again to get a token
@@ -336,29 +349,48 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
 
 
                     try {
-                        boolean isUserActive = response.body().getEmailVerified();
-                        if (isUserActive) {
 
-                            SharedPreferences mypreference = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
-                            mypreference.edit().putBoolean("loggedIn", true).apply();
-                            mypreference.edit().putString("myUserName", response.body().getUser()).apply();
-                            mypreference.edit().putString("myFullName", response.body().getName()).apply();
-                            mypreference.edit().putString("myPhone", response.body().getPhone()).apply();
-                            mypreference.edit().putString("myEmail", response.body().getEmail()).apply();
-                            mypreference.edit().putString("myWork", response.body().getWork()).apply();
-                            mypreference.edit().putString("myBirthYear", response.body().getBirth().getY().toString()).apply();
-                            mypreference.edit().putString("myBirthMonth", response.body().getBirth().getM().toString()).apply();
-                            mypreference.edit().putString("myBirthDay", response.body().getBirth().getD().toString()).apply();
-                            mypreference.edit().putString("myGender", response.body().getGender()).apply();
-                            userName = response.body().getUser();
-                        } else {
-                            resendActivationCode();
-                        }
+
+//                        if (userType!="FB") {
+
+                            boolean isUserActive = response.body().getEmailVerified();
+//                            if (isUserActive) {
+
+                                mypreference = PreferenceManager.getDefaultSharedPreferences(HomeActivity.this);
+                                mypreference.edit().putBoolean("loggedIn", true).apply();
+                                mypreference.edit().putString("myUserName", response.body().getUser()).apply();
+                                mypreference.edit().putString("myFullName", response.body().getName()).apply();
+                                mypreference.edit().putString("myPhone", response.body().getPhone()).apply();
+                                mypreference.edit().putString("myEmail", response.body().getEmail()).apply();
+                                mypreference.edit().putString("myWork", response.body().getWork()).apply();
+                                mypreference.edit().putString("myBirthYear", response.body().getBirth().getY().toString()).apply();
+                                mypreference.edit().putString("myBirthMonth", response.body().getBirth().getM().toString()).apply();
+                                mypreference.edit().putString("myBirthDay", response.body().getBirth().getD().toString()).apply();
+                                mypreference.edit().putString("myGender", response.body().getGender()).apply();
+                                userName = response.body().getUser();
+//                            } else {
+//                                resendActivationCode();
+//                            }
+//                        }else{
+//                            mypreference.edit().putBoolean("loggedIn", true).apply();
+//                            mypreference.edit().putString("myUserName", response.body().getUser()).apply();
+//                            mypreference.edit().putString("myFullName", response.body().getName()).apply();
+//                            mypreference.edit().putString("myPhone", response.body().getPhone()).apply();
+//                            mypreference.edit().putString("myEmail", response.body().getEmail()).apply();
+//                            mypreference.edit().putString("myWork", response.body().getWork()).apply();
+//                            mypreference.edit().putString("myBirthYear", response.body().getBirth().getY().toString()).apply();
+//                            mypreference.edit().putString("myBirthMonth", response.body().getBirth().getM().toString()).apply();
+//                            mypreference.edit().putString("myBirthDay", response.body().getBirth().getD().toString()).apply();
+//                            mypreference.edit().putString("myGender", response.body().getGender()).apply();
+//                            userName = response.body().getUser();
+//
+//                        }
                     } catch (Exception e) {
                     }
 
 
                 }
+
             }
 
 
@@ -558,4 +590,10 @@ public class HomeActivity extends AppCompatActivity implements MapTab.OnFragment
         b.isLeftToRight();
 //        this.setContentView(R.layout.activity_home);
     }
+
+
+
+
+
+
 }

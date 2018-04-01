@@ -1,6 +1,7 @@
 package com.sharekeg.streetpal.Androidversionapi;
 
 
+import com.sharekeg.streetpal.Login.LoginCredentialsWithFB;
 import com.sharekeg.streetpal.Registration.ConfirmationCode;
 import com.sharekeg.streetpal.Registration.TrustedContact;
 import com.sharekeg.streetpal.Registration.UserPhoto;
@@ -14,6 +15,7 @@ import com.sharekeg.streetpal.userinfoforeditingprofile.UsersInfoForEditingProfi
 import com.sharekeg.streetpal.Login.LoginCredentials;
 import com.sharekeg.streetpal.userinfoforlogin.UserInfoForLogin;
 import com.sharekeg.streetpal.userinfoforsignup.UserInfoForSignup;
+import com.sharekeg.streetpal.userinfoforsignup.UserInfoForSignupFromFB;
 
 
 import okhttp3.ResponseBody;
@@ -39,11 +41,19 @@ public interface ApiInterface
     @POST("authenticate")
     Call<Result> loginWithCredentials(@Body LoginCredentials data);
 
+    //Login with fb
+
+    @POST("authenticate/fb")
+    Call<Result> loginWithCredentialsWithFb(@Body LoginCredentialsWithFB data);
+
 
     //Register a new user
     @POST("user")
     Call<Result> insertUserinfo(@Body UserInfoForSignup usersInfoForSignUp);
 
+    //Register a new user with fb
+    @POST("user")
+    Call<Result> insertUserinfoFromFB(@Body UserInfoForSignupFromFB userInfoForSignupFromFB);
 
     //Get Current User Info
     @GET("me")

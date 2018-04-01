@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.sharekeg.streetpal.Home.EditProfileActivity;
 import com.sharekeg.streetpal.Home.HomeActivity;
 import com.sharekeg.streetpal.Login.LoginActivity;
@@ -111,6 +112,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.remove("myGender");
                 editor.remove("dialogDisplayisplayedTime");
                 editor.apply();
+                LoginManager.getInstance().logOut();
                 Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();

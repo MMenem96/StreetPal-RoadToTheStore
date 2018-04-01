@@ -1,15 +1,11 @@
 package com.sharekeg.streetpal.Login;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,34 +16,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.appevents.AppEventsLogger;
 
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.sharekeg.streetpal.Androidversionapi.ApiInterface;
 import com.sharekeg.streetpal.Home.HomeActivity;
 import com.sharekeg.streetpal.R;
 import com.sharekeg.streetpal.Registration.ConfirmationActivity;
-import com.sharekeg.streetpal.Registration.CongratulationActivity;
-import com.sharekeg.streetpal.Registration.SelectTrustedContactsActivity;
 import com.sharekeg.streetpal.Registration.SignUpActivity;
 import com.sharekeg.streetpal.Registration.TrustedContact;
 import com.sharekeg.streetpal.authentication.Result;
 import com.sharekeg.streetpal.forgotpassword.ForgetPasswordActivity;
-import com.sharekeg.streetpal.forgotpassword.ForgotPassword;
 import com.sharekeg.streetpal.userinfoforlogin.UserInfoForLogin;
 
+import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.text.Bidi;
@@ -80,6 +71,12 @@ public class LoginActivity extends AppCompatActivity {
     String language;
     private LoginButton loginButton;
     private CallbackManager callbackManager = null;
+    private int message;
+    private String userReturnToken;
+    private Retrofit retrofitForFbAuthentication;
+    private SharedPreferences mypreference;
+    private ProgressDialog mProgressDialog;
+    private String gender;
 
 
     @Override
@@ -98,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         languagepref = getSharedPreferences("language", MODE_PRIVATE);
         language = languagepref.getString("languageToLoad", "");
         checkLanguage(language);
@@ -117,11 +115,14 @@ public class LoginActivity extends AppCompatActivity {
         //fb login button
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList(EMAIL));
+
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+
+
                 getUserDetails(loginResult);
-              // loginResult.getAccessToken();
+
             }
 
             @Override
@@ -164,36 +165,132 @@ public class LoginActivity extends AppCompatActivity {
                 return chain.proceed(newRequest);
             }
         }).build();
+        OkHttpClient fbClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public okhttp3.Response intercept(Chain chain) throws IOException {
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader("Authorization", "Bearer " + userReturnToken)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        }).build();
 
         retrofitforauthentication = new Retrofit.Builder()
                 .client(client)
                 .baseUrl("https://streetpal.org/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        retrofitForFbAuthentication = new Retrofit.Builder()
+                .client(fbClient)
+                .baseUrl("https://streetpal.org/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
 
-    protected void getUserDetails(LoginResult loginResult) {
+    protected void getUserDetails(final LoginResult loginResult) {
+
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setMessage(getApplicationContext().getResources().getString(R.string.dialog_logging));
+        mProgressDialog.show();
         GraphRequest data_request = GraphRequest.newMeRequest(
                 loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
                     public void onCompleted(
                             JSONObject json_object,
                             GraphResponse response) {
-                        Intent intent = new Intent(LoginActivity.this, UserProfile.class);
-                        intent.putExtra("userProfile", json_object.toString());
-                        startActivity(intent);
+
+                        try {
+                            String userFBEmail = response.getJSONObject().get("email").toString();
+                            gender = response.getJSONObject().get("gender").toString();
+                            String userFBAccessToken = AccessToken.getCurrentAccessToken().getToken().toString();
+                            Log.d("accesstoken", userFBAccessToken);
+                            Log.d("accesstoken", userFBEmail);
+
+                            if (loginProcessWithRetrofitByFB(userFBEmail, userFBAccessToken) == 401) {
+                                Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
+                                intent.putExtra("userProfile", json_object.toString());
+                                intent.putExtra("accessToken", userFBAccessToken);
+                                startActivity(intent);
+                                mProgressDialog.dismiss();
+                                Log.d("fbUserStatus", "doesn't exist before");
+                            } else if (loginProcessWithRetrofitByFB(userFBEmail, userFBAccessToken) == 200) {
+                                Log.d("fbUserStatus", "already exist");
+                                getFbUserDetails();
+                            } else {
+                                Toast.makeText(LoginActivity.this, R.string.smthing_went_wrong, Toast.LENGTH_SHORT).show();
+                                mProgressDialog.dismiss();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Log.d("catch", e.toString());
+                            mProgressDialog.dismiss();
+
+
+                        }
+
+
                     }
 
                 });
         Bundle permission_param = new Bundle();
-        permission_param.putString("fields", "id,name,email,picture.width(120).height(120)");
+        permission_param.putString("fields", "id,name,email,gender,picture.width(120).height(120)");
         data_request.setParameters(permission_param);
         data_request.executeAsync();
 
     }
 
+    private void getFbUserDetails() {
+        ApiInterface mApi = retrofitForFbAuthentication.create(ApiInterface.class);
+        Call<UserInfoForLogin> mService = mApi.getUser();
+        mService.enqueue(new Callback<UserInfoForLogin>() {
+            @Override
+            public void onResponse(Call<UserInfoForLogin> call, Response<UserInfoForLogin> response) {
 
+                if (response.isSuccessful()) {
+                    try {
+                        String notificationToken = FirebaseInstanceId.getInstance().getToken();
+                        mypreference = PreferenceManager.getDefaultSharedPreferences(LoginActivity.this);
+                        mypreference.edit().putBoolean("loggedIn", true).apply();
+                        mypreference.edit().putString("token", userReturnToken).apply();
+                        mypreference.edit().putString("myUserName", response.body().getUser()).apply();
+                        mypreference.edit().putString("myFullName", response.body().getName()).apply();
+                        mypreference.edit().putString("NotificationToken", notificationToken).apply();
+                        mypreference.edit().putString("userType", "FB").apply();
+                        mypreference.edit().putString("gender", gender).apply();
+                        mypreference.edit().putLong("dialogDisplayisplayedTime", System.currentTimeMillis()).apply();
+                        Intent openHomeActivity = new Intent(LoginActivity.this, HomeActivity.class);
+                        startActivity(openHomeActivity);
+                        mProgressDialog.dismiss();
+
+
+                    } catch (Exception e) {
+                        mProgressDialog.dismiss();
+                        Log.d("catch", e.toString());
+                        Toast.makeText(LoginActivity.this, R.string.smthing_went_wrong, Toast.LENGTH_SHORT).show();
+
+                    }
+                } else {
+                    Log.d("else", "error");
+
+                    mProgressDialog.dismiss();
+                    Toast.makeText(LoginActivity.this, R.string.smthing_went_wrong, Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserInfoForLogin> call, Throwable t) {
+                mProgressDialog.dismiss();
+                Log.d("onFailure", "getUserFbDetails");
+
+                Toast.makeText(LoginActivity.this, R.string.smthing_went_wrong, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
 
 
     private void attemptLogin() {
@@ -280,6 +377,40 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private int loginProcessWithRetrofitByFB(String email, String fbAccessToken) {
+        ApiInterface mApiService = this.getInterfaceService();
+        Call<Result> mService = mApiService.loginWithCredentialsWithFb(new LoginCredentialsWithFB(email, fbAccessToken));
+        mService.enqueue(new Callback<Result>() {
+
+
+            @Override
+
+            public void onResponse(Call<Result> call, Response<Result> response) {
+
+                try {
+                    message = response.code();
+                    userReturnToken = response.body().getToken();
+
+
+                } catch (Exception e) {
+
+                    Log.d("messageResponse", String.valueOf(message));
+                    // Log.d("messageResponse",userReturnToken);
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Result> call, Throwable t) {
+                Log.d("onFailure", "logwithretFB");
+                Toast.makeText(LoginActivity.this, R.string.smthing_went_wrong, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        return message;
     }
 
     private void getUserData() {

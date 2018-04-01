@@ -102,6 +102,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     SharedPreferences languagepref;
     String language;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +116,7 @@ public class EditProfileActivity extends AppCompatActivity {
         if (mypreference.getBoolean("loggedIn", false)) {
             token = mypreference.getString("token", null);
             userCurrentUserName = mypreference.getString("myUserName", null);
+            gender = mypreference.getString("gender", null);
             Log.i("Token in Home", token);
         }
 
@@ -195,7 +197,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 .build();
 
         getUserData();
-        getUserImage();
+        // getUserImage();
     }
 
     private void getUserImage() {
@@ -440,7 +442,12 @@ public class EditProfileActivity extends AppCompatActivity {
                         day = response.body().getBirth().getD();
                         etWork.setText(response.body().getWork());
                         showDate(year, month, day);
-                        TV_sex.setText(response.body().getGender());
+                        if (response.body().getGender().isEmpty()) {
+                           TV_sex.setText(gender);
+                        } else {
+                            TV_sex.setText(response.body().getGender());
+
+                        }
                         userCurrentUserName = response.body().getUser();
                         mProgressDialoge.dismiss();
 
@@ -448,13 +455,14 @@ public class EditProfileActivity extends AppCompatActivity {
                         mProgressDialoge.dismiss();
                     }
                 } catch (Exception e) {
+                    mProgressDialoge.dismiss();
 
                 }
             }
 
             @Override
             public void onFailure(Call<UserInfoForLogin> call, Throwable t) {
-
+                mProgressDialoge.dismiss();
             }
         });
 
@@ -529,7 +537,6 @@ public class EditProfileActivity extends AppCompatActivity {
 //        setLanguage(language);
         checkLanguage(language);
     }
-
 
 
     //
