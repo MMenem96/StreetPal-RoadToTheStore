@@ -1,17 +1,12 @@
+
 package com.sharekeg.streetpal.Login;
+
+import java.io.Serializable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by MMenem on 3/20/2018.
- */
-
-public class LoginCredentialsWithFB {
-
-
-
-
+public class LoginCredentialsWithFB implements Serializable {
 
     @SerializedName("email")
     @Expose
@@ -19,18 +14,17 @@ public class LoginCredentialsWithFB {
     @SerializedName("accessToken")
     @Expose
     private String accessToken;
+    private final static long serialVersionUID = -9137262528416003056L;
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public LoginCredentialsWithFB() {
     }
 
     /**
-     *
-     * @param email
      * @param accessToken
+     * @param email
      */
     public LoginCredentialsWithFB(String email, String accessToken) {
         super();
@@ -42,14 +36,16 @@ public class LoginCredentialsWithFB {
         return email;
     }
 
-    public void setEmail(String user) {
-        this.email = user;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setFbAccessToken(String pass) {
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
-
-
 
 }

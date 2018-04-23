@@ -77,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences mypreference;
     private ProgressDialog mProgressDialog;
     private String gender;
+    private String userFBAccessToken;
 
 
     @Override
@@ -204,25 +205,12 @@ public class LoginActivity extends AppCompatActivity {
                         try {
                             String userFBEmail = response.getJSONObject().get("email").toString();
                             gender = response.getJSONObject().get("gender").toString();
-                            String userFBAccessToken = AccessToken.getCurrentAccessToken().getToken().toString();
+                            userFBAccessToken = AccessToken.getCurrentAccessToken().getToken().toString();
                             Log.d("accesstoken", userFBAccessToken);
                             Log.d("accesstoken", userFBEmail);
 
-                            if (loginProcessWithRetrofitByFB(userFBEmail, userFBAccessToken) == 401) {
-                                Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
-                                intent.putExtra("userProfile", json_object.toString());
-                                intent.putExtra("accessToken", userFBAccessToken);
-                                startActivity(intent);
-                                mProgressDialog.dismiss();
-                                Log.d("fbUserStatus", "doesn't exist before");
-                            } else if (loginProcessWithRetrofitByFB(userFBEmail, userFBAccessToken) == 200) {
-                                Log.d("fbUserStatus", "already exist");
-                                getFbUserDetails();
-                            } else {
-                                Toast.makeText(LoginActivity.this, R.string.smthing_went_wrong, Toast.LENGTH_SHORT).show();
-                                mProgressDialog.dismiss();
-                            }
 
+                            loginProcessWithRetrofitByFB(userFBEmail, userFBAccessToken, json_object);
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Log.d("catch", e.toString());
@@ -240,6 +228,16 @@ public class LoginActivity extends AppCompatActivity {
         data_request.setParameters(permission_param);
         data_request.executeAsync();
 
+    }
+
+    private void openUserProfileActivity(JSONObject json_object) {
+        Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
+        intent.putExtra("userProfile", json_object.toString());
+        intent.putExtra("accessToken", userFBAccessToken);
+        startActivity(intent);
+        Log.d("fbUserStatus", "doesn't exist before");
+        mProgressDialog.dismiss();
+        finish();
     }
 
     private void getFbUserDetails() {
@@ -264,6 +262,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent openHomeActivity = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(openHomeActivity);
                         mProgressDialog.dismiss();
+                        finish();
 
 
                     } catch (Exception e) {
@@ -379,7 +378,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private int loginProcessWithRetrofitByFB(String email, String fbAccessToken) {
+    private void loginProcessWithRetrofitByFB(String email, String fbAccessToken, final JSONObject json_object) {
         ApiInterface mApiService = this.getInterfaceService();
         Call<Result> mService = mApiService.loginWithCredentialsWithFb(new LoginCredentialsWithFB(email, fbAccessToken));
         mService.enqueue(new Callback<Result>() {
@@ -389,18 +388,30 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onResponse(Call<Result> call, Response<Result> response) {
 
-                try {
+                if (response.isSuccessful()) {
+
+
+                    try {
+                        userReturnToken = response.body().getToken();
+                        Log.d("userReturnToken", userReturnToken);
+                        getFbUserDetails();
+                    } catch (Exception e) {
+
+
+                    }
+                } else {
                     message = response.code();
-                    userReturnToken = response.body().getToken();
+                    if (message == 401) {
+                        openUserProfileActivity(json_object);
 
-
-                } catch (Exception e) {
-
-                    Log.d("messageResponse", String.valueOf(message));
-                    // Log.d("messageResponse",userReturnToken);
+                    } else {
+                        mProgressDialog.dismiss();
+                        Toast.makeText(LoginActivity.this, R.string.smthing_went_wrong, Toast.LENGTH_SHORT).show();
+                    }
 
                 }
             }
+
 
             @Override
             public void onFailure(Call<Result> call, Throwable t) {
@@ -409,8 +420,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
-        return message;
     }
 
     private void getUserData() {
