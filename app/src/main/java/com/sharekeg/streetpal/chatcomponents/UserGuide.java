@@ -26,7 +26,7 @@ public class UserGuide {
             USER_IS_SAFE = 1001,
             TERMINATE_CHAT = -1;
     public static final String CALL_TRUSTED_CONTACT = "call_trusted_contact",
-            SAFE_PLACE = "Safe place", POLICE_STATION = "police", HOSPITAL = "hospital", POLICE_INSTRUCTIONS = "going_to_police", HOSPITAL_INSTRUCTIONS = "going_to_hospital", PEOPLE_NOW_HELPING = "people_helping", CALL_NAZRA = "call_nazra", CALL_NADEEM = "call_nadeem";
+            SAFE_PLACE = "Safe place", POLICE_STATION = "police", HOSPITAL = "hospital", POLICE_INSTRUCTIONS = "going_to_police", HOSPITAL_INSTRUCTIONS = "going_to_hospital", PEOPLE_NOW_HELPING = "people_helping", CALL_NAZRA = "call_nazra", CALL_NADEEM = "call_nadeem", CALL_OFFICIAL_SUPPORT = "CallOfficialSupport";
 
     private OnUserStatusChangeListener listener;
     private ChatBlock chatBlock;
@@ -119,11 +119,11 @@ public class UserGuide {
                 chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_1).toString(), POLICE_STATION, false));
                 chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_2).toString(), false));
                 chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_3).toString(), false));
-                chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_4).toString(), CALL_NAZRA, false));
+                chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_4).toString(), CALL_OFFICIAL_SUPPORT, false));
                 chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_5).toString(), false));
                 chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_6).toString(), false));
                 chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_7).toString(), false));
-                chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_8).toString(), CALL_NADEEM, false));
+//                chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_8).toString(), CALL_NADEEM, false));
                 chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_9).toString(), CALL_NAZRA, false));
                 chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_10).toString(), false));
                 chatMessages9.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_11).toString(), HOSPITAL, false));
@@ -155,7 +155,7 @@ public class UserGuide {
                 hospitalMessages.add(new ChatMessage(context.getResources().getText(R.string.hospital_package_1).toString(), HOSPITAL, false));
                 hospitalMessages.add(new ChatMessage(context.getResources().getText(R.string.hospital_package_2).toString(), false));
                 hospitalMessages.add(new ChatMessage(context.getResources().getText(R.string.hospital_package_3).toString(), false));
-                hospitalMessages.add(new ChatMessage(context.getResources().getText(R.string.hospital_package_4).toString(), CALL_NAZRA, false));
+                hospitalMessages.add(new ChatMessage(context.getResources().getText(R.string.hospital_package_4).toString(), CALL_OFFICIAL_SUPPORT, false));
                 hospitalMessages.add(new ChatMessage(context.getResources().getText(R.string.hospital_package_5).toString(), POLICE_STATION, false));
                 hospitalMessages.add(new ChatMessage(context.getResources().getText(R.string.hospital_package_6).toString(), false));
                 hospitalMessages.add(new ChatMessage(context.getResources().getText(R.string.user_guide_case_1_question2).toString(), false));
@@ -168,7 +168,7 @@ public class UserGuide {
                 policeMessages.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_1).toString(), POLICE_STATION, false));
                 policeMessages.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_2).toString(), false));
                 policeMessages.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_3).toString(), false));
-                policeMessages.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_4).toString(), CALL_NAZRA, false));
+                policeMessages.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_4).toString(), CALL_OFFICIAL_SUPPORT, false));
                 policeMessages.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_5_anotherCase).toString(), false));
                 policeMessages.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_6_anotherCase).toString(), false));
                 policeMessages.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_6).toString(), false));
@@ -198,12 +198,12 @@ public class UserGuide {
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.user_in_danger_part2).toString(), false));
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_2).toString(), false));
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_3).toString(), false));
-                chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_4).toString(), CALL_NAZRA, false));
+                chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_4).toString(), CALL_OFFICIAL_SUPPORT, false));
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_5).toString(), false));
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_6).toString(), false));
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_7).toString(), false));
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_11).toString(), HOSPITAL, false));
-                chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_8).toString(), CALL_NADEEM, false));
+//                chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_8).toString(), CALL_NADEEM, false));
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_9).toString(), CALL_NAZRA, false));
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_10).toString(), false));
                 chatMessages11.add(new ChatMessage(context.getResources().getText(R.string.user_guide_case_1_question2).toString(), false));
@@ -223,7 +223,7 @@ public class UserGuide {
             case USER_NEEDS_TO_TALK:
                 ArrayList<ChatMessage> chatMessages13 = new ArrayList<>();
                 chatMessages13.add(new ChatMessage(context.getResources().getText(R.string.user_needs_to_talk_part1).toString(), false));
-                chatMessages13.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_8).toString(), CALL_NADEEM, false));
+//                chatMessages13.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_8).toString(), CALL_NADEEM, false));
                 chatMessages13.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_9).toString(), CALL_NAZRA, false));
                 chatMessages13.add(new ChatMessage(context.getResources().getText(R.string.user_in_danger_no_help_part2_Replacement).toString(), HOSPITAL_INSTRUCTIONS, false));
                 chatMessages13.add(new ChatMessage(context.getResources().getText(R.string.user_in_danger_no_help_part3).toString(), POLICE_INSTRUCTIONS, false));
@@ -234,12 +234,12 @@ public class UserGuide {
                 break;
             case USER_FILED_REPORT:
                 ArrayList<ChatMessage> chatMessages14 = new ArrayList<>();
-                chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_4).toString(), CALL_NAZRA, false));
+                chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_4).toString(), CALL_OFFICIAL_SUPPORT, false));
                 chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_5).toString(), false));
                 chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_6).toString(), false));
                 chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_7).toString(), false));
                 chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_11).toString(), HOSPITAL, false));
-                chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_8).toString(), CALL_NADEEM, false));
+//                chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_8).toString(), CALL_NADEEM, false));
                 chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_9).toString(), CALL_NAZRA, false));
                 chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_10).toString(), false));
                 chatMessages14.add(new ChatMessage(context.getResources().getText(R.string.police_station_package_12).toString(), false));

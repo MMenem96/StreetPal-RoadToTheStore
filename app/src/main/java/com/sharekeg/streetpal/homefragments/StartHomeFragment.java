@@ -123,12 +123,10 @@ public class StartHomeFragment extends Fragment {
         IV_message = (ImageButton) startHomeFragmentView.findViewById(R.id.IV_message);
         ivAddUserPhoto = (ImageView) startHomeFragmentView.findViewById(R.id.ivAddUserPhoto);
 
-        if (userType != "FB") {
-            getUserImage();
-
-        } else {
+        if (userType.equals("FB")) {
             getUserDetails();
-
+        } else {
+            getUserImage();
         }
         tvusername = (TextView) startHomeFragmentView.findViewById(R.id.tvusername);
         tvusername.setText(fullName);
@@ -148,13 +146,12 @@ public class StartHomeFragment extends Fragment {
         if (!previouslyStarted) {
             SharedPreferences.Editor edit = prefs.edit();
             edit.putBoolean("home_activity_previously_started", Boolean.TRUE);
-            edit.commit();
+            edit.apply();
             if (language.equals("ar")) {
                 runOverlay_ContinueMethod_ar();
             } else {
                 runOverlay_ContinueMethod_en();
             }
-        } else {
         }
         return startHomeFragmentView;
     }
@@ -174,7 +171,7 @@ public class StartHomeFragment extends Fragment {
                 .setToolTip(new ToolTip()
                         .setTitle(getString(R.string.tourguide_tip_home_activity_navigation_tab_title))
                         .setDescription(getString(R.string.tourguide_tip_home_activity_navigation_tab))
-                        .setGravity(Gravity.TOP | Gravity.LEFT)
+                        .setGravity(Gravity.TOP | Gravity.START)
                 )
                 // note that there is no Overlay here, so the default one will be used
                 .playLater(ivNavigation);
@@ -183,7 +180,7 @@ public class StartHomeFragment extends Fragment {
                 .setToolTip(new ToolTip()
                                 .setTitle(getString(R.string.tourguide_tip_home_activity_posts_tab_title))
                                 .setDescription(getString(R.string.tourguide_tip_home_activity_posts_tab))
-                                .setGravity(Gravity.TOP | Gravity.LEFT)
+                                .setGravity(Gravity.TOP | Gravity.START)
 //                        .setBackgroundColor(Color.parseColor("#c0392b"))
                 )
                 .setOverlay(new Overlay()
@@ -221,7 +218,7 @@ public class StartHomeFragment extends Fragment {
                 .setToolTip(new ToolTip()
                         .setTitle(getString(R.string.tourguide_tip_home_activity_navigation_tab_title))
                         .setDescription(getString(R.string.tourguide_tip_home_activity_navigation_tab))
-                        .setGravity(Gravity.TOP | Gravity.RIGHT)
+                        .setGravity(Gravity.TOP | Gravity.START)
                 )
                 // note that there is no Overlay here, so the default one will be used
                 .playLater(ivNavigation);

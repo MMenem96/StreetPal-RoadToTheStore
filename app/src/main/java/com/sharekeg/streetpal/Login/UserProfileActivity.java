@@ -47,7 +47,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private ImageView ivUserProfile;
 
     private Button btnSignup;
-    private String userName, userFullName, userEmail, userAccessToken, token, gender;
+    private String userName, userFullName, userEmail, userAccessToken, token;
     private Retrofit retrofit;
     private ProgressDialog mProgressDialog;
     //  private ProgressDialog pDialog;
@@ -89,7 +89,9 @@ public class UserProfileActivity extends AppCompatActivity {
             response = new JSONObject(jsondata);
             etUserEmail.setText(response.get("email").toString());
             etUserFullName.setText(response.get("name").toString());
-            gender = response.get("gender").toString();
+//            if (response.has("gender")) {
+//                gender = response.get("gender").toString();
+//            }
             profile_pic_data = new JSONObject(response.get("picture").toString());
             profile_pic_url = new JSONObject(profile_pic_data.getString("data"));
             Picasso.with(this).load(profile_pic_url.getString("url"))
@@ -127,7 +129,7 @@ public class UserProfileActivity extends AppCompatActivity {
                         mypreference.edit().putBoolean("loggedIn", true).apply();
                         mypreference.edit().putString("token", token).apply();
                         mypreference.edit().putString("myUserName", userName).apply();
-                        mypreference.edit().putString("gender", gender).apply();
+//                        mypreference.edit().putString("gender", gender).apply();
                         mypreference.edit().putString("myFullName", userFullName).apply();
                         mypreference.edit().putString("NotificationToken", notificationToken).apply();
                         mypreference.edit().putString("userType", "FB").apply();

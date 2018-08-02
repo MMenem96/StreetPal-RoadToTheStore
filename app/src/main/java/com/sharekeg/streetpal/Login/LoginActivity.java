@@ -3,11 +3,15 @@ package com.sharekeg.streetpal.Login;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,6 +45,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.Bidi;
 import java.util.Arrays;
 import java.util.Locale;
@@ -76,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
     private Retrofit retrofitForFbAuthentication;
     private SharedPreferences mypreference;
     private ProgressDialog mProgressDialog;
-    private String gender;
+    //    private String gender;
     private String userFBAccessToken;
 
 
@@ -111,7 +117,20 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.sharekeg.streetpal",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.v("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
 
+        } catch (NoSuchAlgorithmException e) {
+
+        }
 
         //fb login button
         loginButton = (LoginButton) findViewById(R.id.login_button);
@@ -134,6 +153,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onError(FacebookException exception) {
                 // App code
+                Log.e("FacebookException", exception.toString());
             }
         });
 
@@ -204,7 +224,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         try {
                             String userFBEmail = response.getJSONObject().get("email").toString();
-                            gender = response.getJSONObject().get("gender").toString();
+//                            if (response.getJSONObject().has("gender")) {
+//                                gender = response.getJSONObject().get("gender").toString();
+//                            }
                             userFBAccessToken = AccessToken.getCurrentAccessToken().getToken().toString();
                             Log.d("accesstoken", userFBAccessToken);
                             Log.d("accesstoken", userFBEmail);
@@ -224,7 +246,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 });
         Bundle permission_param = new Bundle();
-        permission_param.putString("fields", "id,name,email,gender,picture.width(120).height(120)");
+        permission_param.putString("fields", "name,email,picture.width(120).height(120)");
         data_request.setParameters(permission_param);
         data_request.executeAsync();
 
@@ -257,7 +279,7 @@ public class LoginActivity extends AppCompatActivity {
                         mypreference.edit().putString("myFullName", response.body().getName()).apply();
                         mypreference.edit().putString("NotificationToken", notificationToken).apply();
                         mypreference.edit().putString("userType", "FB").apply();
-                        mypreference.edit().putString("gender", gender).apply();
+//                        mypreference.edit().putString("gender", gender).apply();
                         mypreference.edit().putLong("dialogDisplayisplayedTime", System.currentTimeMillis()).apply();
                         Intent openHomeActivity = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(openHomeActivity);

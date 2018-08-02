@@ -497,6 +497,13 @@ public class StreetPalGuide extends Fragment implements View.OnClickListener, On
             } else {
                 startActivity(telIntent);
             }
+        } else if (navigationTag.equals(UserGuide.CALL_OFFICIAL_SUPPORT)) {
+            telIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:15115"));
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
+            } else {
+                startActivity(telIntent);
+            }
         } else {
 //            Toast.makeText(getContext(), navigationTag, Toast.LENGTH_SHORT).show();
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <!--Card view for the street pal guide-->
+    <!--Card view for the StreetPal guide-->
 
 
     <RelativeLayout

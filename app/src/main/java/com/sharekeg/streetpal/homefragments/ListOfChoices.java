@@ -103,7 +103,7 @@ public class ListOfChoices extends Fragment implements View.OnClickListener {
 
     private void startStreetPalGuide() {
 
-        //Starting street pal fragment when user click call for help button
+        //Starting StreetPal fragment when user click call for help button
 
         StreetPalGuide streetPalGuideFragment = new StreetPalGuide();
         streetPalGuideFragment.setArguments(bundle);

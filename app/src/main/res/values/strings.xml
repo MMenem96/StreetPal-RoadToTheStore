@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Street Pal</string>
+    <string name="app_name">StreetPal</string>
     <string name="password">Password</string>
     <string name="user_name">Username</string>
     <string name="select_contact">Select your  trusted contact</string>
@@ -48,8 +48,8 @@
     <string name="username">User Name</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="Home_title_name">Street pal </string>
-    <string name="Home_title_name_typing">Street Pal \n typing...</string>
+    <string name="Home_title_name">StreetPal </string>
+    <string name="Home_title_name_typing">StreetPal \n typing...</string>
     <string name="map_title_name">Safe Places</string>
     <string name="guide_title_name">Guide</string>
     <string name="upload_national_card">Upload National Card</string>
@@ -181,33 +181,30 @@
 - Meanwhile, follow our instructions.\n
 - You should ask for the human rights officer and explain you want to file a sexual harassment complaint.\n
 - Present the medical report –if you have one- and ask for it to be included in the complaint.\n
-- You can call Nazra for Feminist Studies for legal and psychological support: 01011910917. Nazra will send you a trained lawyer if available. \n
+- For legal or psychological support call the ombudsman office of the national council for women on 15115
+- Also you can contact independent legal and psychological support providers on: 01011910917.\n
 - Make sure to state everything that happened as is. You have the right to give your statement in a separate space than the one the harasser is held in.\n
 - Write down the complaint number and follow up on the investigation.\n
 - If someone refused to help you at the police station, call the Ministry of Interior hotline: 138 and report the incident. \n
 - If you are injured and/or need a medical report, head to nearest hospital listed and ask to be directed to the emergency room, get checked out and ask for a medical report.\n
-- If you feel you need to talk to a professional, you can call Al-Nadeem Institute for psychological support: 01006662404 \n
-- You can call Nazra for Feminist Studies for psychological support: 01011910917 \n
 - In a couple of days, you should go to the general investigation office and you will tell your statement again with your lawyer.\n
 </string>
 
 
     <string name="static_guide_case4">I have been sexually harassed and I filed a report at the police station, what should I do?</string>
-    <string name="static_guide_case4_instructions">- You can call Nazra for Feminist Studies for legal and psychological support: 01011910917. Nazra will send you a trained lawyer if available. \n
+    <string name="static_guide_case4_instructions">
+- For legal or psychological support call the ombudsman office of the national council for women on 15115. \n
+- Also you can contact independent legal and psychological support providers on: 01011910917.\n
 - Make sure to state everything that happened as is. You have the right to give your statement in a separate space than the one the harasser is held in.\n
 - Write down the complaint number and follow up on the investigation.\n
 - If someone refused to help you at the police station, call the Ministry of Interior hotline: 138 and report the incident. \n
 - If you are injured and/or need a medical report, head to nearest hospital listed and ask to be directed to the emergency room, get checked out and ask for a medical report.\n
-- If you feel you need to talk to a professional, you can call Al-Nadeem Institute for psychological support: 01006662404 \n
-- You can call Nazra for Feminist Studies for psychological support: 01011910917 \n
 - In a couple of days, you should go to the general investigation office and you will tell your statement again with your lawyer.\n
 - Follow your lawyer’s instructions and don’t ever take back you statement. \n
 - If you are threatened or harassed by the family of the harasser, communicate with your lawyer and file a restraining order against them.\n
 - Follow up with your case number until the case reaches courts and the harasser gets a sentence. \n
 </string>
-    <string name="Nazra">01011910917</string>
-    <string name="Al_Nadeem">01006662404</string>
-    <string name="police">138</string>
+
 
     <string name="static_guide_case5">I have been sexually harassed and I have physical injuries, what should I do? </string>
     <string name="static_guide_case5_instructions">- We will send a distress signal, your trusted contacts will be notified.\n
@@ -243,7 +240,7 @@
     <string name="user_guide_negative_button">No</string>
     <string name="user_guide_agnostic_button">I do not know</string>
     <string name="user_guide_neutral_button">I have been sexually harassed </string>
-    <string name="user_guide_question_1">Hey,I am your street pal. \n  What is wrong?</string>
+    <string name="user_guide_question_1">Hey,I am your streetPal. \n  What is wrong?</string>
     <string name="user_guide_case_1">I think I am being followed by someone</string>
     <string name="user_guide_case_2">I am being harassed now!</string>
     <string name="user_guide_case_1_qustion1">Do your surroundings feel safe? Do you think people around you might help?</string>
@@ -297,14 +294,14 @@
     ]]> to file an official “Sexual Harassment” Complaint</string>
     <string name="police_station_package_2">Upon arrival ask for the human rights officer and explain you want to file a sexual harassment complaint</string>
     <string name="police_station_package_3">Present the medical report –if you have one- and ask for it to be included in the complaint</string>
-    <string name="police_station_package_4">You can call Nazra for Feminist Studies for legal and psychological support: <![CDATA[<u>01011910917</u>]]> . Nazra will send you a trained lawyer if available</string>
+    <string name="police_station_package_4">For legal or psychological support call the ombudsman office of the national council for women on <![CDATA[<u>15115</u>]]></string>
     <string name="police_station_package_5">Make sure to state everything that happened as is. You have the right to give your statement in a separate space than the one the harasser is held in</string>
     <string name="police_station_package_5_anotherCase">Make sure to state everything that happened as is. And YES, you can file a complaint even if the harasser is not caught</string>
     <string name="police_station_package_6">Write down the complaint number and follow up on the investigation</string>
     <string name="police_station_package_6_anotherCase">Make sure to describe the harasser as best you can</string>
     <string name="police_station_package_7">If someone refused to help you at the police station, call the Ministry of Interior hotline: 138 and report the incident. </string>
     <string name="police_station_package_8">If you feel you need to talk to a professional, you can call Al-Nadeem Institute for psychological support: <![CDATA[<u>01006662404</u>]]></string>
-    <string name="police_station_package_9">You can call Nazra for Feminist Studies for psychological support: <![CDATA[<u>01011910917</u>]]></string>
+    <string name="police_station_package_9">Also you can contact independent legal and psychological support providers on: <![CDATA[<u>01011910917</u>]]></string>
     <string name="police_station_package_10">In a couple of days, you should go to the general investigation office and you will tell your statement again with your lawyer</string>
     <string name="police_station_package_11">If you are injured and/or need a medical report, head to <![CDATA[<u>nearest hospital</u>]]> listed and ask to be directed to the emergency room, get checked out and ask for a medical report</string>
     <string name="police_station_package_12">Follow your lawyer’s instructions and don’t ever take back you statement</string>
@@ -313,7 +310,7 @@
     <string name="hospital_package_1">Head to <![CDATA[<u>nearest hospital</u>]]> listed and ask to be directed to the emergency room, get checked out and ask for a medical report</string>
     <string name="hospital_package_2">If you feel able, you should head to the nearest police station and file and official “Sexual Harassment” Complaint</string>
     <string name="hospital_package_3">Present the medical report and ask for it to be included in the complaint</string>
-    <string name="hospital_package_4">You can call Nazra for Feminist Studies for legal and psychological support: <![CDATA[<u>01011910917</u>]]></string>
+    <string name="hospital_package_4">For legal or psychological support call the ombudsman office of the national council for women on: <![CDATA[<u>15115</u>]]></string>
     <string name="hospital_package_5">Follow the route to <![CDATA[<u>the nearest police station </u>]]>and file an official “Sexual Harassment” Complaint</string>
     <string name="hospital_package_6">If you feel you are not able to do this, you can always file a report on the phone by calling the Ministry of Interior hotline: 138</string>
     <string name="going_to_hospital">I\'m going to hospital</string>
@@ -321,7 +318,7 @@
     <string name="user_needs_to_talk_part1">Remember you have done nothing wrong and you have the right to speak about what happened whenever you feel you can</string>
 
     <string name="user_been_harassed_part1">Try and remember details about the harasser</string>
-    <string name="typing_indicator">Street Pal typing...</string>
+    <string name="typing_indicator">StreetPal typing...</string>
 
     <string name="needed">
      You can educate yourself through my library or seek instant guidance when needed by clicking below.
@@ -420,8 +417,8 @@ Your access to and use of the Service is conditioned on your acceptance of and c
     <!--About us-->
 
 
-    <string name="ABOUT_STREET_PAL">ABOUT STREET PAL</string>
-    <string name="STREET_PAL"> Street Pal</string>
+    <string name="ABOUT_STREET_PAL">ABOUT StreetPal</string>
+    <string name="STREET_PAL"> StreetPal</string>
     <string name="Ourpartners"> Our partners </string>
     <string name="Guide"> - Guide to relevant entities for legal and psychological help.
 </string>
@@ -445,7 +442,7 @@ Your access to and use of the Service is conditioned on your acceptance of and c
     <string name="user_info_updated">Your information is updated</string>
     <string name="edit_gender_invalid">Empty gender</string>
     <string name="dialog_updating_info">Updating your information</string>
-    <string name="home_title_guide_me">Street pal</string>
+    <string name="home_title_guide_me">StreetPal</string>
     <string name="home_title_safe_places">SAFE PLACES</string>
     <string name="home_title_guides">Library</string>
 
@@ -576,8 +573,9 @@ All rights reserved to HarassMap 2015\n
     <string name="still_developing">Still developing this feature</string>
     <string name="recording_started">Recording started</string>
     <string name="helpConfirmation">HELP CONFIRMATION</string>
-
     <string name="trusted_contact_email_hint">Mail is used to send your location to your trusted contact in dangerous situations</string>
+    <string name="failed_to_sign_up">Failed to signup!</string>
+    <string name="connection_timeout">Connection timeout,try again later!</string>
     <string name="gps_network_not_enabled">Gps network not enabled!</string>
     <string name="open_location_settings">Open settings?</string>
 
@@ -600,7 +598,7 @@ All rights reserved to HarassMap 2015\n
     <string name="maptab_progress_dialoge_police">Searching for the nearest police station</string>
     <string name="maptab_progress_dialoge_hospital">Searching for the nearest hospital</string>
     <string name="navigate_to_your_destination">Navigate to your destination</string>
-    <string name="error_while_navigation">An error has occurred</string>
+    <string name="error_while_navigation">An error has occurred!</string>
     <string name="navigate_to_nearest_hospital">Navigate to nearest hospital?</string>
     <string name="navigate_to_nearest_police">Navigate to nearest police station?</string>
     <string name="we_cdnt_find_hospital_near_you">We couldn\'t find hospital near you!</string>
@@ -608,9 +606,8 @@ All rights reserved to HarassMap 2015\n
     <string name="popfeedback_dialog_empty">Empty input!</string>
 
 
-    <string name="facebook_app_id">1794707520825274</string>
-    <string name="fb_login_protocol_scheme">fb1794707520825274</string>
-
+    <string name="facebook_app_id">1368618633239369</string>
+    <string name="fb_login_protocol_scheme">fb1368618633239369</string>
 
 
     <!--Tour guide strings -->

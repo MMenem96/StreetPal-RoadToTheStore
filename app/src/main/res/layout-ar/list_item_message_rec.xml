@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#f1f1f1">
-    <!--Card view for the street pal guide-->
+    <!--Card view for the StreetPal guide-->
 
 
     <LinearLayout
@@ -40,7 +40,7 @@
                 android:layout_toLeftOf="@+id/logo_street_pal"
                 android:background="@drawable/messageshape"
                 android:padding="14dp"
-                android:text="Hi, Mohamed i'm your street pal guide."
+                android:text="Hi, Mohamed i'm your streetPal guide."
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 
@@ -64,7 +64,7 @@
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/message_shape2"
                 android:padding="14dp"
-                android:text="Hi, Mohamed i'm your street pal guide."
+                android:text="Hi, Mohamed i'm your StreetPal guide."
                 android:textColor="@color/white"
                 android:textSize="12sp" />
 

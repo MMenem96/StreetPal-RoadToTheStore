@@ -193,7 +193,7 @@ public class HomeTab extends Fragment implements View.OnClickListener {
 
     private void startStreetPalGuide() {
 
-        //Starting the street pal fragment when user click call for help button
+        //Starting the StreetPal fragment when user click call for help button
 
         StreetPalGuide streetPalGuideFragment = new StreetPalGuide();
         streetPalGuideFragment.setArguments(bundle);
